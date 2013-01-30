@@ -37,7 +37,7 @@ class LeafletTest extends \PHPUnit_Framework_TestCase {
                     )
                 );
         $this->assertEquals(
-                FormatJson::encode( $this->object->getMapData( array("55.7557860, 37.6176330", "service=leaflet") ) ),
+                \FormatJson::encode( $this->object->getMapData( array("55.7557860, 37.6176330", "service=leaflet") ) ),
                 '{"markers":[{"pos":[{"lat":55.755786,"lon":37.617633}]}],"zoom":14,"center":{"lat":55.755786,"lon":37.617633}}'
                 );
 
