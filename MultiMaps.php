@@ -21,7 +21,7 @@ $wgExtensionCredits['parserhook'][] = array(
     'name'           => 'MultiMaps',
     'version'        => '0.0.1',
     'url'            => 'https://www.mediawiki.org/wiki/Extension:MultiMaps',
-    'author'         => array( '[[mw:User:Pastakhov|Pavel Astakhov]]', '...' ),
+    'author'         => array( '[[mw:User:Pastakhov|Pavel Astakhov]]' ),
     'descriptionmsg' => 'multimaps-desc'
 );
 
