@@ -14,21 +14,16 @@
         /**
         * Creates a new marker with the provided data,
         * adds it to the map, and returns it.
-        * @param {Object} markerData Contains the fields lat, lon, title, text and icon
-        * @return {L.Marker}
+        * @param {Object} properties Contains the fields lat, lon, title, text and icon
         */
         this.addMarker = function (properties) {
+            var markerOptions = {};
+
             if( properties.icon ) {
-                var icon = new L.Icon({
+                markerOptions.icon = new L.Icon({
                     iconUrl: properties.icon
                 });
-            } else {
-                var icon = new L.Icon.Default();
             }
-
-            var markerOptions = {
-                icon:icon
-            };
 
             if( properties.title ) {
                 markerOptions.title = properties.title;
@@ -48,7 +43,6 @@
             var latlngs = [];
             for (var x = 0; x < properties.pos.length; x++) {
                 latlngs.push([properties.pos[x].lat, properties.pos[x].lon]);
-                //this.points.push( new L.LatLng(properties.pos[x].lat, properties.pos[x].lon) );
             }
 
             L.polyline(latlngs, options).addTo(this.map);
@@ -70,7 +64,6 @@
             var latlngs = [];
             for (var x = 0; x < properties.pos.length; x++) {
                 latlngs.push([properties.pos[x].lat, properties.pos[x].lon]);
-                //this.points.push( new L.LatLng(properties.pos[x].lat, properties.pos[x].lon) );
             }
 
             L.Polygon(latlngs, options).addTo(this.map);
@@ -80,9 +73,6 @@
          * TODO: check this
          */
         this.addCircle = function (properties) {
-            //this.points.push( new L.LatLng(properties.centre.lat-properties.radius, properties.centre.lon-properties.radius) ); // TODO: check this
-            //this.points.push( new L.LatLng(properties.centre.lat+properties.radius, properties.centre.lon+properties.radius) ); // TODO: check this
-
             var options = {
                 color: properties.strokeColor,
                 weight:properties.strokeWeight,
@@ -99,9 +89,6 @@
          * TODO: check this
          */
         this.addRectangle = function (properties) {
-            //this.points.push( new L.LatLng(properties.sw.lat, properties.sw.lon) );
-            //this.points.push( new L.LatLng(properties.ne.lat, properties.ne.lon) );
-
             var options = {
                 color: properties.strokeColor,
                 weight:properties.strokeWeight,
@@ -137,38 +124,28 @@
             }
 
             // Add the markers.
-            if ( options.markers ) {
-                for (var i = 0; i < options.markers.length; i++) {
-                    this.addMarker( options.markers[i] );
-                }
+            for (var im in options.markers) {
+                this.addMarker( options.markers[im] );
             }
 
             // Add lines
-            if (options.lines) {
-                for (var i = 0; i < options.lines.length; i++) {
-                    this.addLine(options.lines[i]);
-                }
+            for (var il in options.lines) {
+                this.addLine(options.lines[il]);
             }
 
             // Add polygons
-            if (options.polygons) {
-                for (var i = 0; i < options.polygons.length; i++) {
-                    this.addPolygon(options.polygons[i]);
-                }
+            for (var ip in options.polygons) {
+                this.addPolygon(options.polygons[ip]);
             }
 
             // Add circles
-            if (options.circles) {
-                for (var i = 0; i < options.circles.length; i++) {
-                    this.addCircle(options.circles[i]);
-                }
+            for (var ic in options.circles) {
+                this.addCircle(options.circles[ic]);
             }
 
             // Add rectangles
-            if (options.rectangles) {
-                for (var i = 0; i < options.rectangles.length; i++) {
-                    this.addRectangle(options.rectangles[i]);
-                }
+            for (var ir in options.rectangles) {
+                this.addRectangle(options.rectangles[ir]);
             }
 
             // Set map position (centre and zoom)
