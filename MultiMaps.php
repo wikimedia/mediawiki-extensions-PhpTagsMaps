@@ -53,6 +53,9 @@ $wgAutoloadClasses['MultiMaps\\Point'] =            $dir . '/includes/Point.php'
 
 $wgAutoloadClasses['MultiMaps\\BaseMapElement'] =   $dir . '/includes/mapelements/BaseMapElement.php';
 $wgAutoloadClasses['MultiMaps\\Marker'] =           $dir . '/includes/mapelements/Marker.php';
+$wgAutoloadClasses['MultiMaps\\Line'] =             $dir . '/includes/mapelements/Line.php';
+$wgAutoloadClasses['MultiMaps\\Polygon'] =          $dir . '/includes/mapelements/Polygon.php';
+$wgAutoloadClasses['MultiMaps\\Rectangle'] =        $dir . '/includes/mapelements/Rectangle.php';
 
 
 //define modules that can later be loaded during the output
