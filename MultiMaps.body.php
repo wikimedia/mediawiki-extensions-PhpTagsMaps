@@ -12,6 +12,7 @@ class MultiMaps {
 
     /**
      * Render map on wikipage using appropriate service class
+     *
      * @param Parser $parser
      * @return string
      */
@@ -31,33 +32,9 @@ class MultiMaps {
                 throw new MWException( 'MultiMapsServices::getServiceInstance() must return an object "\MultiMaps\BaseService" or a string describing the error.' );
             }
         }
-
-        return $service->render($params);
-    }
-
-    public static function getResourceModules() {
-        global $egMultiMapsServices_showmap;
-
-        $resource = array(
-            'ext.MultiMaps' => array(
-                'styles' => array('resources/multimaps.css'),
-                'localBasePath' => __DIR__,
-                'remoteExtPath' => 'MultiMaps',
-                'group' => 'ext.MultiMaps',
-                ),
-            );
-
-        foreach ($egMultiMapsServices_showmap as $key => $value) {
-            $service = "\\MultiMaps\\$key";
-            $serviceReflection = new ReflectionClass( $service );
-            if( $serviceReflection->isSubclassOf('\MultiMaps\BaseService') ) {
-                $resource = array_merge( $resource, (array)$service::getResourceModules() );
-            } else {
-                throw new MWException( "\$egMultiMapsServices_showmap must contains only \MultiMaps\BaseService classes, but '$service' is not such");
-            }
-        }
-
-        return $resource;
+        $service->parse($params);
+        $service->addDependencies($parser);
+        return $service->render();
     }
 
     /**
