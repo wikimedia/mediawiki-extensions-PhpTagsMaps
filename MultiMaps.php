@@ -54,6 +54,20 @@ $wgAutoloadClasses['MultiMaps\\Point'] =            $dir . '/includes/Point.php'
 $wgAutoloadClasses['MultiMaps\\BaseMapElement'] =   $dir . '/includes/mapelements/BaseMapElement.php';
 $wgAutoloadClasses['MultiMaps\\Marker'] =           $dir . '/includes/mapelements/Marker.php';
 
-$wgAutoloadClasses["MultiMaps\Leaflet"] =           $dir . '/services/Leaflet/Leaflet.php';
 
-$wgResourceModules = array_merge( $wgResourceModules, MultiMaps::getResourceModules() );
+//define modules that can later be loaded during the output
+$wgResourceModules['ext.MultiMaps'] = array(
+    'styles' => array('resources/multimaps.css'),
+    'localBasePath' => $dir,
+    'remoteExtPath' => 'MultiMaps',
+    'group' => 'ext.MultiMaps',
+    );
+
+// Leaflet service
+$wgAutoloadClasses["MultiMaps\Leaflet"] =  $dir . '/services/Leaflet/Leaflet.php';
+$wgResourceModules['ext.MultiMaps.Leaflet'] = array(
+    'scripts' => array( 'ext.leaflet.js' ),
+    'localBasePath' => $dir . '/services/Leaflet',
+    'remoteExtPath' => 'MultiMaps/services/Leaflet',
+    'group' => 'ext.MultiMaps',
+    );

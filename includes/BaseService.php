@@ -23,7 +23,8 @@ abstract class BaseService {
      * @var string
      */
     protected $classname = '';
-    protected $resourceModules = array('ext.MultiMaps');
+    protected $resourceModules = array();
+    protected $headerItem = '';
     protected $width;
     protected $height;
     protected $errormessages = array();
@@ -63,24 +64,15 @@ abstract class BaseService {
         $this->elementsBounds = new \MultiMaps\Bounds();
         $this->width = $GLOBALS['egMultiMaps_Width'];
         $this->height = $GLOBALS['egMultiMaps_Height'];
+        $this->resourceModules[] = 'ext.MultiMaps';
     }
 
     /**
      *
-     * @global OutputPage $wgOut
-     * @param array $param
      * @return string
      */
-    public function render($param) {
-        global $wgOut;
-
-        foreach ($this->resourceModules as $resmod) {
-            $wgOut->addModules( $resmod );
-        }
-
+    public function render() {
         static $mapid = 0;
-
-        $this->parse($param);
 
         return \Html::rawElement(
                 'div',
@@ -199,10 +191,18 @@ abstract class BaseService {
     }
 
     /**
-     * Retun array of all extra defined modules that can later be loaded during the output
-     * @link http://www.mediawiki.org/wiki/Manual:$wgResourceModules $wgResourceModules
-     * @return array
+     *
+     * @param \Parser $parser
      */
-    public abstract function getResourceModules();
+    public function addDependencies(\Parser &$parser) {
+        $output = $parser->getOutput();
+        foreach ($this->resourceModules as $modules) {
+            $output->addModules($modules);
+        }
+
+        if($this->headerItem != '') {
+            $output->addHeadItem($this->headerItem, "multimaps_{$this->classname}");
+        }
+    }
 
 }

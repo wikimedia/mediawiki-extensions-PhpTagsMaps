@@ -21,25 +21,10 @@ class Leaflet extends BaseService {
     function __construct() {
         parent::__construct();
         $this->classname="leaflet";
+        $this->headerItem .= '<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />' . "\n" .
+                '<!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" /><![endif]-->' . "\n" .
+                '<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>' . "\n";
         $this->resourceModules[] = 'ext.MultiMaps.Leaflet';
-    }
-
-    /**
-     * Retun array of all extra defined modules that can later be loaded during the output
-     * @codeCoverageIgnore
-     * @link http://www.mediawiki.org/wiki/Manual:$wgResourceModules $wgResourceModules
-     * @return array
-     */
-    public function getResourceModules() {
-        return array(
-            'ext.MultiMaps.Leaflet' => array(
-                'styles' => array( 'leaflet/leaflet.css', 'leaflet/leaflet.ie.css' ),
-                'scripts' => array( 'leaflet/leaflet.js', 'ext.leaflet.js' ),
-                'localBasePath' => __DIR__,
-                'remoteExtPath' => 'MultiMaps/services/Leaflet',
-                'group' => 'ext.MultiMaps',
-                ),
-            );
     }
 
 }
