@@ -15,13 +15,12 @@ class MultiMapsServices {
      * If the service is not specified or is not available, the service returns the specified default
      * On error returns error message
      * @global array $egMultiMapsServices_showmap
-     * @global array $egMultiMapsDefaultService_showmap
      * @param string $action
      * @param string $servicename
      * @return MultiMaps\BaseService return class extends \MultiMaps\BaseService or string of error message
      */
     public static function getServiceInstance( $action, $servicename ) {
-        global $egMultiMapsServices_showmap, $egMultiMapsDefaultService_showmap;
+        global $egMultiMapsServices_showmap;
 
         //default error message
         $returnservice =  wfMessage( 'multimaps-method-error-unexpected-result', __METHOD__ . " ( $action, $servicename ) " )->escaped();
@@ -30,15 +29,11 @@ class MultiMapsServices {
             case 'showmap':
                 $classname = MultiMaps::recursive_array_search( $servicename, $egMultiMapsServices_showmap );
                 if( $classname === false ) { // a user-specified service can not be found
-                    if( !is_array($egMultiMapsDefaultService_showmap) ) {
-                        $egMultiMapsDefaultService_showmap = array($egMultiMapsDefaultService_showmap);
+                    if( !reset($egMultiMapsServices_showmap) ) {
+                        throw new MWException('$egMultiMapsServices_showmap must not be an empty array');
                     }
-                    foreach ( $egMultiMapsDefaultService_showmap as $value) { // search of available service of the default
-                        $classname = MultiMaps::recursive_array_search( $value, $egMultiMapsServices_showmap );
-                        if( $classname !== false ) { // default service is found
-                            break;
-                        }
-                    }
+                    $showmap = each($egMultiMapsServices_showmap);
+                    $classname = $showmap['key'];
                 }
                 if( $classname === false ) { // default service is not found
                     return wfMessage( 'multimaps-unknown-showmap-service' )->escaped();
