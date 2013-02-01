@@ -34,11 +34,17 @@
         };
 
         this.addLine = function (properties) {
-            var options = {
-                color: properties.strokeColor,
-                weight:properties.strokeWeight,
-                opacity:properties.strokeOpacity
-            };
+            var options = {};
+
+            if( properties.strokeColor ) {
+                options.color = properties.strokeColor;
+            }
+            if( properties.strokeWeight ) {
+                options.weight = properties.strokeWeight;
+            }
+            if( properties.strokeOpacity ) {
+                options.opacity = properties.strokeOpacity;
+            }
 
             var latlngs = [];
             for (var x = 0; x < properties.pos.length; x++) {
@@ -52,35 +58,59 @@
          * TODO: check this
          */
         this.addPolygon = function (properties) {
-            var options = {
-                color: properties.strokeColor,
-                weight:properties.strokeWeight,
-                opacity:properties.strokeOpacity,
-                fill:properties.fill === false ? false : true, // TODO: check this
-                fillColor:properties.fillColor,
-                fillOpacity:properties.fillOpacity
-            };
+            var options = {};
+
+            if( properties.strokeColor ) {
+                options.color = properties.strokeColor;
+            }
+            if( properties.strokeWeight ) {
+                options.weight = properties.strokeWeight;
+            }
+            if( properties.strokeOpacity ) {
+                options.opacity = properties.strokeOpacity;
+            }
+            if( properties.fill ) {
+                options.fill = properties.fill;
+            }
+            if( properties.fillColor ) {
+                options.fillColor = properties.fillColor;
+            }
+            if( properties.fillOpacity ) {
+                options.fillOpacity = properties.fillOpacity;
+            }
 
             var latlngs = [];
             for (var x = 0; x < properties.pos.length; x++) {
                 latlngs.push([properties.pos[x].lat, properties.pos[x].lon]);
             }
 
-            L.Polygon(latlngs, options).addTo(this.map);
+            L.polygon(latlngs, options).addTo(this.map);
         };
 
         /**
          * TODO: check this
          */
         this.addCircle = function (properties) {
-            var options = {
-                color: properties.strokeColor,
-                weight:properties.strokeWeight,
-                opacity:properties.strokeOpacity,
-                fill:properties.fill === false ? false : true, // TODO: check this
-                fillColor:properties.fillColor,
-                fillOpacity:properties.fillOpacity
-            };
+            var options = {};
+
+            if( properties.strokeColor ) {
+                options.color = properties.strokeColor;
+            }
+            if( properties.strokeWeight ) {
+                options.weight = properties.strokeWeight;
+            }
+            if( properties.strokeOpacity ) {
+                options.opacity = properties.strokeOpacity;
+            }
+            if( properties.fill ) {
+                options.fill = properties.fill;
+            }
+            if( properties.fillColor ) {
+                options.fillColor = properties.fillColor;
+            }
+            if( properties.fillOpacity ) {
+                options.fillOpacity = properties.fillOpacity;
+            }
 
             L.Circle([properties.centre.lat, properties.centre.lon], properties.radius, options).addTo(this.map);
         };
@@ -89,16 +119,28 @@
          * TODO: check this
          */
         this.addRectangle = function (properties) {
-            var options = {
-                color: properties.strokeColor,
-                weight:properties.strokeWeight,
-                opacity:properties.strokeOpacity,
-                fill:properties.fill === false ? false : true, // TODO: check this
-                fillColor:properties.fillColor,
-                fillOpacity:properties.fillOpacity
-            };
+            var options = {};
 
-            var bounds = [[properties.sw.lat, properties.sw.lon], [properties.ne.lat, properties.ne.lon]];
+            if( properties.strokeColor ) {
+                options.color = properties.strokeColor;
+            }
+            if( properties.strokeWeight ) {
+                options.weight = properties.strokeWeight;
+            }
+            if( properties.strokeOpacity ) {
+                options.opacity = properties.strokeOpacity;
+            }
+            if( properties.fill ) {
+                options.fill = properties.fill;
+            }
+            if( properties.fillColor ) {
+                options.fillColor = properties.fillColor;
+            }
+            if( properties.fillOpacity ) {
+                options.fillOpacity = properties.fillOpacity;
+            }
+
+            var bounds = [[properties.pos[0].lat, properties.pos[0].lon], [properties.pos[1].lat, properties.pos[1].lon]];
 
             L.rectangle( bounds, options ).addTo(this.map);
         };

@@ -51,6 +51,12 @@ abstract class BaseService {
         'bounds',
         'marker',
         'markers',
+        'line',
+        'lines',
+        'polygon',
+        'polygons',
+        'rectangle',
+        'rectangles',
     );
 
     protected $ignoreProperties = array(
@@ -165,6 +171,54 @@ abstract class BaseService {
                         $this->elementsBounds->extend( $marker->pos );
                     } else {
                         $this->errormessages = array_merge( $this->errormessages, $marker->getErrorMessages() );
+                    }
+                }
+                break;
+            case 'line':
+            case 'lines':
+                $stringsline = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
+                foreach ($stringsline as $linevalue) {
+                    if (trim($linevalue) == '' ) {
+                        continue;
+                    }
+                    $line = new \MultiMaps\Line( $linevalue );
+                    if( $line->isValid() ) {
+                        $this->mapdata['lines'][] = $line;
+                        $this->elementsBounds->extend( $line->pos );
+                    } else {
+                        $this->errormessages = array_merge( $this->errormessages, $line->getErrorMessages() );
+                    }
+                }
+                break;
+            case 'polygon':
+            case 'polygons':
+                $stringspolygon = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
+                foreach ($stringspolygon as $polygonvalue) {
+                    if (trim($polygonvalue) == '' ) {
+                        continue;
+                    }
+                    $polygon = new \MultiMaps\Polygon( $polygonvalue );
+                    if( $polygon->isValid() ) {
+                        $this->mapdata['polygons'][] = $polygon;
+                        $this->elementsBounds->extend( $polygon->pos );
+                    } else {
+                        $this->errormessages = array_merge( $this->errormessages, $polygon->getErrorMessages() );
+                    }
+                }
+                break;
+            case 'rectangle':
+            case 'rectangles':
+                $stringsrectangle = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
+                foreach ($stringsrectangle as $rectanglevalue) {
+                    if (trim($rectanglevalue) == '' ) {
+                        continue;
+                    }
+                    $rectangle = new \MultiMaps\Rectangle( $rectanglevalue );
+                    if( $rectangle->isValid() ) {
+                        $this->mapdata['rectangles'][] = $rectangle;
+                        $this->elementsBounds->extend( $rectangle->pos );
+                    } else {
+                        $this->errormessages = array_merge( $this->errormessages, $rectangle->getErrorMessages() );
                     }
                 }
                 break;
