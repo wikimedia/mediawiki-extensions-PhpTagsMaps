@@ -59,10 +59,10 @@ $messages['de'] = array(
 	'multimaps-unable-create-element' => 'Das Kartenelement „$1“ kann nicht erstellt werden',
 	'multimaps-unable-parse-coordinates' => 'Die geografischen Koordinaten „$1“ konnten nicht geparst werden',
 	'multimaps-unable-parse-parameter' => 'Der Parameter „$1“ mit dem Wert „$2“ konnte nicht geparst werden',
-	'multimaps-unknown-showmap-service' => 'Es konnte kein Service zum Anzeigen der Karte gefunden werden',
-	'multimaps-unknown-class-for-service' => 'Die angegebene Klasse „$1“ ist für den Service unbekannt',
+	'multimaps-unknown-showmap-service' => 'Es konnte kein Dienst zum Anzeigen der Karte gefunden werden',
+	'multimaps-unknown-class-for-service' => 'Die angegebene Klasse „$1“ ist für den Dienst unbekannt',
 	'multimaps-unknown-parameter' => 'Unbekannter Parameter: „$1“',
-	'multimaps-error-incorrect-class-for-service' => 'Die angegebene Klasse „$1“ ist für den Service ungültig',
+	'multimaps-error-incorrect-class-for-service' => 'Die angegebene Klasse „$1“ ist für den Dienst ungültig',
 	'multimaps-method-error-unknown-action' => '$1: Unbekannte Aktion',
 	'multimaps-method-error-unexpected-result' => '$1: Ein unerwartetes Ergebnis einer Funktion',
 );
@@ -113,4 +113,21 @@ $messages['ja'] = array(
 	'multimaps-unknown-parameter' => '不明なパラメーター:「$1」',
 	'multimaps-method-error-unknown-action' => '$1: 不明な操作です',
 	'multimaps-method-error-unexpected-result' => '$1: 関数が予期しない結果を返しました',
+);
+
+/** Macedonian (македонски)
+ * @author Bjankuloski06
+ */
+$messages['mk'] = array(
+	'multimaps-desc' => 'Овозможува корисниците да прикажуваат карти и координатни податоци користејќи повеќе картографски служби',
+	'multimaps-loading-map' => 'Ја вчитувам картата...',
+	'multimaps-unable-create-element' => 'Не можам да го создадам елементот „$1“',
+	'multimaps-unable-parse-coordinates' => 'не можам да ги испарсирам географските координати „$1“',
+	'multimaps-unable-parse-parameter' => 'не можам да го испарсирам параметарот „$1“. Вредноста е „$2“',
+	'multimaps-unknown-showmap-service' => 'Не можев да најдам расположива служба за приказ на картата',
+	'multimaps-unknown-class-for-service' => 'На службата ѝ се зададени непознатата класа: „$1“',
+	'multimaps-unknown-parameter' => 'Непознат параметар: „$1“',
+	'multimaps-error-incorrect-class-for-service' => 'На службата ѝ е зададена неисправна класа: „$1“',
+	'multimaps-method-error-unknown-action' => '$1: Непознато дејство',
+	'multimaps-method-error-unexpected-result' => '$1: Неочекуван резултат на функција',
 );
