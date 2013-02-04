@@ -134,3 +134,32 @@ $messages['mk'] = array(
 	'multimaps-method-error-unknown-action' => '$1: Непознато дејство',
 	'multimaps-method-error-unexpected-result' => '$1: Неочекуван резултат на функција',
 );
+
+/** Dutch (Nederlands)
+ * @author Kippenvlees1
+ */
+$messages['nl'] = array(
+	'multimaps-desc' => 'Sta gebruikers toe om kaarten en coördinaten weer te geven met behulp van meerdere kaartservices',
+	'multimaps-loading-map' => 'Kaart wordt geladen...',
+	'multimaps-unable-create-element' => 'Map-element "$1" kan niet worden aangemaakt',
+	'multimaps-unable-parse-coordinates' => 'kan de geografische coördinaten "$1" niet parseren',
+	'multimaps-unable-parse-parameter' => 'kan de parameter "$1" niet parseren met waarde "$2"',
+	'multimaps-unknown-showmap-service' => 'De service die de kaart weergeeft kon niet gevonden worden',
+	'multimaps-unknown-class-for-service' => 'Voor de service gedefiniëerd is onbekend klasse: "$1"',
+	'multimaps-unknown-parameter' => 'Onbekende parameter: "$1"',
+	'multimaps-error-incorrect-class-for-service' => 'Voor de service gedefiniëerd is onjuiste klasse: "$1"',
+	'multimaps-method-error-unknown-action' => '$1: Onbekende actie',
+	'multimaps-method-error-unexpected-result' => '$1: Een onverwacht resultaat van een functie',
+);
+
+/** Simplified Chinese (中文（简体）‎)
+ * @author 乌拉跨氪
+ */
+$messages['zh-hans'] = array(
+	'multimaps-loading-map' => '加载地图中……',
+	'multimaps-unable-create-element' => '无法创建地图元素“$1”',
+	'multimaps-unable-parse-coordinates' => '无法解析地理坐标“$1”',
+	'multimaps-unable-parse-parameter' => '无法解析值为$2的参数$1',
+	'multimaps-unknown-showmap-service' => '无法找到可用的服务来显示地图',
+	'multimaps-unknown-parameter' => '未知参数：“$1”',
+);
