@@ -80,8 +80,15 @@ class LeafletTest extends \PHPUnit_Framework_TestCase {
 
     public function testParseRectangles() {
         $this->assertEquals(
-                \FormatJson::encode( $this->object->getMapData( array(' ', 'rectangles  =51.83577752045248  ,33.837890625 : 46.37725420510028 ,23.37890625 ', 'rectangle= 10, 10: 40, 40', 'service=leaflet') ) ),
-                '{"rectangles":[{"pos":[{"lat":51.835777520452,"lon":33.837890625},{"lat":46.3772542051,"lon":23.37890625}]},{"pos":[{"lat":10,"lon":10},{"lat":40,"lon":40}]}],"bounds":{"ne":{"lat":51.835777520452,"lon":40},"sw":{"lat":10,"lon":10}}}'
+                \FormatJson::encode( $this->object->getMapData( array(' ', 'rectangles  =51.83577752045248  ,33.837890625 : 46.37725420510028 ,23.37890625 ', 'rectangle= 10°10\'10", 10°10\'10": 40°, 40°', 'service=leaflet') ) ),
+                '{"rectangles":[{"pos":[{"lat":51.835777520452,"lon":33.837890625},{"lat":46.3772542051,"lon":23.37890625}]},{"pos":[{"lat":10.169444444444,"lon":10.169444444444},{"lat":40,"lon":40}]}],"bounds":{"ne":{"lat":51.835777520452,"lon":40},"sw":{"lat":10.169444444444,"lon":10.169444444444}}}'
+                );
+    }
+
+    public function testParseFalseOneRectangle() {
+        $this->assertEquals(
+                \FormatJson::encode( $this->object->getMapData( array(' ', 'rectangles  =51.83577752045248  ,33.837890625 : 46.37725420510028 ,23.37890625 ', 'rectangle= 10°10°10", 10°10\'10": 40, 40', 'service=leaflet') ) ),
+                '{"rectangles":[{"pos":[{"lat":51.835777520452,"lon":33.837890625},{"lat":46.3772542051,"lon":23.37890625}]}],"bounds":{"ne":{"lat":51.835777520452,"lon":33.837890625},"sw":{"lat":46.3772542051,"lon":23.37890625}}}'
                 );
     }
 

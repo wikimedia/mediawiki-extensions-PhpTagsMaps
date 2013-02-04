@@ -15,6 +15,7 @@ $messages = array();
 $messages['en'] = array(
     'multimaps-desc' => 'Allows users to display maps and coordinate data using multiple mapping services',
     'multimaps-loading-map' => 'Loading map...',
+    'multimaps-square-wrong-number-points' => 'coordinates of the square should contain only two points, but specified $1 points',
     'multimaps-unable-create-element' => 'Map element "$1" can not be created',
     'multimaps-unable-parse-coordinates' => 'unable to parse the geographic coordinates "$1"',
     'multimaps-unable-parse-parameter' => 'unable to parse parameter "$1" value is "$2"',
@@ -33,6 +34,8 @@ $messages['en'] = array(
 $messages['qqq'] = array(
 	'multimaps-desc' => '{{desc|name=MultiMaps|url=http://www.mediawiki.org/wiki/Extension:MultiMaps}}',
 	'multimaps-loading-map' => 'The text is displayed instead of the map, and informs that the data needed to display the maps are not loaded yet',
+	'multimaps-square-wrong-number-points' => 'Error message, when for square (map element) specified more or less than two parameters. Parameters:
+* $1 - the number of user-specified coordinates for the square',
 	'multimaps-unable-create-element' => 'An error occurred while creating the map element. $1 - the name of the element, such as a "marker", "line", "polygon", etc.',
 	'multimaps-unable-parse-coordinates' => 'Error message, $1 - geographic coordinates that cannot be parsed',
 	'multimaps-unable-parse-parameter' => 'An error message is displayed when the given parameter can not be processed. Parameters:

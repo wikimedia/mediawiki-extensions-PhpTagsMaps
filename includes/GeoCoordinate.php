@@ -129,7 +129,7 @@ class GeoCoordinate {
      * @assert ('55°45.34986\'') == 55.755831
      * @assert ('55°45\'20.9916\"') == 55.755831
      * @assert ('N55°45\'20.9916\"') === false
-     * @codeCoverageIgnore
+     *
      * @param string $string
      * @return float
      */
