@@ -57,6 +57,8 @@ abstract class BaseService {
         'polygons',
         'rectangle',
         'rectangles',
+        'circle',
+        'circles',
     );
 
     protected $ignoreProperties = array(
@@ -219,6 +221,29 @@ abstract class BaseService {
                         $this->elementsBounds->extend( $rectangle->pos );
                     } else {
                         $this->errormessages = array_merge( $this->errormessages, $rectangle->getErrorMessages() );
+                    }
+                }
+                break;
+            case 'circle':
+            case 'circles':
+                $stringscircle = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
+                foreach ($stringscircle as $circlevalue) {
+                    if (trim($circlevalue) == '' ) {
+                        continue;
+                    }
+                    $circle = new \MultiMaps\Circle( $circlevalue );
+                    if( $circle->isValid() ) {
+                        $this->mapdata['circles'][] = $circle;
+                        $circlescount = count($circle->pos);
+                        for ($index = 0; $index < $circlescount; $index++) {
+                            $ne = new Point($circle->pos[$index]->lat, $circle->pos[$index]->lon);
+                            $sw = new Point($circle->pos[$index]->lat, $circle->pos[$index]->lon);
+                            $ne->move($circle->radius[$index], $circle->radius[$index]);
+                            $sw->move(-$circle->radius[$index], -$circle->radius[$index]);
+                            $this->elementsBounds->extend( array($ne, $sw) );
+                        }
+                    } else {
+                        $this->errormessages = array_merge( $this->errormessages, $circle->getErrorMessages() );
                     }
                 }
                 break;

@@ -10,45 +10,54 @@ namespace MultiMaps;
  * @licence GNU General Public Licence 2.0 or later
  */
 class Point {
-    /**
-     * Latitude
-     * @todo read only
-     * @var float
-     */
-    public $lat;
+	/**
+	 * Latitude
+	 * @todo read only
+	 * @var float
+	 */
+	public $lat;
 
-    /**
-     * Longitude
-     * @todo read only
-     * @var float
-     */
-    public $lon;
+	/**
+	 * Longitude
+	 * @todo read only
+	 * @var float
+	 */
+	public $lon;
 
-    /**
-     * Constructor
-     * @param float $lat
-     * @param float $lon
-     */
-    public function __construct($lat = false, $lon = false) {
-        $this->lat = $lat;
-        $this->lon = $lon;
-    }
+	/**
+	 * Constructor
+	 * @param float $lat
+	 * @param float $lon
+	 */
+	public function __construct($lat = false, $lon = false) {
+		$this->lat = $lat;
+		$this->lon = $lon;
+	}
 
-    /**
-     * Parse geographic coordinates
-     * @param string $string geographic coordinates
-     * @return boolean
-     */
-    public function parse($string) {
-        $coord = GeoCoordinate::getLatLonFromString($string);
-        if( is_array($coord) === false) {
-            $this->lat = false;
-            $this->lon = false;
-            return false;
-        }
-        $this->lat = $coord['lat'];
-        $this->lon = $coord['lon'];
-        return true;
-    }
+	/**
+	 * Parse geographic coordinates
+	 * @param string $string geographic coordinates
+	 * @return boolean
+	 */
+	public function parse($string) {
+		$coord = GeoCoordinate::getLatLonFromString($string);
+		if( is_array($coord) === false) {
+			$this->lat = false;
+			$this->lon = false;
+			return false;
+		}
+		$this->lat = $coord['lat'];
+		$this->lon = $coord['lon'];
+		return true;
+	}
+
+	/**
+	 * Move this point at a given distance in meters
+	 * @param float $nord To the north (meters)
+	 * @param float $east To the East (meters)
+	 */
+	public function move($nord, $east) {
+		GeoCoordinate::moveCoordinatesInMeters($this->lat, $this->lon, $nord, $east);
+	}
 
 }

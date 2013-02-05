@@ -112,7 +112,7 @@
                 options.fillOpacity = properties.fillOpacity;
             }
 
-            L.Circle([properties.centre.lat, properties.centre.lon], properties.radius, options).addTo(this.map);
+            L.circle([properties.pos[0].lat, properties.pos[0].lon], properties.radius[0], options).addTo(this.map);
         };
 
         /**

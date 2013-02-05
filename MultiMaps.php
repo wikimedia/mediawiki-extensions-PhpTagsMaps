@@ -56,7 +56,7 @@ $wgAutoloadClasses['MultiMaps\\Marker'] =           $dir . '/includes/mapelement
 $wgAutoloadClasses['MultiMaps\\Line'] =             $dir . '/includes/mapelements/Line.php';
 $wgAutoloadClasses['MultiMaps\\Polygon'] =          $dir . '/includes/mapelements/Polygon.php';
 $wgAutoloadClasses['MultiMaps\\Rectangle'] =        $dir . '/includes/mapelements/Rectangle.php';
-
+$wgAutoloadClasses['MultiMaps\\Circle'] =           $dir . '/includes/mapelements/Circle.php';
 
 //define modules that can later be loaded during the output
 $wgResourceModules['ext.MultiMaps'] = array(
@@ -74,3 +74,13 @@ $wgResourceModules['ext.MultiMaps.Leaflet'] = array(
     'remoteExtPath' => 'MultiMaps/services/Leaflet',
     'group' => 'ext.MultiMaps',
     );
+
+$wgHooks['UnitTestsList'][] = 'efMultiMapsRegisterUnitTests';
+function efMultiMapsRegisterUnitTests( &$files ) {
+        $testDir = __DIR__ . '/tests/phpunit';
+        $files = array_merge( $files, glob( "$testDir/includes/*Test.php" ) );
+        $files = array_merge( $files, glob( "$testDir/includes/mapelements/*Test.php" ) );
+        $files = array_merge( $files, glob( "$testDir/services/*Test.php" ) );
+        $files = array_merge( $files, glob( "$testDir/services/Leaflet/*Test.php" ) );
+        return true;
+}
