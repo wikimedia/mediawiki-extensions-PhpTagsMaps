@@ -11,8 +11,8 @@ namespace MultiMaps;
  */
 class Polygon extends BaseMapElement {
 
-    protected function getElementName() {
-        return 'Polygon'; //TODO i18n?
-    }
+	protected function getElementName() {
+		return 'Polygon'; //TODO i18n?
+	}
 
 }

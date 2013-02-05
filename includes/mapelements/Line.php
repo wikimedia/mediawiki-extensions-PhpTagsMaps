@@ -11,8 +11,8 @@ namespace MultiMaps;
  */
 class Line extends BaseMapElement {
 
-    protected function getElementName() {
-        return 'Line'; //TODO i18n?
-    }
+	protected function getElementName() {
+		return 'Line'; //TODO i18n?
+	}
 
 }

@@ -13,21 +13,21 @@ $messages = array();
  * @author pastakhov
  */
 $messages['en'] = array(
-    'multimaps-desc' => 'Allows users to display maps and coordinate data using multiple mapping services',
-    'multimaps-loading-map' => 'Loading map...',
-    'multimaps-circle-radius-not-defined' => 'for the circle must be defined radius',
-    'multimaps-circle-wrong-number-parameters' => 'for the circle should be defined only two parameters, the coordinates of the center and the radius. But specified $1 parameters',
-    'multimaps-square-wrong-number-points' => 'coordinates of the square should contain only two points, but specified {{PLURAL:$1|one point|$1 points}}',
-    'multimaps-unable-create-element' => 'Map element "$1" can not be created',
-    'multimaps-unable-parse-coordinates' => 'unable to parse the geographic coordinates "$1"',
-    'multimaps-unable-parse-parameter' => 'unable to parse parameter "$1" value is "$2"',
-    'multimaps-unable-parse-radius' => 'radius of the circle must be a numeric value, but specified "$1"',
-    'multimaps-unknown-showmap-service' => 'Could not find available service to display the map',
-    'multimaps-unknown-class-for-service' => 'For the service defined is unknown class: "$1"',
-    'multimaps-unknown-parameter' => 'Unknown parameter: "$1"',
-    'multimaps-error-incorrect-class-for-service' => 'For the service defined is incorrect class: "$1"',
-    'multimaps-method-error-unknown-action' => '$1: Unknown action',
-    'multimaps-method-error-unexpected-result' => '$1: An unexpected result of a function',
+	'multimaps-desc' => 'Allows users to display maps and coordinate data using multiple mapping services',
+	'multimaps-loading-map' => 'Loading map...',
+	'multimaps-circle-radius-not-defined' => 'for the circle must be defined radius',
+	'multimaps-circle-wrong-number-parameters' => 'for the circle should be defined only two parameters, the coordinates of the center and the radius. But specified $1 parameters',
+	'multimaps-square-wrong-number-points' => 'coordinates of the square should contain only two points, but specified {{PLURAL:$1|one point|$1 points}}',
+	'multimaps-unable-create-element' => 'Map element "$1" can not be created',
+	'multimaps-unable-parse-coordinates' => 'unable to parse the geographic coordinates "$1"',
+	'multimaps-unable-parse-parameter' => 'unable to parse parameter "$1" value is "$2"',
+	'multimaps-unable-parse-radius' => 'radius of the circle must be a numeric value, but specified "$1"',
+	'multimaps-unknown-showmap-service' => 'Could not find available service to display the map',
+	'multimaps-unknown-class-for-service' => 'For the service defined is unknown class: "$1"',
+	'multimaps-unknown-parameter' => 'Unknown parameter: "$1"',
+	'multimaps-error-incorrect-class-for-service' => 'For the service defined is incorrect class: "$1"',
+	'multimaps-method-error-unknown-action' => '$1: Unknown action',
+	'multimaps-method-error-unexpected-result' => '$1: An unexpected result of a function',
 );
 
 /** Message documentation (Message documentation)

@@ -11,8 +11,8 @@ namespace MultiMaps;
  */
 class Marker extends BaseMapElement {
 
-    protected function getElementName() {
-        return 'Marker'; //TODO i18n?
-    }
+	protected function getElementName() {
+		return 'Marker'; //TODO i18n?
+	}
 
 }

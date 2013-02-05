@@ -3,7 +3,7 @@
  * File defining the settings for the MultiMaps extension.
  * More info can be found at https://www.mediawiki.org/wiki/Extension:MultiMaps/Configuration
  *
- *                          NOTICE:
+ *						  NOTICE:
  * Changing one of these settings can be done by copieng or cutting it,
  * and placing it in LocalSettings.php, AFTER the inclusion of MultiMaps.
  *
@@ -14,7 +14,7 @@
 
 // Check to see if we are being called as an extension or directly
 if ( !defined( 'MEDIAWIKI' ) ) {
-    die( 'This file is an extension to MediaWiki and thus not a valid entry point.' );
+	die( 'This file is an extension to MediaWiki and thus not a valid entry point.' );
 }
 
 // Default settings
@@ -22,12 +22,12 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 // Array of String. Array containing all the mapping services that will be made available to the user.
 // Firs key - default service, which will be used if the service is not in the parameters
 // format:
-//         key - string, class name based on class \MultiMaps\BaseService
-//       value - string or array, service name for using in parameters
+//	key - string, class name based on class \MultiMaps\BaseService
+//	value - string or array, service name for using in parameters
 $egMultiMapsServices_showmap = array(
-        "Leaflet" => "leaflet",
-        //'googlemaps',
-        //'yandexmaps',
+	"Leaflet" => "leaflet",
+	//'googlemaps',
+	//'yandexmaps',
 );
 
 

@@ -13,5 +13,5 @@ $magicWords = array();
  * @author pastakhov
  */
 $magicWords['en'] = array(
-    'MAG_MULTIMAPS' => array( 0, 'multimaps' ),
+	'MAG_MULTIMAPS' => array( 0, 'multimaps' ),
 );

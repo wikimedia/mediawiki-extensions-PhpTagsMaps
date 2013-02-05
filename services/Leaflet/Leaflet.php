@@ -18,13 +18,13 @@ namespace MultiMaps;
  */
 class Leaflet extends BaseService {
 
-    function __construct() {
-        parent::__construct();
-        $this->classname="leaflet";
-        $this->headerItem .= '<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />' . "\n" .
-                '<!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" /><![endif]-->' . "\n" .
-                '<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>' . "\n";
-        $this->resourceModules[] = 'ext.MultiMaps.Leaflet';
-    }
+	function __construct() {
+		parent::__construct();
+		$this->classname="leaflet";
+		$this->headerItem .= '<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />' . "\n" .
+				'<!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" /><![endif]-->' . "\n" .
+				'<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>' . "\n";
+		$this->resourceModules[] = 'ext.MultiMaps.Leaflet';
+	}
 
 }
