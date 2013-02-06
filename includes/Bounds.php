@@ -72,4 +72,17 @@ class Bounds {
 		return ($this->ne !== false && $this->sw !== false);
 	}
 
+	/**
+	 * Returns an array of data
+	 * @return array
+	 */
+	public function getData() {
+		if( $this->isValid() ) {
+			return array(
+				'ne' => $this->ne->getData(),
+				'sw' => $this->sw->getData(),
+				);
+		}
+	}
+
 }

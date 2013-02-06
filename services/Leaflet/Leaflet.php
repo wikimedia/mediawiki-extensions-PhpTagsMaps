@@ -26,5 +26,4 @@ class Leaflet extends BaseService {
 				'<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>' . "\n";
 		$this->resourceModules[] = 'ext.MultiMaps.Leaflet';
 	}
-
 }

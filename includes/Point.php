@@ -8,21 +8,21 @@ namespace MultiMaps;
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
+ * @property-read float $lat Latitude coordinate
+ * @property-read float $lon Longitude coordinate
  */
 class Point {
 	/**
 	 * Latitude
-	 * @todo read only
 	 * @var float
 	 */
-	public $lat;
+	protected $latitude = false;
 
 	/**
 	 * Longitude
-	 * @todo read only
 	 * @var float
 	 */
-	public $lon;
+	protected $longitude = false;
 
 	/**
 	 * Constructor
@@ -30,11 +30,39 @@ class Point {
 	 * @param float $lon
 	 */
 	public function __construct($lat = false, $lon = false) {
-		$this->lat = $lat;
-		$this->lon = $lon;
+		if( is_numeric($lat) && is_numeric($lon)) {
+			$this->latitude = $lat;
+			$this->longitude = $lon;
+		}
 	}
 
-	/**
+	public function __get($name) {
+		switch ($name) {
+			case 'lat':
+				return $this->latitude;
+				break;
+			case 'lon':
+				return $this->longitude;
+				break;
+			default:
+				break;
+		}
+	}
+
+	public function __set($name, $value) {
+		switch ($name) {
+			case 'lat':
+				$this->latitude = (float) $value;
+				break;
+			case 'lon':
+				$this->longitude = (float) $value;
+				break;
+			default:
+				break;
+		}
+	}
+
+			/**
 	 * Parse geographic coordinates
 	 * @param string $string geographic coordinates
 	 * @return boolean
@@ -42,12 +70,12 @@ class Point {
 	public function parse($string) {
 		$coord = GeoCoordinate::getLatLonFromString($string);
 		if( is_array($coord) === false) {
-			$this->lat = false;
-			$this->lon = false;
+			$this->latitude = false;
+			$this->longitude = false;
 			return false;
 		}
-		$this->lat = $coord['lat'];
-		$this->lon = $coord['lon'];
+		$this->latitude = $coord['lat'];
+		$this->longitude = $coord['lon'];
 		return true;
 	}
 
@@ -57,7 +85,25 @@ class Point {
 	 * @param float $east To the East (meters)
 	 */
 	public function move($nord, $east) {
-		GeoCoordinate::moveCoordinatesInMeters($this->lat, $this->lon, $nord, $east);
+		GeoCoordinate::moveCoordinatesInMeters($this->latitude, $this->longitude, $nord, $east);
+	}
+
+	/**
+	 * Checks if the object is valid
+	 * @return boolean
+	 */
+	public function isValid() {
+		return ( $this->latitude !== false && $this->longitude !== false );
+	}
+
+	/**
+	 * Returns an array of data
+	 * @return array
+	 */
+	public function getData() {
+		if( $this->isValid() ) {
+			return array('lat' => $this->latitude, 'lon' => $this->longitude);
+		}
 	}
 
 }

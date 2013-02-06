@@ -8,19 +8,30 @@ namespace MultiMaps;
  * @ingroup Circle
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
+ * @property-read array $radiuses Radiuses of circles
  */
 class Circle extends BaseMapElement {
 
 	/**
-	 * Array radius of circles
+	 * Array radiuses of circles
 	 * @var array
 	 */
-	public $radius = array();
+	protected $radiuses = array();
 
+	/**
+	 * Returns element name
+	 * return string Element name
+	 */
 	protected function getElementName() {
 		return 'Circle'; //TODO i18n?
 	}
 
+	/**
+	 * Filling property 'coordinates'
+	 * @global string $egMultiMaps_CoordinatesSeparator
+	 * @param string $coordinates
+	 * @return boolean
+	 */
 	protected function parseCoordinates($coordinates) {
 		global $egMultiMaps_CoordinatesSeparator;
 
@@ -31,8 +42,8 @@ class Circle extends BaseMapElement {
 			$point = new Point();
 			if( $point->parse($array[0]) ) {
 				if(is_numeric($array[1]) ) {
-					$this->pos[] = $point;
-					$this->radius[] = (float)$array[1];
+					$this->coordinates[] = $point;
+					$this->radiuses[] = (float)$array[1];
 				} else {
 					$this->errormessages[] = \wfMessage( 'multimaps-unable-parse-radius', $array[1])->escaped();
 					return false;
@@ -50,9 +61,35 @@ class Circle extends BaseMapElement {
 		return true;
 	}
 
+	/**
+	 * Initializes the object again, and makes it invalid
+	 */
 	public function reset() {
 		parent::reset();
-		$this->radius = array();
+		$this->radiuses = array();
 	}
+
+	/**
+	 * Returns an array of data
+	 * @return array
+	 */
+	public function getData() {
+		return array_merge(
+				array( 'radius' => $this->radiuses),
+				parent::getData()
+				);
+	}
+
+	public function __get($name) {
+		switch ($name) {
+			case 'radiuses':
+				return $this->radiuses;
+				break;
+			default:
+				return parent::__get($name);
+				break;
+		}
+	}
+
 
 }

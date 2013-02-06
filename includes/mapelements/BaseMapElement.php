@@ -8,6 +8,7 @@ namespace MultiMaps;
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
+ * @property-read float $pos Geographic coordinates
  */
 abstract class BaseMapElement {
 
@@ -15,9 +16,18 @@ abstract class BaseMapElement {
 	 * Geographic coordinates
 	 * @var array
 	 */
-	public $pos = array();
+	protected $coordinates = array();
 
+	/**
+	 * @todo Description
+	 * @var boolean
+	 */
 	protected $isValid = false;
+
+	/**
+	 * An array that is used to accumulate the error messages
+	 * @var array
+	 */
 	protected $errormessages = array();
 
 	/**
@@ -36,7 +46,17 @@ abstract class BaseMapElement {
 		}
 	}
 
-	/**
+	public function __get($name) {
+		switch ($name) {
+			case 'pos':
+				return $this->coordinates;
+				break;
+			default:
+				break;
+		}
+	}
+
+		/**
 	 * Filling properties of the object according to the obtained data
 	 * @global string $egMultiMaps_DelimiterParam
 	 * @param string $param
@@ -58,7 +78,7 @@ abstract class BaseMapElement {
 	}
 
 	/**
-	 * Filling property 'pos'
+	 * Filling property 'coordinates'
 	 * @global string $egMultiMaps_CoordinatesSeparator
 	 * @param string $coordinates
 	 * @return boolean
@@ -70,7 +90,7 @@ abstract class BaseMapElement {
 		foreach ($array as $value) {
 			$point = new Point();
 			if( $point->parse($value) ) {
-				$this->pos[] = $point;
+				$this->coordinates[] = $point;
 			} else {
 				$this->errormessages[] = \wfMessage( 'multimaps-unable-parse-coordinates', $value)->escaped();
 				return false;
@@ -92,7 +112,7 @@ abstract class BaseMapElement {
 	 */
 	public function reset() {
 		$this->isValid = false;
-		$this->pos = array();
+		$this->coordinates = array();
 		$this->errormessages = array();
 	}
 
@@ -102,5 +122,19 @@ abstract class BaseMapElement {
 	 */
 	public function getErrorMessages() {
 		return $this->errormessages;
+	}
+
+	/**
+	 * Returns an array of data
+	 * @return array
+	 */
+	public function getData() {
+		if( $this->isValid() ) {
+			$ret = array();
+			foreach ($this->coordinates as $pos) {
+				$ret['pos'][] = $pos->getData();
+			}
+			return $ret;
+		}
 	}
 }

@@ -11,6 +11,10 @@ namespace MultiMaps;
  */
 class Rectangle extends BaseMapElement {
 
+	/**
+	 * Returns element name
+	 * return string Element name
+	 */
 	protected function getElementName() {
 		return 'Rectangle'; //TODO i18n?
 	}
@@ -41,8 +45,8 @@ class Rectangle extends BaseMapElement {
 			$point2 = new Point();
 			if( $point1->parse($array[0]) ) {
 				if( $point2->parse($array[1]) ) {
-					$this->pos[] = $point1;
-					$this->pos[] = $point2;
+					$this->coordinates[] = $point1;
+					$this->coordinates[] = $point2;
 				} else {
 					$this->errormessages[] = \wfMessage( 'multimaps-unable-parse-coordinates', $array[1])->escaped();
 					return false;

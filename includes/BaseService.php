@@ -9,7 +9,6 @@ namespace MultiMaps;
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
  *
- * @property array $markers Markers on the map
  * @property float $zoom Map scale
  * @property float $minzoom Minimum scale map
  * @property float $maxzoom Maximum scale map
@@ -19,36 +18,88 @@ namespace MultiMaps;
 abstract class BaseService {
 
 	/**
-	 * class name for tag div of map
+	 * class name for tag "<div>" of map
 	 * @var string
 	 */
 	protected $classname = '';
-	protected $resourceModules = array();
-	protected $headerItem = '';
+
+	/**
+	 * Array of the defined modules that be loaded during the output
+	 * @var array
+	 */
+	protected $resourceModules;
+
+	/**
+	 * Text for adding to the "<head>" during the output
+	 * @var string
+	 */
+	protected $headerItem;
+
+	/**
+	 * Map property "width" used for tag "<div>"
+	 * @var string
+	 */
 	protected $width;
+
+	/**
+	 * Map property "height" used for tag "<div>"
+	 * @var string
+	 */
 	protected $height;
-	protected $errormessages = array();
+
+	/**
+	 * An array that is used to accumulate the error messages
+	 * @var array
+	 */
+	protected $errormessages;
+
+	/**
+	 * Array of elements map marker
+	 * @var array
+	 */
+	protected $markers;
+
+	/**
+	 * Array of elements map line
+	 * @var array
+	 */
+	protected $lines;
+
+	/**
+	 * Array of elements map polygon
+	 * @var array
+	 */
+	protected $polygons;
+
+	/**
+	 * Array of elements map rectangle
+	 * @var array
+	 */
+	protected $rectangles;
+
+	/**
+	 * Array of elements map circle
+	 * @var array
+	 */
+	protected $circles;
 
 	/**
 	 * The boundaries of the map elements
-	 * @var \MultiMaps\Bounds
+	 * @var Bounds
 	 */
 	protected $elementsBounds;
 
 	/**
-	 * TODO desc
+	 * Array of map properties
 	 * @var array
 	 */
-	private $mapdata = array();
+	protected $properties;
 
-	protected $availableProperties = array(
-		'width',
-		'height',
-		'zoom',
-		'minzoom',
-		'maxzoom',
-		'center',
-		'bounds',
+	/**
+	 * Array of map elements availables for adding
+	 * @var array
+	 */
+	protected $availableMapElements = array(
 		'marker',
 		'markers',
 		'line',
@@ -61,6 +112,24 @@ abstract class BaseService {
 		'circles',
 	);
 
+	/**
+	 * Array of map properties available for definition
+	 * @var array
+	 */
+	protected $availableMapProperties = array(
+		'width',
+		'height',
+		'zoom',
+		'minzoom',
+		'maxzoom',
+		'center',
+		'bounds',
+	);
+
+	/**
+	 * Array of map properties definition of which should not cause an error
+	 * @var array
+	 */
 	protected $ignoreProperties = array(
 		'service',
 	);
@@ -69,14 +138,14 @@ abstract class BaseService {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->elementsBounds = new \MultiMaps\Bounds();
-		$this->width = $GLOBALS['egMultiMaps_Width'];
-		$this->height = $GLOBALS['egMultiMaps_Height'];
-		$this->resourceModules[] = 'ext.MultiMaps';
+		$this->resourceModules = array(	'ext.MultiMaps' );
+		$this->headerItem = '';
+
+		$this->reset();
 	}
 
 	/**
-	 *
+	 * Returns html data for rendering map
 	 * @return string
 	 */
 	public function render() {
@@ -103,47 +172,70 @@ abstract class BaseService {
 	}
 
 	/**
-	 * TODO desc
+	 * Returns array of map data
 	 * @param array $param Optional, if sets - parse param before returns data of map
-	 * @return
+	 * @return array
 	 */
 	public function getMapData( array $param = array() ) {
 		if( count($param) != 0 ) {
 			$this->parse ($param);
 		}
 
+		$calculatedProperties = array();
+
 		if( is_null($this->bounds) ) {
 			if( is_null($this->center) ) {
 				$bounds = $this->elementsBounds;
 				if ( $bounds->ne == $bounds->sw ) {
 					if( is_null($this->zoom) ) {
-						$this->mapdata['zoom'] = $GLOBALS['egMultiMaps_DefaultZoom'];
+						$calculatedProperties['zoom'] = $GLOBALS['egMultiMaps_DefaultZoom'];
 					}
-					$this->mapdata['center'] = $bounds->getCenter();
+					$calculatedProperties['center'] = $bounds->getCenter()->getData();
 				} elseif ( $bounds->isValid() ) {
 					if( is_null($this->zoom) ) {
-						$this->mapdata['bounds'] = $bounds;
+						$calculatedProperties['bounds'] = $bounds->getData();
 					} else {
-						$this->mapdata['center'] = $bounds->getCenter();
+						$calculatedProperties['center'] = $bounds->getCenter()->getData();
 					}
 				}
 			} else {
-				//TODO
+				// TODO
 			}
 		}
-		return $this->mapdata; //TODO
+
+		$return = array();
+
+		foreach ($this->markers as $marker) {
+			$return['markers'][] = $marker->getData();
+		}
+		foreach ($this->lines as $line) {
+			$return['lines'][] = $line->getData();
+		}
+		foreach ($this->polygons as $polygon) {
+			$return['polygons'][] = $polygon->getData();
+		}
+		foreach ($this->rectangles as $rectangle) {
+			$return['rectangles'][] = $rectangle->getData();
+		}
+		foreach ($this->circles as $circle) {
+			$return['circles'][] = $circle->getData();
+		}
+
+		return array_merge($return, $calculatedProperties, $this->properties);
 	}
 
-
+	/**
+	 * Parse params and fill map data
+	 * @param array $param
+	 */
 	public function parse(array $param) {
-		$this->mapdata = array();
+		$this->reset();
 
 		$matches = array();
 		foreach ($param as $value) {
 			if( preg_match('/^\s*(\w+)\s*=(.+)$/s', $value, &$matches) ) {
-				if( array_search(strtolower($matches[1]), $this->availableProperties) !== false ) {
-					$propertyname = $matches[1];
-					$this->$propertyname = $matches[2];
+				if( array_search(strtolower($matches[1]), $this->availableMapElements) !== false ) {
+					$this->addMapElement($matches[1], $matches[2]);
 				} else {
 					if( array_search(strtolower($matches[1]), $this->ignoreProperties ) !== false ) {
 						$this->errormessages[] = \wfMessage( 'multimaps-unknown-parameter', $matches[1] )->escaped();
@@ -151,112 +243,178 @@ abstract class BaseService {
 				}
 				continue;
 			} else {
-				$this->markers = $value;
+				$this->addElementMarker( $value );
 			}
 		}
 	}
 
-	public function __set($name, $value) {
+	/**
+	 * Add new map element to map
+	 * @param string $name
+	 * @param string $value
+	 * @return boolean
+	 */
+	public function addMapElement( $name, $value ) {
+		if( trim($value == '' ) ) {
+			return;
+		}
 		$name = strtolower( $name );
 
 		switch ($name) {
 			case 'marker':
 			case 'markers':
-				// The card may not contain markers,
-				// but because the first parameter is required,
-				// this can be an empty string, it is normal
-				if( trim($value == '' ) ) {
-					break;
-				}
-				$stringsmarker = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
-				foreach ($stringsmarker as $markervalue) {
-					if (trim($markervalue) == '' ) {
-						continue;
-					}
-					$marker = new \MultiMaps\Marker( $markervalue );
-					if( $marker->isValid() ) {
-						$this->mapdata['markers'][] = $marker;
-						$this->elementsBounds->extend( $marker->pos );
-					} else {
-						$this->errormessages = array_merge( $this->errormessages, $marker->getErrorMessages() );
-					}
-				}
+				return $this->addElementMarker($value);
 				break;
 			case 'line':
 			case 'lines':
-				$stringsline = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
-				foreach ($stringsline as $linevalue) {
-					if (trim($linevalue) == '' ) {
-						continue;
-					}
-					$line = new \MultiMaps\Line( $linevalue );
-					if( $line->isValid() ) {
-						$this->mapdata['lines'][] = $line;
-						$this->elementsBounds->extend( $line->pos );
-					} else {
-						$this->errormessages = array_merge( $this->errormessages, $line->getErrorMessages() );
-					}
-				}
+				return $this->addElementLine($value);
 				break;
 			case 'polygon':
 			case 'polygons':
-				$stringspolygon = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
-				foreach ($stringspolygon as $polygonvalue) {
-					if (trim($polygonvalue) == '' ) {
-						continue;
-					}
-					$polygon = new \MultiMaps\Polygon( $polygonvalue );
-					if( $polygon->isValid() ) {
-						$this->mapdata['polygons'][] = $polygon;
-						$this->elementsBounds->extend( $polygon->pos );
-					} else {
-						$this->errormessages = array_merge( $this->errormessages, $polygon->getErrorMessages() );
-					}
-				}
+				return $this->addElementPolygon($value);
 				break;
 			case 'rectangle':
 			case 'rectangles':
-				$stringsrectangle = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
-				foreach ($stringsrectangle as $rectanglevalue) {
-					if (trim($rectanglevalue) == '' ) {
-						continue;
-					}
-					$rectangle = new \MultiMaps\Rectangle( $rectanglevalue );
-					if( $rectangle->isValid() ) {
-						$this->mapdata['rectangles'][] = $rectangle;
-						$this->elementsBounds->extend( $rectangle->pos );
-					} else {
-						$this->errormessages = array_merge( $this->errormessages, $rectangle->getErrorMessages() );
-					}
-				}
+				return $this->addElementRectangle($value);
 				break;
 			case 'circle':
 			case 'circles':
-				$stringscircle = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
-				foreach ($stringscircle as $circlevalue) {
-					if (trim($circlevalue) == '' ) {
-						continue;
-					}
-					$circle = new \MultiMaps\Circle( $circlevalue );
-					if( $circle->isValid() ) {
-						$this->mapdata['circles'][] = $circle;
-						$circlescount = count($circle->pos);
-						for ($index = 0; $index < $circlescount; $index++) {
-							$ne = new Point($circle->pos[$index]->lat, $circle->pos[$index]->lon);
-							$sw = new Point($circle->pos[$index]->lat, $circle->pos[$index]->lon);
-							$ne->move($circle->radius[$index], $circle->radius[$index]);
-							$sw->move(-$circle->radius[$index], -$circle->radius[$index]);
-							$this->elementsBounds->extend( array($ne, $sw) );
-						}
-					} else {
-						$this->errormessages = array_merge( $this->errormessages, $circle->getErrorMessages() );
-					}
-				}
+				return $this->addElementCircle($value);
+			default:
 				break;
+		}
+	}
+
+	/**
+	 * Add marker to map
+	 * @param string $value
+	 * @return boolean
+	 */
+	public function addElementMarker($value) {
+		$stringsmarker = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
+		foreach ($stringsmarker as $markervalue) {
+			if (trim($markervalue) == '' ) {
+				continue;
+			}
+			$marker = new \MultiMaps\Marker( $markervalue );
+			if( $marker->isValid() ) {
+				$this->markers[] = $marker;
+				$this->elementsBounds->extend( $marker->pos );
+			} else {
+				$this->errormessages = array_merge( $this->errormessages, $marker->getErrorMessages() );
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Add line to map
+	 * @param string $value
+	 * @return boolean
+	 */
+	public function addElementLine($value) {
+		$stringsline = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
+		foreach ($stringsline as $linevalue) {
+			if (trim($linevalue) == '' ) {
+				continue;
+			}
+			$line = new \MultiMaps\Line( $linevalue );
+			if( $line->isValid() ) {
+				$this->lines[] = $line;
+				$this->elementsBounds->extend( $line->pos );
+			} else {
+				$this->errormessages = array_merge( $this->errormessages, $line->getErrorMessages() );
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Add polygon to map
+	 * @param string $value
+	 * @return boolean
+	 */
+	public function addElementPolygon($value) {
+		$stringspolygon = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
+		foreach ($stringspolygon as $polygonvalue) {
+			if (trim($polygonvalue) == '' ) {
+				continue;
+			}
+			$polygon = new \MultiMaps\Polygon( $polygonvalue );
+			if( $polygon->isValid() ) {
+				$this->polygons[] = $polygon;
+				$this->elementsBounds->extend( $polygon->pos );
+			} else {
+				$this->errormessages = array_merge( $this->errormessages, $polygon->getErrorMessages() );
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Add rectangle to map
+	 * @param string $value
+	 * @return boolean
+	 */
+	public function addElementRectangle($value) {
+		$stringsrectangle = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
+		foreach ($stringsrectangle as $rectanglevalue) {
+			if (trim($rectanglevalue) == '' ) {
+				continue;
+			}
+			$rectangle = new \MultiMaps\Rectangle( $rectanglevalue );
+			if( $rectangle->isValid() ) {
+				$this->rectangles[] = $rectangle;
+				$this->elementsBounds->extend( $rectangle->pos );
+			} else {
+				$this->errormessages = array_merge( $this->errormessages, $rectangle->getErrorMessages() );
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Add circle to map
+	 * @param string $value
+	 * @return boolean
+	 */
+	public function addElementCircle($value) {
+		$stringscircle = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
+		foreach ($stringscircle as $circlevalue) {
+			if (trim($circlevalue) == '' ) {
+				continue;
+			}
+			$circle = new \MultiMaps\Circle( $circlevalue );
+			if( $circle->isValid() ) {
+				$this->circles[] = $circle;
+				$circlescount = count($circle->pos);
+				for ($index = 0; $index < $circlescount; $index++) {
+					$ne = new Point($circle->pos[$index]->lat, $circle->pos[$index]->lon);
+					$sw = new Point($circle->pos[$index]->lat, $circle->pos[$index]->lon);
+					$ne->move($circle->radiuses[$index], $circle->radiuses[$index]);
+					$sw->move(-$circle->radiuses[$index], -$circle->radiuses[$index]);
+					$this->elementsBounds->extend( array($ne, $sw) );
+				}
+			} else {
+				$this->errormessages = array_merge( $this->errormessages, $circle->getErrorMessages() );
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public function __set($name, $value) {
+		$name = strtolower($name);
+
+		switch ($name) {
 			case 'center':
 				$center = \MultiMaps\GeoCoordinate::getLatLonFromString($value);
 				if ( $center ) {
-					$this->mapdata['center'] = $center;
+					$this->properties['center'] = $center;
 				} else {
 					$this->errormessages[] = \wfMessage( 'multimaps-unable-parse-parameter', $name, $value )->escaped();
 				}
@@ -266,17 +424,17 @@ abstract class BaseService {
 				break;
 
 			default:
-				$this->mapdata[$name] = $value;
+				$this->properties[$name] = $value;
 		}
 
 	}
 
 	public function __get($name) {
-		return isset($this->mapdata[$name]) ? $this->mapdata[$name] : null;
+		return isset($this->properties[$name]) ? $this->properties[$name] : null;
 	}
 
 	/**
-	 *
+	 * Add dependencies (resourceModules, headerItem) to Parser output
 	 * @param \Parser $parser
 	 */
 	public function addDependencies(\Parser &$parser) {
@@ -288,6 +446,24 @@ abstract class BaseService {
 		if($this->headerItem != '') {
 			$output->addHeadItem($this->headerItem, "multimaps_{$this->classname}");
 		}
+	}
+
+	/**
+	 * Initializes the object again
+	 */
+	public function reset() {
+		$this->elementsBounds = new Bounds();
+		$this->width = $GLOBALS['egMultiMaps_Width'];
+		$this->height = $GLOBALS['egMultiMaps_Height'];
+		$this->properties = array();
+
+		$this->markers = array();
+		$this->lines = array();
+		$this->polygons = array();
+		$this->rectangles = array();
+		$this->circles = array();
+
+		$this->errormessages = array();
 	}
 
 }
