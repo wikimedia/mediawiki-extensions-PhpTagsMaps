@@ -82,6 +82,10 @@ abstract class BaseService {
 	public function render() {
 		static $mapid = 0;
 
+		foreach ($this->errormessages as $message) {
+			\MWDebug::log($message);
+		}
+
 		return \Html::rawElement(
 				'div',
 				array(
@@ -136,7 +140,7 @@ abstract class BaseService {
 
 		$matches = array();
 		foreach ($param as $value) {
-			if( preg_match('/^\s*(\w+)\s*=(.+)$/', $value, &$matches) ) {
+			if( preg_match('/^\s*(\w+)\s*=(.+)$/s', $value, &$matches) ) {
 				if( array_search(strtolower($matches[1]), $this->availableProperties) !== false ) {
 					$propertyname = $matches[1];
 					$this->$propertyname = $matches[2];
@@ -153,6 +157,8 @@ abstract class BaseService {
 	}
 
 	public function __set($name, $value) {
+		$name = strtolower( $name );
+
 		switch ($name) {
 			case 'marker':
 			case 'markers':
