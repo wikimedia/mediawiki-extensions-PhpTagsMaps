@@ -236,8 +236,11 @@ abstract class BaseService {
 			if( preg_match('/^\s*(\w+)\s*=(.+)$/s', $value, &$matches) ) {
 				if( array_search(strtolower($matches[1]), $this->availableMapElements) !== false ) {
 					$this->addMapElement($matches[1], $matches[2]);
+				} else if ( array_search(strtolower($matches[1]), $this->availableMapProperties) !== false ) {
+					$property = $matches[1];
+					$this->$property = $matches[2];
 				} else {
-					if( array_search(strtolower($matches[1]), $this->ignoreProperties ) !== false ) {
+					if( array_search(strtolower($matches[1]), $this->ignoreProperties ) === false ) {
 						$this->errormessages[] = \wfMessage( 'multimaps-unknown-parameter', $matches[1] )->escaped();
 					}
 				}

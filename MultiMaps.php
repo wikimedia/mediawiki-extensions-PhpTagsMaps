@@ -36,6 +36,9 @@ $wgExtensionMessagesFiles['MultiMapsMagic'] = $dir . '/MultiMaps.i18n.magic.php'
 require_once $dir . '/Settings.php';
 
 // Specify the function that will initialize the parser function.
+/**
+ * @codeCoverageIgnore
+ */
 $wgHooks['ParserFirstCallInit'][] = function( Parser &$parser ) {
    $parser->setFunctionHook( 'MAG_MULTIMAPS', 'MultiMaps::renderParserFunction_showmap' );
    return true;
@@ -75,12 +78,15 @@ $wgResourceModules['ext.MultiMaps.Leaflet'] = array(
 	'group' => 'ext.MultiMaps',
 	);
 
-$wgHooks['UnitTestsList'][] = 'efMultiMapsRegisterUnitTests';
-function efMultiMapsRegisterUnitTests( &$files ) {
+/**
+ * Add files to phpunit test
+ * @codeCoverageIgnore
+ */
+$wgHooks['UnitTestsList'][] = function ( &$files ) {
 		$testDir = __DIR__ . '/tests/phpunit';
 		$files = array_merge( $files, glob( "$testDir/includes/*Test.php" ) );
 		$files = array_merge( $files, glob( "$testDir/includes/mapelements/*Test.php" ) );
 		$files = array_merge( $files, glob( "$testDir/services/*Test.php" ) );
 		$files = array_merge( $files, glob( "$testDir/services/Leaflet/*Test.php" ) );
 		return true;
-}
+};

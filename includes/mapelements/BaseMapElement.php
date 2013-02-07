@@ -69,7 +69,8 @@ abstract class BaseMapElement {
 		$arrayparam = explode( $egMultiMaps_DelimiterParam, $param );
 
 		//The first parameter should always be coordinates
-		if( $this->parseCoordinates($arrayparam[0]) === false ) {
+		$coordinates = array_shift($arrayparam);
+		if( $this->parseCoordinates($coordinates) === false ) {
 			$this->errormessages[] = \wfMessage( 'multimaps-unable-create-element', $this->getElementName() )->escaped();
 			return false;
 		}

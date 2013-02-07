@@ -36,14 +36,14 @@
 		this.addLine = function (properties) {
 			var options = {};
 
-			if( properties.strokeColor ) {
-				options.color = properties.strokeColor;
+			if( properties.color ) {
+				options.color = properties.color;
 			}
-			if( properties.strokeWeight ) {
-				options.weight = properties.strokeWeight;
+			if( properties.weight ) {
+				options.weight = properties.weight;
 			}
-			if( properties.strokeOpacity ) {
-				options.opacity = properties.strokeOpacity;
+			if( properties.opacity ) {
+				options.opacity = properties.opacity;
 			}
 
 			var latlngs = [];
@@ -60,14 +60,14 @@
 		this.addPolygon = function (properties) {
 			var options = {};
 
-			if( properties.strokeColor ) {
-				options.color = properties.strokeColor;
+			if( properties.color ) {
+				options.color = properties.color;
 			}
-			if( properties.strokeWeight ) {
-				options.weight = properties.strokeWeight;
+			if( properties.weight ) {
+				options.weight = properties.weight;
 			}
-			if( properties.strokeOpacity ) {
-				options.opacity = properties.strokeOpacity;
+			if( properties.opacity ) {
+				options.opacity = properties.opacity;
 			}
 			if( properties.fill ) {
 				options.fill = properties.fill;
@@ -93,14 +93,14 @@
 		this.addCircle = function (properties) {
 			var options = {};
 
-			if( properties.strokeColor ) {
-				options.color = properties.strokeColor;
+			if( properties.color ) {
+				options.color = properties.color;
 			}
-			if( properties.strokeWeight ) {
-				options.weight = properties.strokeWeight;
+			if( properties.weight ) {
+				options.weight = properties.weight;
 			}
-			if( properties.strokeOpacity ) {
-				options.opacity = properties.strokeOpacity;
+			if( properties.opacity ) {
+				options.opacity = properties.opacity;
 			}
 			if( properties.fill ) {
 				options.fill = properties.fill;
@@ -121,14 +121,14 @@
 		this.addRectangle = function (properties) {
 			var options = {};
 
-			if( properties.strokeColor ) {
-				options.color = properties.strokeColor;
+			if( properties.color ) {
+				options.color = properties.color;
 			}
-			if( properties.strokeWeight ) {
-				options.weight = properties.strokeWeight;
+			if( properties.weight ) {
+				options.weight = properties.weight;
 			}
-			if( properties.strokeOpacity ) {
-				options.opacity = properties.strokeOpacity;
+			if( properties.opacity ) {
+				options.opacity = properties.opacity;
 			}
 			if( properties.fill ) {
 				options.fill = properties.fill;
