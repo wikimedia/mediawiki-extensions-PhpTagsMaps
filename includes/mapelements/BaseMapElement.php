@@ -9,6 +9,8 @@ namespace MultiMaps;
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
  * @property-read float $pos Geographic coordinates
+ * @property string $title Title of element
+ * @property string $text Popup text of element
  */
 abstract class BaseMapElement {
 
@@ -16,19 +18,31 @@ abstract class BaseMapElement {
 	 * Geographic coordinates
 	 * @var array
 	 */
-	protected $coordinates = array();
+	protected $coordinates;
 
 	/**
 	 * @todo Description
 	 * @var boolean
 	 */
-	protected $isValid = false;
+	protected $isValid;
 
 	/**
 	 * An array that is used to accumulate the error messages
 	 * @var array
 	 */
-	protected $errormessages = array();
+	protected $errormessages;
+
+	/**
+	 * Array of properties available for this element
+	 * @var array
+	 */
+	protected $availableProperties;
+
+	/**
+	 * Array of element properties
+	 * @var array
+	 */
+	protected $properties;
 
 	/**
 	 * Returns element name
@@ -40,27 +54,41 @@ abstract class BaseMapElement {
 	 * Constructor
 	 * @param string $string Parse this string if sets
 	 */
-	function __construct( $string = null ) {
-		if( is_string($string) ) {
-			$this->parse( $string );
-		}
+	function __construct( ) {
+		$this->availableProperties = array(
+			'title',
+			'text',
+		);
+
+		$this->reset();
+	}
+
+	public function __set($name, $value) {
+		$name = strtolower($name);
+
+		$this->properties[$name] = $value;
 	}
 
 	public function __get($name) {
+		$name = strtolower($name);
+
 		switch ($name) {
 			case 'pos':
 				return $this->coordinates;
 				break;
 			default:
+				if ( isset($this->properties[$name]) ) {
+					return $this->properties[$name];
+				}
 				break;
 		}
 	}
 
-		/**
+	/**
 	 * Filling properties of the object according to the obtained data
 	 * @global string $egMultiMaps_DelimiterParam
 	 * @param string $param
-	 * @return boolean
+	 * @return boolean returns false if there were errors during parsing, it does not mean that the item was not added. Check with isValid()
 	 */
 	public function parse( $param ) {
 		global $egMultiMaps_DelimiterParam;
@@ -75,7 +103,9 @@ abstract class BaseMapElement {
 			return false;
 		}
 
+		//These parameters are optional
 		$this->isValid = true;
+		return $this->parseProperties($arrayparam);
 	}
 
 	/**
@@ -100,6 +130,18 @@ abstract class BaseMapElement {
 		return true;
 	}
 
+	protected function parseProperties(array $param) {
+		// filling properties with the names
+		$matches = array();
+		$properties = implode('|', $this->availableProperties );
+		foreach ($param as $value) {
+			if( preg_match("/^\s*($properties)\s*=(.+)$/si", $value, &$matches) ) {
+				$propertyName = $matches[1];
+				$this->$propertyName = $matches[2];
+			}
+		}
+	}
+
 	/**
 	 * Checks if the object is valid
 	 * @return boolean
@@ -115,6 +157,7 @@ abstract class BaseMapElement {
 		$this->isValid = false;
 		$this->coordinates = array();
 		$this->errormessages = array();
+		$this->properties = array();
 	}
 
 	/**
@@ -135,7 +178,7 @@ abstract class BaseMapElement {
 			foreach ($this->coordinates as $pos) {
 				$ret['pos'][] = $pos->getData();
 			}
-			return $ret;
+			return array_merge($ret, $this->properties);
 		}
 	}
 }

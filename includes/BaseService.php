@@ -186,16 +186,18 @@ abstract class BaseService {
 		if( is_null($this->bounds) ) {
 			if( is_null($this->center) ) {
 				$bounds = $this->elementsBounds;
-				if ( $bounds->ne == $bounds->sw ) {
-					if( is_null($this->zoom) ) {
-						$calculatedProperties['zoom'] = $GLOBALS['egMultiMaps_DefaultZoom'];
-					}
-					$calculatedProperties['center'] = $bounds->getCenter()->getData();
-				} elseif ( $bounds->isValid() ) {
-					if( is_null($this->zoom) ) {
-						$calculatedProperties['bounds'] = $bounds->getData();
-					} else {
+				if( $bounds->isValid() ) {
+					if ( $bounds->ne == $bounds->sw ) {
+						if( is_null($this->zoom) ) {
+							$calculatedProperties['zoom'] = $GLOBALS['egMultiMaps_DefaultZoom'];
+						}
 						$calculatedProperties['center'] = $bounds->getCenter()->getData();
+					} elseif ( $bounds->isValid() ) {
+						if( is_null($this->zoom) ) {
+							$calculatedProperties['bounds'] = $bounds->getData();
+						} else {
+							$calculatedProperties['center'] = $bounds->getCenter()->getData();
+						}
 					}
 				}
 			} else {
@@ -294,21 +296,24 @@ abstract class BaseService {
 	 * @return boolean
 	 */
 	public function addElementMarker($value) {
+		$return = true;
 		$stringsmarker = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
 		foreach ($stringsmarker as $markervalue) {
-			if (trim($markervalue) == '' ) {
+			if ( trim($markervalue) == '' ) {
 				continue;
 			}
-			$marker = new \MultiMaps\Marker( $markervalue );
-			if( $marker->isValid() ) {
-				$this->markers[] = $marker;
-				$this->elementsBounds->extend( $marker->pos );
-			} else {
+			$marker = new Marker();
+			if( $marker->parse($markervalue) ) {
+				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $marker->getErrorMessages() );
-				return false;
 			}
+			if( !$marker->isValid() ) {
+				continue;
+			}
+			$this->markers[] = $marker;
+			$this->elementsBounds->extend( $marker->pos );
 		}
-		return true;
+		return $return;
 	}
 
 	/**
@@ -317,21 +322,24 @@ abstract class BaseService {
 	 * @return boolean
 	 */
 	public function addElementLine($value) {
+		$return = true;
 		$stringsline = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
 		foreach ($stringsline as $linevalue) {
 			if (trim($linevalue) == '' ) {
 				continue;
 			}
-			$line = new \MultiMaps\Line( $linevalue );
-			if( $line->isValid() ) {
-				$this->lines[] = $line;
-				$this->elementsBounds->extend( $line->pos );
-			} else {
+			$line = new Line();
+			if( !$line->parse($linevalue) ) {
+				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $line->getErrorMessages() );
-				return false;
 			}
+			if( !$line->isValid() ) {
+				continue;
+			}
+			$this->lines[] = $line;
+			$this->elementsBounds->extend( $line->pos );
 		}
-		return true;
+		return $return;
 	}
 
 	/**
@@ -340,21 +348,24 @@ abstract class BaseService {
 	 * @return boolean
 	 */
 	public function addElementPolygon($value) {
+		$return = true;
 		$stringspolygon = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
 		foreach ($stringspolygon as $polygonvalue) {
 			if (trim($polygonvalue) == '' ) {
 				continue;
 			}
-			$polygon = new \MultiMaps\Polygon( $polygonvalue );
-			if( $polygon->isValid() ) {
-				$this->polygons[] = $polygon;
-				$this->elementsBounds->extend( $polygon->pos );
-			} else {
+			$polygon = new Polygon();
+			if( !$polygon->parse($polygonvalue) ) {
+				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $polygon->getErrorMessages() );
-				return false;
 			}
+			if( !$polygon->isValid() ) {
+				continue;
+			}
+			$this->polygons[] = $polygon;
+			$this->elementsBounds->extend( $polygon->pos );
 		}
-		return true;
+		return $return;
 	}
 
 	/**
@@ -363,21 +374,24 @@ abstract class BaseService {
 	 * @return boolean
 	 */
 	public function addElementRectangle($value) {
+		$return = true;
 		$stringsrectangle = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
 		foreach ($stringsrectangle as $rectanglevalue) {
 			if (trim($rectanglevalue) == '' ) {
 				continue;
 			}
-			$rectangle = new \MultiMaps\Rectangle( $rectanglevalue );
-			if( $rectangle->isValid() ) {
-				$this->rectangles[] = $rectangle;
-				$this->elementsBounds->extend( $rectangle->pos );
-			} else {
+			$rectangle = new Rectangle();
+			if( !$rectangle->parse($rectanglevalue) ) {
+				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $rectangle->getErrorMessages() );
-				return false;
 			}
+			if( !$rectangle->isValid() ) {
+				continue;
+			}
+			$this->rectangles[] = $rectangle;
+			$this->elementsBounds->extend( $rectangle->pos );
 		}
-		return true;
+		return $return;
 	}
 
 	/**
@@ -386,28 +400,31 @@ abstract class BaseService {
 	 * @return boolean
 	 */
 	public function addElementCircle($value) {
+		$return = true;
 		$stringscircle = explode($GLOBALS['egMultiMaps_SeparatorItems'], $value);
 		foreach ($stringscircle as $circlevalue) {
 			if (trim($circlevalue) == '' ) {
 				continue;
 			}
-			$circle = new \MultiMaps\Circle( $circlevalue );
-			if( $circle->isValid() ) {
-				$this->circles[] = $circle;
-				$circlescount = count($circle->pos);
-				for ($index = 0; $index < $circlescount; $index++) {
-					$ne = new Point($circle->pos[$index]->lat, $circle->pos[$index]->lon);
-					$sw = new Point($circle->pos[$index]->lat, $circle->pos[$index]->lon);
-					$ne->move($circle->radiuses[$index], $circle->radiuses[$index]);
-					$sw->move(-$circle->radiuses[$index], -$circle->radiuses[$index]);
-					$this->elementsBounds->extend( array($ne, $sw) );
-				}
-			} else {
+			$circle = new Circle();
+			if( !$circle->parse($circlevalue) ) {
+				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $circle->getErrorMessages() );
-				return false;
+			}
+			if( !$circle->isValid() ) {
+				continue;
+			}
+			$this->circles[] = $circle;
+			$circlescount = count($circle->pos);
+			for ($index = 0; $index < $circlescount; $index++) {
+				$ne = new Point($circle->pos[$index]->lat, $circle->pos[$index]->lon);
+				$sw = new Point($circle->pos[$index]->lat, $circle->pos[$index]->lon);
+				$ne->move($circle->radiuses[$index], $circle->radiuses[$index]);
+				$sw->move(-$circle->radiuses[$index], -$circle->radiuses[$index]);
+				$this->elementsBounds->extend( array($ne, $sw) );
 			}
 		}
-		return true;
+		return $return;
 	}
 
 	public function __set($name, $value) {
@@ -433,6 +450,7 @@ abstract class BaseService {
 	}
 
 	public function __get($name) {
+		$name = strtolower($name);
 		return isset($this->properties[$name]) ? $this->properties[$name] : null;
 	}
 
@@ -467,6 +485,14 @@ abstract class BaseService {
 		$this->circles = array();
 
 		$this->errormessages = array();
+	}
+
+	/**
+	 * Returns an error messages
+	 * @return array
+	 */
+	public function getErrorMessages() {
+		return $this->errormessages;
 	}
 
 }

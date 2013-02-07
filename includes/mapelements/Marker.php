@@ -11,6 +11,15 @@ namespace MultiMaps;
  */
 class Marker extends BaseMapElement {
 
+	function __construct() {
+		parent::__construct();
+
+		$this->availableProperties = array_merge(
+				$this->availableProperties,
+				array( 'icon' )
+				);
+	}
+
 	/**
 	 * Returns element name
 	 * return string Element name
