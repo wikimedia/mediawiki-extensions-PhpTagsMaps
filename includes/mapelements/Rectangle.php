@@ -12,6 +12,18 @@ namespace MultiMaps;
 class Rectangle extends BaseMapElement {
 
 	/**
+	 * Constructor
+	 */
+	function __construct() {
+		parent::__construct();
+
+		$this->availableProperties = array_merge(
+				$this->availableProperties,
+				array( 'color', 'weight', 'opacity', 'fillcolor', 'fillopacity', 'fill' )
+				);
+	}
+
+	/**
 	 * Returns element name
 	 * return string Element name
 	 */

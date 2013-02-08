@@ -36,11 +36,11 @@
 			if( properties.fill ) {
 				options.fill = properties.fill;
 			}
-			if( properties.fillColor ) {
-				options.fillColor = properties.fillColor;
+			if( properties.fillcolor ) {
+				options.fillColor = properties.fillcolor;
 			}
-			if( properties.fillOpacity ) {
-				options.fillOpacity = properties.fillOpacity;
+			if( properties.fillopacity ) {
+				options.fillOpacity = properties.fillopacity;
 			}
 
 			var text = false;

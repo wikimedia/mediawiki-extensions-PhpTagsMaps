@@ -13,6 +13,18 @@ namespace MultiMaps;
 class Circle extends BaseMapElement {
 
 	/**
+	 * Constructor
+	 */
+	function __construct() {
+		parent::__construct();
+
+		$this->availableProperties = array_merge(
+				$this->availableProperties,
+				array( 'color', 'weight', 'opacity', 'fillcolor', 'fillopacity', 'fill' )
+				);
+	}
+
+	/**
 	 * Array radiuses of circles
 	 * @var array
 	 */
@@ -80,16 +92,15 @@ class Circle extends BaseMapElement {
 				);
 	}
 
-	public function __get($name) {
+	public function getProperty($name) {
 		switch ($name) {
 			case 'radiuses':
 				return $this->radiuses;
 				break;
 			default:
-				return parent::__get($name);
+				return parent::getProperty($name);
 				break;
 		}
 	}
-
 
 }
