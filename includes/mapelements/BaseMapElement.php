@@ -63,13 +63,11 @@ abstract class BaseMapElement {
 		$this->reset();
 	}
 
-	public function __set($name, $value) {
-		$name = strtolower($name);
-
-		$this->properties[$name] = $value;
+	public function __get($name) {
+		return $this->getProperty($name);
 	}
 
-	public function __get($name) {
+	public function getProperty($name) {
 		$name = strtolower($name);
 
 		switch ($name) {
@@ -82,6 +80,23 @@ abstract class BaseMapElement {
 				}
 				break;
 		}
+		return null;
+	}
+
+	public function __set($name, $value) {
+		$this->setProperty($name, $value);
+	}
+
+	public function setProperty($name, $value) {
+		$name = strtolower($name);
+		$value = trim($value);
+		
+		if( array_search($name, $this->availableProperties) === false ) {
+			return false;
+		}
+
+		$this->properties[$name] = $value;
+		return true;
 	}
 
 	/**
@@ -133,13 +148,36 @@ abstract class BaseMapElement {
 	protected function parseProperties(array $param) {
 		// filling properties with the names
 		$matches = array();
-		$properties = implode('|', $this->availableProperties );
-		foreach ($param as $value) {
-			if( preg_match("/^\s*($properties)\s*=(.+)$/si", $value, &$matches) ) {
-				$propertyName = $matches[1];
-				$this->$propertyName = $matches[2];
+		$properties = implode( '|', $this->availableProperties );
+		foreach ($param as $key => $paramvalue) {
+			if( preg_match("/^\s*($properties)\s*=(.+)$/si", $paramvalue, &$matches) ) {
+				if ( $this->setProperty($matches[1], $matches[2]) ) {
+					unset( $param[$key] );
+				} else {
+					throw new \MWException( __METHOD__ . '');
+				}
 			}
 		}
+
+
+		reset( $param );
+		$value = current( $param );
+		if( $value === false ) {
+			return true;
+		}
+		foreach ($this->availableProperties as $name) {
+			if( is_null($this->getProperty($name)) ) {
+				if( preg_match( '/^\s*$/s', $value) == false ) { // Ignore empty values
+					$this->setProperty(	$name, $value );
+				}
+				$value = next( $param );
+				if( $value === false ) {
+					return true;
+				}
+			}
+		}
+
+		return true; // TODO
 	}
 
 	/**

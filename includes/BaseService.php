@@ -428,6 +428,11 @@ abstract class BaseService {
 	}
 
 	public function __set($name, $value) {
+		$this->setProperty($name, $value);
+	}
+
+	public function setProperty($name, $value) {
+		//TODO available properties
 		$name = strtolower($name);
 
 		switch ($name) {
@@ -450,6 +455,10 @@ abstract class BaseService {
 	}
 
 	public function __get($name) {
+		return $this->getProperty($name);
+	}
+
+	public function getProperty($name) {
 		$name = strtolower($name);
 		return isset($this->properties[$name]) ? $this->properties[$name] : null;
 	}
