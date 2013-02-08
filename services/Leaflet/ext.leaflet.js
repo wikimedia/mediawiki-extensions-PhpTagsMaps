@@ -17,20 +17,28 @@
 		* @param {Object} properties Contains the fields lat, lon, title, text and icon
 		*/
 		this.addMarker = function (properties) {
-			var markerOptions = {};
+			var options = {};
 
 			if( properties.icon ) {
-				markerOptions.icon = new L.Icon({
+				options.icon = new L.Icon({
 					iconUrl: properties.icon
 				});
 			}
-
-			if( properties.title ) {
-				markerOptions.title = properties.title;
+			var text = false;
+			if( properties.title && properties.text) {
+				options.title = properties.title;
+				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
+			} else if( properties.title ) {
+				options.title = properties.title;
+				text = '<strong>' + properties.title + '</strong>';
+			} else if( properties.text ) {
+				text = properties.text;
 			}
 
-			var marker = L.marker( [properties.pos[0].lat, properties.pos[0].lon], markerOptions ).addTo( this.map );
-			if( properties.text ) marker.bindPopup( properties.text );
+			var marker = L.marker( [properties.pos[0].lat, properties.pos[0].lon], options ).addTo( this.map );
+			if( text ) {
+				marker.bindPopup( text );
+			}
 		};
 
 		this.addLine = function (properties) {
@@ -45,13 +53,27 @@
 			if( properties.opacity ) {
 				options.opacity = properties.opacity;
 			}
+			if( properties.title ) {
+				options.title = properties.title;
+			}
+			var text = false;
+			if( properties.title && properties.text) {
+				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
+			} else if( properties.title ) {
+				text = '<strong>' + properties.title + '</strong>';
+			} else if( properties.text ) {
+				text = properties.text;
+			}
 
 			var latlngs = [];
 			for (var x = 0; x < properties.pos.length; x++) {
 				latlngs.push([properties.pos[x].lat, properties.pos[x].lon]);
 			}
 
-			L.polyline(latlngs, options).addTo(this.map);
+			var polyline = L.polyline(latlngs, options).addTo(this.map);
+			if( text ) {
+				polyline.bindPopup( text );
+			}
 		};
 
 		/**
@@ -78,13 +100,27 @@
 			if( properties.fillOpacity ) {
 				options.fillOpacity = properties.fillOpacity;
 			}
+			if( properties.title ) {
+				options.title = properties.title;
+			}
+			var text = false;
+			if( properties.title && properties.text) {
+				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
+			} else if( properties.title ) {
+				text = '<strong>' + properties.title + '</strong>';
+			} else if( properties.text ) {
+				text = properties.text;
+			}
 
 			var latlngs = [];
 			for (var x = 0; x < properties.pos.length; x++) {
 				latlngs.push([properties.pos[x].lat, properties.pos[x].lon]);
 			}
 
-			L.polygon(latlngs, options).addTo(this.map);
+			var polygon = L.polygon(latlngs, options).addTo(this.map);
+			if( text ) {
+				polygon.bindPopup( text );
+			}
 		};
 
 		/**
@@ -111,8 +147,22 @@
 			if( properties.fillOpacity ) {
 				options.fillOpacity = properties.fillOpacity;
 			}
+			if( properties.title ) {
+				options.title = properties.title;
+			}
+			var text = false;
+			if( properties.title && properties.text) {
+				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
+			} else if( properties.title ) {
+				text = '<strong>' + properties.title + '</strong>';
+			} else if( properties.text ) {
+				text = properties.text;
+			}
 
-			L.circle([properties.pos[0].lat, properties.pos[0].lon], properties.radius[0], options).addTo(this.map);
+			var circle = L.circle([properties.pos[0].lat, properties.pos[0].lon], properties.radius[0], options).addTo(this.map);
+			if( text ) {
+				circle.bindPopup( text );
+			}
 		};
 
 		/**
@@ -139,10 +189,24 @@
 			if( properties.fillOpacity ) {
 				options.fillOpacity = properties.fillOpacity;
 			}
+			if( properties.title ) {
+				options.title = properties.title;
+			}
+			var text = false;
+			if( properties.title && properties.text) {
+				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
+			} else if( properties.title ) {
+				text = '<strong>' + properties.title + '</strong>';
+			} else if( properties.text ) {
+				text = properties.text;
+			}
 
 			var bounds = [[properties.pos[0].lat, properties.pos[0].lon], [properties.pos[1].lat, properties.pos[1].lon]];
 
-			L.rectangle( bounds, options ).addTo(this.map);
+			var rectangle = L.rectangle( bounds, options ).addTo(this.map);
+			if( text ) {
+				rectangle.bindPopup( text );
+			}
 		};
 
 		this.setup = function () {

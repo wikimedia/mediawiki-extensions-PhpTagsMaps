@@ -43,6 +43,48 @@ class LeafletTest extends \PHPUnit_Framework_TestCase {
 				);
 	}
 
+	public function testParseOneMarkerTextOnly() {
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('55.7557860, 37.6176330~~This is text', 'service=leaflet') ) ),
+				'{"markers":[{"pos":[{"lat":55.755786,"lon":37.617633}],"text":"This is text"}],"zoom":14,"center":{"lat":55.755786,"lon":37.617633}}'
+				);
+	}
+
+	public function testParseOneMarkerTitleOnly() {
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('55.7557860, 37.6176330~This is title ~', 'service=leaflet') ) ),
+				'{"markers":[{"pos":[{"lat":55.755786,"lon":37.617633}],"title":"This is title"}],"zoom":14,"center":{"lat":55.755786,"lon":37.617633}}'
+				);
+	}
+
+	public function testParseOneMarkerTitleText() {
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('55.7557860, 37.6176330~This is title ~ This is text ', 'service=leaflet') ) ),
+				'{"markers":[{"pos":[{"lat":55.755786,"lon":37.617633}],"title":"This is title","text":"This is text"}],"zoom":14,"center":{"lat":55.755786,"lon":37.617633}}'
+				);
+	}
+
+	public function testParseOneMarkerNamedTextOnly() {
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('55.7557860, 37.6176330~Text = This is text', 'service=leaflet') ) ),
+				'{"markers":[{"pos":[{"lat":55.755786,"lon":37.617633}],"text":"This is text"}],"zoom":14,"center":{"lat":55.755786,"lon":37.617633}}'
+				);
+	}
+
+	public function testParseOneMarkerNamedTitleOnly() {
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('55.7557860, 37.6176330~ title=This is title ~', 'service=leaflet') ) ),
+				'{"markers":[{"pos":[{"lat":55.755786,"lon":37.617633}],"title":"This is title"}],"zoom":14,"center":{"lat":55.755786,"lon":37.617633}}'
+				);
+	}
+
+	public function testParseOneMarkerNamedTextAndTile() {
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('55.7557860, 37.6176330~tExT = This is text ~This is title ', 'service=leaflet') ) ),
+				'{"markers":[{"pos":[{"lat":55.755786,"lon":37.617633}],"text":"This is text","title":"This is title"}],"zoom":14,"center":{"lat":55.755786,"lon":37.617633}}'
+				);
+	}
+
 	public function testParseOneLine() {
 		$this->assertEquals(
 				\FormatJson::encode( $this->object->getMapData( array(' ', 'lines = 53.225768435790194 , 23.466796875 : 53.9560855309879,29.1796875', 'service=leaflet') ) ),
