@@ -12,11 +12,11 @@
 		this.options = options;
 
 		/**
-		* Creates a new marker with the provided data,
-		* adds it to the map, and returns it.
-		* @param {Object} properties Contains the fields lat, lon, title, text and icon
-		*/
-		this.addMarker = function (properties) {
+		 * Convert properties given from multimaps extension to options of map element
+		 * @param {Object} properties Contains the fields lat, lon, title, text and icon
+		 * @return {Object} options of map element
+		 */
+		this.convertPropertiesToOptions = function (properties) {
 			var options = {};
 
 			if( properties.icon ) {
@@ -24,26 +24,6 @@
 					iconUrl: properties.icon
 				});
 			}
-			var text = false;
-			if( properties.title && properties.text) {
-				options.title = properties.title;
-				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
-			} else if( properties.title ) {
-				options.title = properties.title;
-				text = '<strong>' + properties.title + '</strong>';
-			} else if( properties.text ) {
-				text = properties.text;
-			}
-
-			var marker = L.marker( [properties.pos[0].lat, properties.pos[0].lon], options ).addTo( this.map );
-			if( text ) {
-				marker.bindPopup( text );
-			}
-		};
-
-		this.addLine = function (properties) {
-			var options = {};
-
 			if( properties.color ) {
 				options.color = properties.color;
 			}
@@ -53,26 +33,61 @@
 			if( properties.opacity ) {
 				options.opacity = properties.opacity;
 			}
-			if( properties.title ) {
-				options.title = properties.title;
+			if( properties.fill ) {
+				options.fill = properties.fill;
 			}
+			if( properties.fillColor ) {
+				options.fillColor = properties.fillColor;
+			}
+			if( properties.fillOpacity ) {
+				options.fillOpacity = properties.fillOpacity;
+			}
+
 			var text = false;
 			if( properties.title && properties.text) {
+				options.title = properties.title;
 				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
 			} else if( properties.title ) {
+				options.title = properties.title;
 				text = '<strong>' + properties.title + '</strong>';
 			} else if( properties.text ) {
 				text = properties.text;
 			}
+
+			return { options:options, text:text };
+		};
+
+		/**
+		* Creates a new marker with the provided data,
+		* adds it to the map, and returns it.
+		* @param {Object} properties Contains the fields lat, lon, title, text and icon
+		* @param {String} icon Global value for all icons
+		*/
+		this.addMarker = function (properties, icon) {
+			if( icon ) {
+				if( !properties.icon ) {
+					properties.icon = icon;
+				}
+			}
+			var value = this.convertPropertiesToOptions(properties);
+
+			var marker = L.marker( [properties.pos[0].lat, properties.pos[0].lon], value.options ).addTo( this.map );
+			if( value.text ) {
+				marker.bindPopup( value.text );
+			}
+		};
+
+		this.addLine = function (properties) {
+			var value = this.convertPropertiesToOptions(properties);
 
 			var latlngs = [];
 			for (var x = 0; x < properties.pos.length; x++) {
 				latlngs.push([properties.pos[x].lat, properties.pos[x].lon]);
 			}
 
-			var polyline = L.polyline(latlngs, options).addTo(this.map);
-			if( text ) {
-				polyline.bindPopup( text );
+			var polyline = L.polyline(latlngs, value.options).addTo(this.map);
+			if( value.text ) {
+				polyline.bindPopup( value.text );
 			}
 		};
 
@@ -80,46 +95,16 @@
 		 * TODO: check this
 		 */
 		this.addPolygon = function (properties) {
-			var options = {};
-
-			if( properties.color ) {
-				options.color = properties.color;
-			}
-			if( properties.weight ) {
-				options.weight = properties.weight;
-			}
-			if( properties.opacity ) {
-				options.opacity = properties.opacity;
-			}
-			if( properties.fill ) {
-				options.fill = properties.fill;
-			}
-			if( properties.fillColor ) {
-				options.fillColor = properties.fillColor;
-			}
-			if( properties.fillOpacity ) {
-				options.fillOpacity = properties.fillOpacity;
-			}
-			if( properties.title ) {
-				options.title = properties.title;
-			}
-			var text = false;
-			if( properties.title && properties.text) {
-				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
-			} else if( properties.title ) {
-				text = '<strong>' + properties.title + '</strong>';
-			} else if( properties.text ) {
-				text = properties.text;
-			}
+			var value = this.convertPropertiesToOptions(properties);
 
 			var latlngs = [];
 			for (var x = 0; x < properties.pos.length; x++) {
 				latlngs.push([properties.pos[x].lat, properties.pos[x].lon]);
 			}
 
-			var polygon = L.polygon(latlngs, options).addTo(this.map);
-			if( text ) {
-				polygon.bindPopup( text );
+			var polygon = L.polygon(latlngs, value.options).addTo(this.map);
+			if( value.text ) {
+				polygon.bindPopup( value.text );
 			}
 		};
 
@@ -127,41 +112,11 @@
 		 * TODO: check this
 		 */
 		this.addCircle = function (properties) {
-			var options = {};
+			var value = this.convertPropertiesToOptions(properties);
 
-			if( properties.color ) {
-				options.color = properties.color;
-			}
-			if( properties.weight ) {
-				options.weight = properties.weight;
-			}
-			if( properties.opacity ) {
-				options.opacity = properties.opacity;
-			}
-			if( properties.fill ) {
-				options.fill = properties.fill;
-			}
-			if( properties.fillColor ) {
-				options.fillColor = properties.fillColor;
-			}
-			if( properties.fillOpacity ) {
-				options.fillOpacity = properties.fillOpacity;
-			}
-			if( properties.title ) {
-				options.title = properties.title;
-			}
-			var text = false;
-			if( properties.title && properties.text) {
-				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
-			} else if( properties.title ) {
-				text = '<strong>' + properties.title + '</strong>';
-			} else if( properties.text ) {
-				text = properties.text;
-			}
-
-			var circle = L.circle([properties.pos[0].lat, properties.pos[0].lon], properties.radius[0], options).addTo(this.map);
-			if( text ) {
-				circle.bindPopup( text );
+			var circle = L.circle([properties.pos[0].lat, properties.pos[0].lon], properties.radius[0], value.options).addTo(this.map);
+			if( value.text ) {
+				circle.bindPopup( value.text );
 			}
 		};
 
@@ -169,43 +124,13 @@
 		 * TODO: check this
 		 */
 		this.addRectangle = function (properties) {
-			var options = {};
-
-			if( properties.color ) {
-				options.color = properties.color;
-			}
-			if( properties.weight ) {
-				options.weight = properties.weight;
-			}
-			if( properties.opacity ) {
-				options.opacity = properties.opacity;
-			}
-			if( properties.fill ) {
-				options.fill = properties.fill;
-			}
-			if( properties.fillColor ) {
-				options.fillColor = properties.fillColor;
-			}
-			if( properties.fillOpacity ) {
-				options.fillOpacity = properties.fillOpacity;
-			}
-			if( properties.title ) {
-				options.title = properties.title;
-			}
-			var text = false;
-			if( properties.title && properties.text) {
-				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
-			} else if( properties.title ) {
-				text = '<strong>' + properties.title + '</strong>';
-			} else if( properties.text ) {
-				text = properties.text;
-			}
+			var value = this.convertPropertiesToOptions(properties);
 
 			var bounds = [[properties.pos[0].lat, properties.pos[0].lon], [properties.pos[1].lat, properties.pos[1].lon]];
 
-			var rectangle = L.rectangle( bounds, options ).addTo(this.map);
-			if( text ) {
-				rectangle.bindPopup( text );
+			var rectangle = L.rectangle( bounds, value.options ).addTo(this.map);
+			if( value.text ) {
+				rectangle.bindPopup( value.text );
 			}
 		};
 
@@ -231,7 +156,7 @@
 
 			// Add the markers.
 			for (var im in options.markers) {
-				this.addMarker( options.markers[im] );
+				this.addMarker( options.markers[im], options.icon );
 			}
 
 			// Add lines

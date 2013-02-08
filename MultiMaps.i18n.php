@@ -17,6 +17,7 @@ $messages['en'] = array(
 	'multimaps-loading-map' => 'Loading map...',
 	'multimaps-circle-radius-not-defined' => 'for the circle must be defined radius',
 	'multimaps-circle-wrong-number-parameters' => 'for the circle should be defined only two parameters, the coordinates of the center and the radius. But specified {{PLURAL:$1|one parameter|$1 parameters}}',
+	'multimaps-marker-incorrect-icon' => 'For the icon marker provided an incorrect file name "1$"',
 	'multimaps-square-wrong-number-points' => 'coordinates of the square should contain only two points, but specified {{PLURAL:$1|one point|$1 points}}',
 	'multimaps-unable-create-element' => 'Map element "$1" can not be created',
 	'multimaps-unable-parse-coordinates' => 'unable to parse the geographic coordinates "$1"',
@@ -40,6 +41,8 @@ $messages['qqq'] = array(
 	'multimaps-circle-radius-not-defined' => 'Error message, when for circle (map element) not defined radius',
 	'multimaps-circle-wrong-number-parameters' => 'Error message, when for circle defined too many parameters. Parameters:
 * $1 - number of passed parameters (always more than two)',
+	'multimaps-marker-incorrect-icon' => 'Error message, Parameters:
+* $1 - user-specified value',
 	'multimaps-square-wrong-number-points' => 'Error message, when for square (map element) specified more or less than two parameters. Parameters:
 * $1 - the number of user-specified coordinates for the square',
 	'multimaps-unable-create-element' => 'An error occurred while creating the map element. $1 - the name of the element, such as a "marker", "line", "polygon", etc.',

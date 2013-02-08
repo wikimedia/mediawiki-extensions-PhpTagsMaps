@@ -124,6 +124,7 @@ abstract class BaseService {
 		'maxzoom',
 		'center',
 		'bounds',
+		'icon',
 	);
 
 	/**
@@ -442,6 +443,12 @@ abstract class BaseService {
 					$this->properties['center'] = $center;
 				} else {
 					$this->errormessages[] = \wfMessage( 'multimaps-unable-parse-parameter', $name, $value )->escaped();
+				}
+				break;
+			case 'icon':
+				$marker = new Marker();
+				if( $marker->setProperty('icon', $value) ) {
+					$this->properties['icon'] = $marker->icon;
 				}
 				break;
 			case 'bounds':

@@ -90,7 +90,7 @@ abstract class BaseMapElement {
 	public function setProperty($name, $value) {
 		$name = strtolower($name);
 		$value = trim($value);
-		
+
 		if( array_search($name, $this->availableProperties) === false ) {
 			return false;
 		}
