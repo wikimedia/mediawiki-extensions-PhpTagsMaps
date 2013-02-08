@@ -72,15 +72,16 @@ $messages['de'] = array(
 	'multimaps-loading-map' => 'Lade Karte …',
 	'multimaps-circle-radius-not-defined' => 'Für den Kreis muss ein Radius angegeben werden.',
 	'multimaps-circle-wrong-number-parameters' => 'Für den Kreis sollten nur zwei Parameter angegeben werden: Die Koordinaten des Mittelpunkts und der Radius. Du hast jedoch {{PLURAL:$1|nur einen|$1}} Parameter angegeben.',
+	'multimaps-marker-incorrect-icon' => 'Für die Markierung wurde ein falscher Dateiname „$1“ angegeben',
 	'multimaps-square-wrong-number-points' => 'Die Koordinaten des Platzes sollten nur zwei Punkte enthalten. Du hast jedoch {{PLURAL:$1|einen Punkt|$1 Punkte}} angegeben.',
 	'multimaps-unable-create-element' => 'Das Kartenelement „$1“ kann nicht erstellt werden',
 	'multimaps-unable-parse-coordinates' => 'Die geografischen Koordinaten „$1“ konnten nicht geparst werden',
 	'multimaps-unable-parse-parameter' => 'Der Parameter „$1“ mit dem Wert „$2“ konnte nicht geparst werden',
 	'multimaps-unable-parse-radius' => 'Der Radius des Kreises muss ein numerischer Wert sein. Du hast jedoch „$1“ angegeben.',
 	'multimaps-unknown-showmap-service' => 'Es konnte kein Dienst zum Anzeigen der Karte gefunden werden',
-	'multimaps-unknown-class-for-service' => 'Die angegebene Klasse „$1“ ist für den Dienst unbekannt',
+	'multimaps-unknown-class-for-service' => 'Die für den Dienst angegebene Klasse „$1“ kann nicht gefunden werden.',
 	'multimaps-unknown-parameter' => 'Unbekannter Parameter: „$1“',
-	'multimaps-error-incorrect-class-for-service' => 'Die angegebene Klasse „$1“ ist für den Dienst ungültig',
+	'multimaps-error-incorrect-class-for-service' => 'Die für den Dienst angegebene Klasse „$1“ kann nicht verwendet werden.',
 	'multimaps-method-error-unknown-action' => '$1: Unbekannte Aktion',
 	'multimaps-method-error-unexpected-result' => '$1: Ein unerwartetes Ergebnis einer Funktion',
 );
@@ -93,15 +94,16 @@ $messages['fr'] = array(
 	'multimaps-loading-map' => 'Chargement de la carte…',
 	'multimaps-circle-radius-not-defined' => 'pour le cercle, le rayon doit être défini',
 	'multimaps-circle-wrong-number-parameters' => 'pour le cercle, seuls deux paramètres devraient être définis, les coordonnées du centre et le rayon. Mais {{PLURAL:$1|un seul paramètre a été spécifié|$1 paramètres ont été spécifiés}}',
+	'multimaps-marker-incorrect-icon' => 'Un nom de fichier "$1" incorrect a été fourni pour l’icône du marqueur', # Fuzzy
 	'multimaps-square-wrong-number-points' => 'les coordonnées de la zone ne devraient contenir que deux points, mais {{PLURAL:$1|un point a été spécifié|$1 points ont été spécifiés}}',
 	'multimaps-unable-create-element' => 'L’élément de carte "$1" ne peut pas être créé.',
 	'multimaps-unable-parse-coordinates' => 'impossible d’analyser les coordonnées géographiques "$1"',
 	'multimaps-unable-parse-parameter' => 'impossible d’analyser le paramètre "$1" dont la valeur est "$2"',
 	'multimaps-unable-parse-radius' => 'le rayon du cercle doit être une valeur numérique, mais "$1" a été spécifié',
 	'multimaps-unknown-showmap-service' => 'Impossible de trouver un service disponible pour afficher la carte',
-	'multimaps-unknown-class-for-service' => 'Une classe est inconnue pour le service défini: "$1"',
+	'multimaps-unknown-class-for-service' => 'La classe "$1" définie pour le service est introuvable.',
 	'multimaps-unknown-parameter' => 'Paramètre inconnu: "$1"',
-	'multimaps-error-incorrect-class-for-service' => 'Une classe est incorrecte pour le service défini: "$1"',
+	'multimaps-error-incorrect-class-for-service' => 'La classe "$1" définie pour le service ne peut pas être utilisée.',
 	'multimaps-method-error-unknown-action' => '$1: Action inconnue',
 	'multimaps-method-error-unexpected-result' => '$1: Un résultat inattendu d’une fonction',
 );
@@ -120,9 +122,9 @@ $messages['gl'] = array(
 	'multimaps-unable-parse-parameter' => 'non se pode analizar o parámetro "$1" cuxo valor é "$2"',
 	'multimaps-unable-parse-radius' => 'o radio da circunferencia debe ser un valor numérico, pero especificouse "$1"',
 	'multimaps-unknown-showmap-service' => 'Non se pode atopar ningún servizo dispoñible para mostrar o mapa',
-	'multimaps-unknown-class-for-service' => 'Coñécese unha clase para o servizo definido: "$1"',
+	'multimaps-unknown-class-for-service' => 'Coñécese unha clase para o servizo definido: "$1"', # Fuzzy
 	'multimaps-unknown-parameter' => 'Parámetro descoñecido: "$1"',
-	'multimaps-error-incorrect-class-for-service' => 'A seguinte clase é incorrecta para o servizo definido: "$1"',
+	'multimaps-error-incorrect-class-for-service' => 'A seguinte clase é incorrecta para o servizo definido: "$1"', # Fuzzy
 	'multimaps-method-error-unknown-action' => '$1: Acción descoñecida',
 	'multimaps-method-error-unexpected-result' => '$1: Resultado inesperado dunha función',
 );
@@ -133,12 +135,15 @@ $messages['gl'] = array(
 $messages['ja'] = array(
 	'multimaps-desc' => '利用者が複数の地図サービスを使用して地図や緯度経度を表示できるようにする',
 	'multimaps-loading-map' => '地図を読み込み中...',
+	'multimaps-marker-incorrect-icon' => 'アイコンマーカーとして無効なファイル名「$1」を指定しました',
 	'multimaps-square-wrong-number-points' => '四角形の緯度経度として 2 地点を指定すべきですが、{{PLURAL:$1|$1 地点}}を指定しました',
 	'multimaps-unable-create-element' => '地図要素「$1」を作成できません',
 	'multimaps-unable-parse-coordinates' => '緯度経度「$1」を構文解析できません',
 	'multimaps-unable-parse-radius' => '円の半径には数値を指定する必要がありますが、「$1」を指定しました',
 	'multimaps-unknown-showmap-service' => '地図の表示に利用できるサービスが見つかりませんでした',
+	'multimaps-unknown-class-for-service' => 'サービスとして定義されたクラス「$1」が見つかりません。',
 	'multimaps-unknown-parameter' => '不明なパラメーター:「$1」',
+	'multimaps-error-incorrect-class-for-service' => 'サービスとして定義されたクラス「$1」は使用できません。',
 	'multimaps-method-error-unknown-action' => '$1: 不明な操作です',
 	'multimaps-method-error-unexpected-result' => '$1: 関数が予期しない結果を返しました',
 );
@@ -157,27 +162,28 @@ $messages['mk'] = array(
 	'multimaps-unable-parse-parameter' => 'не можам да го испарсирам параметарот „$1“. Вредноста е „$2“',
 	'multimaps-unable-parse-radius' => 'радиусот на кружницата мора да има бројчена вредност, но зададено е „$1“',
 	'multimaps-unknown-showmap-service' => 'Не можев да најдам расположива служба за приказ на картата',
-	'multimaps-unknown-class-for-service' => 'На службата ѝ се зададени непознатата класа: „$1“',
+	'multimaps-unknown-class-for-service' => 'На службата ѝ се зададени непознатата класа: „$1“', # Fuzzy
 	'multimaps-unknown-parameter' => 'Непознат параметар: „$1“',
-	'multimaps-error-incorrect-class-for-service' => 'На службата ѝ е зададена неисправна класа: „$1“',
+	'multimaps-error-incorrect-class-for-service' => 'На службата ѝ е зададена неисправна класа: „$1“', # Fuzzy
 	'multimaps-method-error-unknown-action' => '$1: Непознато дејство',
 	'multimaps-method-error-unexpected-result' => '$1: Неочекуван резултат на функција',
 );
 
 /** Dutch (Nederlands)
  * @author Kippenvlees1
+ * @author Siebrand
  */
 $messages['nl'] = array(
 	'multimaps-desc' => 'Sta gebruikers toe om kaarten en coördinaten weer te geven met behulp van meerdere kaartservices',
-	'multimaps-loading-map' => 'Kaart wordt geladen...',
-	'multimaps-unable-create-element' => 'Map-element "$1" kan niet worden aangemaakt',
+	'multimaps-loading-map' => 'Bezig met het laden van de kaart...',
+	'multimaps-unable-create-element' => 'Kaartelement "$1" kan niet worden aangemaakt',
 	'multimaps-unable-parse-coordinates' => 'kan de geografische coördinaten "$1" niet parseren',
 	'multimaps-unable-parse-parameter' => 'kan de parameter "$1" niet parseren met waarde "$2"',
 	'multimaps-unknown-showmap-service' => 'De service die de kaart weergeeft kon niet gevonden worden',
-	'multimaps-unknown-class-for-service' => 'Voor de service gedefiniëerd is onbekend klasse: "$1"',
+	'multimaps-unknown-class-for-service' => 'Voor de service gedefiniëerd is onbekend klasse: "$1"', # Fuzzy
 	'multimaps-unknown-parameter' => 'Onbekende parameter: "$1"',
-	'multimaps-error-incorrect-class-for-service' => 'Voor de service gedefiniëerd is onjuiste klasse: "$1"',
-	'multimaps-method-error-unknown-action' => '$1: Onbekende actie',
+	'multimaps-error-incorrect-class-for-service' => 'Voor de service gedefiniëerd is onjuiste klasse: "$1"', # Fuzzy
+	'multimaps-method-error-unknown-action' => '$1: onbekende handeling',
 	'multimaps-method-error-unexpected-result' => '$1: Een onverwacht resultaat van een functie',
 );
 
@@ -195,9 +201,9 @@ $messages['ru'] = array(
 	'multimaps-unable-parse-parameter' => 'не удается выполнить разбор параметра « $1 » значение « $2 »',
 	'multimaps-unable-parse-radius' => 'радиус круга должен быть числовым значением, но указанно « $1 »',
 	'multimaps-unknown-showmap-service' => 'Не удалось найти доступный сервис для отображения карты',
-	'multimaps-unknown-class-for-service' => 'Для службы определен неизвестный класс: « $1 »',
+	'multimaps-unknown-class-for-service' => 'Для службы определен неизвестный класс: « $1 »', # Fuzzy
 	'multimaps-unknown-parameter' => 'Неизвестный параметр: « $1 »',
-	'multimaps-error-incorrect-class-for-service' => 'Для службы определен неверный класс: « $1 »',
+	'multimaps-error-incorrect-class-for-service' => 'Для службы определен неверный класс: « $1 »', # Fuzzy
 	'multimaps-method-error-unknown-action' => '$1: Неизвестное действие',
 	'multimaps-method-error-unexpected-result' => '$1: Неожиданный результат функции',
 );
