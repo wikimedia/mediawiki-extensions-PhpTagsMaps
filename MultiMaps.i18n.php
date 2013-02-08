@@ -23,9 +23,9 @@ $messages['en'] = array(
 	'multimaps-unable-parse-parameter' => 'unable to parse parameter "$1" value is "$2"',
 	'multimaps-unable-parse-radius' => 'radius of the circle must be a numeric value, but specified "$1"',
 	'multimaps-unknown-showmap-service' => 'Could not find available service to display the map',
-	'multimaps-unknown-class-for-service' => 'For the service defined is unknown class: "$1"',
+	'multimaps-unknown-class-for-service' => 'The class "$1" that is defined for the service cannot be found.',
 	'multimaps-unknown-parameter' => 'Unknown parameter: "$1"',
-	'multimaps-error-incorrect-class-for-service' => 'For the service defined is incorrect class: "$1"',
+	'multimaps-error-incorrect-class-for-service' => 'The class "$1" that is defined for the service cannot be used.',
 	'multimaps-method-error-unknown-action' => '$1: Unknown action',
 	'multimaps-method-error-unexpected-result' => '$1: An unexpected result of a function',
 );
