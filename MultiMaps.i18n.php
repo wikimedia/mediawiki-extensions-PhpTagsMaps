@@ -184,9 +184,9 @@ $messages['nl'] = array(
 	'multimaps-unable-parse-coordinates' => 'de geografische coördinaten "$1" kunnen niet verwerkt worden',
 	'multimaps-unable-parse-parameter' => 'de parameter "$1" met waarde "$2" kan niet verwerkt worden',
 	'multimaps-unknown-showmap-service' => 'De dienst die de kaart weergeeft kon niet gevonden worden',
-	'multimaps-unknown-class-for-service' => 'Voor de service gedefiniëerd is onbekend klasse: "$1"', # Fuzzy
+	'multimaps-unknown-class-for-service' => 'De klasse "$1" die is gedefinieerd voor de dienst bestaat niet.',
 	'multimaps-unknown-parameter' => 'Onbekende parameter: "$1"',
-	'multimaps-error-incorrect-class-for-service' => 'Voor de service gedefiniëerd is onjuiste klasse: "$1"', # Fuzzy
+	'multimaps-error-incorrect-class-for-service' => 'De klasse "$1" die is gedefinieerd voor de dienst kan niet gebruikt worden.',
 	'multimaps-method-error-unknown-action' => '$1: onbekende handeling',
 	'multimaps-method-error-unexpected-result' => '$1: een functie heeft een onverwacht resultaat teruggegeven',
 );
