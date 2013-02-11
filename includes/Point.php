@@ -44,20 +44,25 @@ class Point {
 			case 'lon':
 				return $this->longitude;
 				break;
-			default:
-				break;
 		}
+		return null;
 	}
 
 	public function __set($name, $value) {
 		switch ($name) {
 			case 'lat':
-				$this->latitude = (float) $value;
+				if( is_numeric($value) ) {
+					$this->latitude = (float) $value;
+				} else {
+					$this->latitude = false;
+				}
 				break;
 			case 'lon':
-				$this->longitude = (float) $value;
-				break;
-			default:
+				if( is_numeric($value) ) {
+					$this->longitude = (float) $value;
+				} else {
+					$this->longitude = false;
+				}
 				break;
 		}
 	}
@@ -104,6 +109,7 @@ class Point {
 		if( $this->isValid() ) {
 			return array('lat' => $this->latitude, 'lon' => $this->longitude);
 		}
+		return null;
 	}
 
 }
