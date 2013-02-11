@@ -127,10 +127,44 @@ class LeafletTest extends \PHPUnit_Framework_TestCase {
 				);
 	}
 
-	public function testParseFalseOneRectangle() {
+	public function testParseFalseRectangle() {
+		$badrectanglecoord = '10°10°10", 10°10\'10"';
 		$this->assertEquals(
-				\FormatJson::encode( $this->object->getMapData( array(' ', 'rectangles  =51.83577752045248  ,33.837890625 : 46.37725420510028 ,23.37890625 ', 'rectangle= 10°10°10", 10°10\'10": 40, 40', 'service=leaflet') ) ),
+				\FormatJson::encode( $this->object->getMapData( array(' ', 'rectangles  =51.83577752045248  ,33.837890625 : 46.37725420510028 ,23.37890625 ', "rectangle=$badrectanglecoord: 40, 40", 'service=leaflet') ) ),
 				'{"rectangles":[{"pos":[{"lat":51.835777520452,"lon":33.837890625},{"lat":46.3772542051,"lon":23.37890625}]}],"bounds":{"ne":{"lat":51.835777520452,"lon":33.837890625},"sw":{"lat":46.3772542051,"lon":23.37890625}}}'
+				);
+
+		$rectangle = new Rectangle();
+		$this->assertEquals(
+				$this->object->getErrorMessages(),
+				array(
+					\wfMessage( 'multimaps-unable-parse-coordinates', $badrectanglecoord)->escaped(),
+					\wfMessage( 'multimaps-unable-create-element', $rectangle->getElementName() )->escaped(),
+					)
+				);
+
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array(' ', 'rectangles  =51.83577752045248  ,33.837890625 : 46.37725420510028 ,23.37890625 ', "rectangle=40, 40:$badrectanglecoord", 'service=leaflet') ) ),
+				'{"rectangles":[{"pos":[{"lat":51.835777520452,"lon":33.837890625},{"lat":46.3772542051,"lon":23.37890625}]}],"bounds":{"ne":{"lat":51.835777520452,"lon":33.837890625},"sw":{"lat":46.3772542051,"lon":23.37890625}}}'
+				);
+		$this->assertEquals(
+				$this->object->getErrorMessages(),
+				array(
+					\wfMessage( 'multimaps-unable-parse-coordinates', $badrectanglecoord)->escaped(),
+					\wfMessage( 'multimaps-unable-create-element', $rectangle->getElementName() )->escaped(),
+					)
+				);
+
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array(' ', 'rectangles  =51.83577752045248  ,33.837890625 : 46.37725420510028 ,23.37890625 ', "rectangle=40, 40 : $badrectanglecoord : 20,20", 'service=leaflet') ) ),
+				'{"rectangles":[{"pos":[{"lat":51.835777520452,"lon":33.837890625},{"lat":46.3772542051,"lon":23.37890625}]}],"bounds":{"ne":{"lat":51.835777520452,"lon":33.837890625},"sw":{"lat":46.3772542051,"lon":23.37890625}}}'
+				);
+		$this->assertEquals(
+				$this->object->getErrorMessages(),
+				array(
+					\wfMessage( 'multimaps-square-wrong-number-points', 3)->escaped(),
+					\wfMessage( 'multimaps-unable-create-element', $rectangle->getElementName() )->escaped(),
+					)
 				);
 	}
 
@@ -145,6 +179,61 @@ class LeafletTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(
 				\FormatJson::encode( $this->object->getMapData( array('; ', 'circle=57.42129439209404,23.90625 : 326844.60518253763;', 'circles=40,40:400000', 'service=leaflet') ) ),
 				'{"circles":[{"radius":[326844.60518254],"pos":[{"lat":57.421294392094,"lon":23.90625}]},{"radius":[400000],"pos":[{"lat":40,"lon":40}]}],"bounds":{"ne":{"lat":60.362317927612,"lon":44.961831660938},"sw":{"lat":36.400707261023,"lon":18.852584498495}}}'
+				);
+	}
+
+	public function testParseFalseCircle() {
+		$badradius = 'one km';
+		$badcoord = '10°10°10", 10°10\'10"';
+
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('; ', 'circle=57.42129439209404,23.90625 : 326844.60518253763;', "circles=40,40:$badradius", 'service=leaflet') ) ),
+				'{"circles":[{"radius":[326844.60518254],"pos":[{"lat":57.421294392094,"lon":23.90625}]}],"bounds":{"ne":{"lat":60.362317927612,"lon":29.843589207253},"sw":{"lat":54.480270856576,"lon":18.852584498495}}}'
+				);
+
+		$circle = new Circle();
+		$this->assertEquals(
+				$this->object->getErrorMessages(),
+				array(
+					\wfMessage( 'multimaps-unable-parse-radius', $badradius)->escaped(),
+					\wfMessage( 'multimaps-unable-create-element', $circle->getElementName() )->escaped(),
+					)
+				);
+
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('; ', 'circle=57.42129439209404,23.90625 : 326844.60518253763;', "circles=$badcoord:$badradius", 'service=leaflet') ) ),
+				'{"circles":[{"radius":[326844.60518254],"pos":[{"lat":57.421294392094,"lon":23.90625}]}],"bounds":{"ne":{"lat":60.362317927612,"lon":29.843589207253},"sw":{"lat":54.480270856576,"lon":18.852584498495}}}'
+				);
+		$this->assertEquals(
+				$this->object->getErrorMessages(),
+				array(
+					\wfMessage( 'multimaps-unable-parse-coordinates', $badcoord)->escaped(),
+					\wfMessage( 'multimaps-unable-create-element', $circle->getElementName() )->escaped(),
+					)
+				);
+
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('; ', 'circle=57.42129439209404,23.90625 : 326844.60518253763;', "circles=40,40", 'service=leaflet') ) ),
+				'{"circles":[{"radius":[326844.60518254],"pos":[{"lat":57.421294392094,"lon":23.90625}]}],"bounds":{"ne":{"lat":60.362317927612,"lon":29.843589207253},"sw":{"lat":54.480270856576,"lon":18.852584498495}}}'
+				);
+		$this->assertEquals(
+				$this->object->getErrorMessages(),
+				array(
+					\wfMessage( 'multimaps-circle-radius-not-defined' )->escaped(),
+					\wfMessage( 'multimaps-unable-create-element', $circle->getElementName() )->escaped(),
+					)
+				);
+
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('; ', 'circle=57.42129439209404,23.90625 : 326844.60518253763;', "circles=40,40:40000:8888", 'service=leaflet') ) ),
+				'{"circles":[{"radius":[326844.60518254],"pos":[{"lat":57.421294392094,"lon":23.90625}]}],"bounds":{"ne":{"lat":60.362317927612,"lon":29.843589207253},"sw":{"lat":54.480270856576,"lon":18.852584498495}}}'
+				);
+		$this->assertEquals(
+				$this->object->getErrorMessages(),
+				array(
+					\wfMessage( 'multimaps-circle-wrong-number-parameters', 3 )->escaped(),
+					\wfMessage( 'multimaps-unable-create-element', $circle->getElementName() )->escaped(),
+					)
 				);
 	}
 

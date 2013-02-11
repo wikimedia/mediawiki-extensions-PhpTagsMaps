@@ -53,10 +53,11 @@ class Circle extends Polygon {
 				return false;
 			}
 		} elseif (count($array) == 1) {
-			$this->errormessages[] = \wfMessage( 'multimaps-circle-radius-not-defined', count($array) )->escaped();
+			$this->errormessages[] = \wfMessage( 'multimaps-circle-radius-not-defined' )->escaped();
 			return false;
 		} else {
 			$this->errormessages[] = \wfMessage( 'multimaps-circle-wrong-number-parameters', count($array) )->escaped();
+			return false;
 		}
 		return true;
 	}
