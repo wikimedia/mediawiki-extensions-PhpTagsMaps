@@ -8,6 +8,9 @@ namespace MultiMaps;
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
+ * @property-read Point $ne North East point
+ * @property-read Point $sw South West point
+ * @property-read Point $center center point of bounds
  */
 class Bounds {
 
@@ -15,13 +18,13 @@ class Bounds {
 	 * North East Point
 	 * @var Point
 	 */
-	public $ne = false;
+	protected $northEast = false;
 
 	/**
 	 * South West Point
 	 * @var Point
 	 */
-	public $sw = false;
+	protected $southWest = false;
 
 
 	/**
@@ -31,19 +34,19 @@ class Bounds {
 	public function extend( $coordinates ) {
 		foreach ($coordinates as $value) {
 			if( !$this->isValid() ) {
-				$this->ne = new Point($value->lat, $value->lon);
-				$this->sw = new Point($value->lat, $value->lon);
+				$this->northEast = new Point($value->lat, $value->lon);
+				$this->southWest = new Point($value->lat, $value->lon);
 			} else {
-				if( $value->lat < $this->sw->lat ) {
-					$this->sw->lat = $value->lat;
-				} elseif ( $value->lat > $this->ne->lat ) {
-					$this->ne->lat = $value->lat;
+				if( $value->lat < $this->southWest->lat ) {
+					$this->southWest->lat = $value->lat;
+				} elseif ( $value->lat > $this->northEast->lat ) {
+					$this->northEast->lat = $value->lat;
 				}
 
-				if( $value->lon < $this->sw->lon ) {
-					$this->sw->lon = $value->lon;
-				} elseif ( $value->lon > $this->ne->lon ) {
-					$this->ne->lon = $value->lon;
+				if( $value->lon < $this->southWest->lon ) {
+					$this->southWest->lon = $value->lon;
+				} elseif ( $value->lon > $this->northEast->lon ) {
+					$this->northEast->lon = $value->lon;
 				}
 			}
 		}
@@ -59,8 +62,8 @@ class Bounds {
 		}
 
 		return new \MultiMaps\Point(
-				($this->sw->lat + $this->ne->lat) / 2,
-				($this->sw->lon + $this->ne->lon) / 2
+				($this->southWest->lat + $this->northEast->lat) / 2,
+				($this->southWest->lon + $this->northEast->lon) / 2
 		);
 	}
 
@@ -69,7 +72,7 @@ class Bounds {
 	 * @return boolean
 	 */
 	public function isValid() {
-		return ($this->ne !== false && $this->sw !== false);
+		return ($this->northEast !== false && $this->southWest !== false);
 	}
 
 	/**
@@ -79,10 +82,26 @@ class Bounds {
 	public function getData() {
 		if( $this->isValid() ) {
 			return array(
-				'ne' => $this->ne->getData(),
-				'sw' => $this->sw->getData(),
+				'ne' => $this->northEast->getData(),
+				'sw' => $this->southWest->getData(),
 				);
 		}
+	}
+
+	public function __get($name) {
+		$name = strtolower($name);
+		switch ($name) {
+			case 'ne':
+				return $this->northEast;
+				break;
+			case 'sw':
+				return $this->southWest;
+				break;
+			case 'center':
+				return $this->getCenter();
+				break;
+		}
+		return null;
 	}
 
 }

@@ -30,10 +30,12 @@ class BoundsTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers MultiMaps\Bounds::getCenter
-	 * @todo   Implement testGetCenter().
+	 * @covers MultiMaps\Bounds::getData
+	 * @covers MultiMaps\Bounds::extend
 	 */
 	public function testGetCenterAndExtend() {
-		$this->assertEquals( $this->object->getCenter(), false);
+		$this->assertFalse( $this->object->getCenter() );
+		$this->assertNull( $this->object->getData() );
 
 		$point = new Point(10, 2);
 		$this->object->extend( array($point) );
@@ -42,22 +44,40 @@ class BoundsTest extends \PHPUnit_Framework_TestCase {
 		$this->object->extend( array(new Point(20, 1)) );
 		$this->assertEquals( $this->object->getCenter(), new Point(15, 1.5) );
 
-		$this->assertEquals( $this->object->getData(), array(
-			'ne' => array( 'lat' => 20, 'lon' => 2 ),
-			'sw' => array( 'lat' => 10, 'lon' => 1 ),
-			) );
+		$this->assertEquals(
+				$this->object->getData(),
+				array(
+					'ne' => array('lat' => 20, 'lon' => 2),
+					'sw' => array('lat' => 10, 'lon' => 1),
+					)
+				);
+
 	}
 
 	/**
 	 * @covers MultiMaps\Bounds::isValid
-	 * @todo   Implement testIsValid().
+	 * @covers MultiMaps\Bounds::extend
 	 */
 	public function testIsValid() {
-		$this->assertEquals( $this->object->isValid(), false);
+		$this->assertFalse( $this->object->isValid(), false );
 
 		$this->object->extend( array(new Point(14, 41)) );
 
-		$this->assertEquals( $this->object->isValid(), true);
+		$this->assertTrue( $this->object->isValid() );
+	}
+
+	/**
+	 * @covers MultiMaps\Bounds::__get
+	 */
+	public function test__get() {
+		$point = new Point(123, 456);
+		$this->object->extend( array($point) );
+
+		$this->assertEquals($this->object->ne, $this->object->sw);
+		$this->assertEquals($this->object->ne, $this->object->center);
+		$this->assertEquals($this->object->ne, $point);
+
+		$this->assertNull( $this->object->tralala );
 	}
 
 }
