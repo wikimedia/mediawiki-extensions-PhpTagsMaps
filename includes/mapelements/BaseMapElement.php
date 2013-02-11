@@ -48,7 +48,7 @@ abstract class BaseMapElement {
 	 * Returns element name
 	 * return string Element name
 	 */
-	protected abstract function getElementName();
+	public abstract function getElementName();
 
 	/**
 	 * Constructor
@@ -95,7 +95,11 @@ abstract class BaseMapElement {
 			return false;
 		}
 
-		$this->properties[$name] = $value;
+		if( is_string($value) ) {
+			$this->properties[$name] = htmlspecialchars($value, ENT_NOQUOTES);
+		}else{
+			$this->properties[$name] = $value;
+		}
 		return true;
 	}
 
@@ -145,39 +149,52 @@ abstract class BaseMapElement {
 		return true;
 	}
 
+	/**
+	 *
+	 * @param array $param
+	 * @return boolean false if there were errors during parsing
+	 */
 	protected function parseProperties(array $param) {
+		$return = true;
 		// filling properties with the names
 		$matches = array();
 		$properties = implode( '|', $this->availableProperties );
 		foreach ($param as $key => $paramvalue) {
 			if( preg_match("/^\s*($properties)\s*=(.+)$/si", $paramvalue, &$matches) ) {
-				if ( $this->setProperty($matches[1], $matches[2]) ) {
-					unset( $param[$key] );
-				} else {
-					throw new \MWException( __METHOD__ . '');
+				if ( !$this->setProperty($matches[1], $matches[2]) ) {
+					$return = false;
 				}
+				unset( $param[$key] );
 			}
 		}
 
-
+		// filling properties without the names
 		reset( $param );
 		$value = current( $param );
 		if( $value === false ) {
-			return true;
+			return $return;
 		}
 		foreach ($this->availableProperties as $name) {
 			if( is_null($this->getProperty($name)) ) {
 				if( preg_match( '/^\s*$/s', $value) == false ) { // Ignore empty values
-					$this->setProperty(	$name, $value );
+					if( !$this->setProperty($name, $value) ) {
+						$return = false;
+					}
 				}
 				$value = next( $param );
 				if( $value === false ) {
-					return true;
+					return $return;
 				}
 			}
 		}
 
-		return true; // TODO
+		$this->errormessages[] = \wfMessage( 'multimaps-element-more-parameters', $this->getElementName() )->escaped();
+		$notprocessed = array( $value );
+		while( $value = next($param) ) {
+			$notprocessed[] = $value;
+		}
+		$this->errormessages[] = \wfMessage( 'multimaps-element-parameters-not-processed', '"'.implode('", "', $notprocessed).'"' )->escaped();
+		return false;
 	}
 
 	/**

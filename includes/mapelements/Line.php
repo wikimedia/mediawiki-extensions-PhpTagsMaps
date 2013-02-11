@@ -8,6 +8,9 @@ namespace MultiMaps;
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
+ * @property string $color Color line
+ * @property string $weight Weight line
+ * @property string $opacity Opacity line
  */
 class Line extends BaseMapElement {
 
@@ -27,7 +30,7 @@ class Line extends BaseMapElement {
 	 * Returns element name
 	 * return string Element name
 	 */
-	protected function getElementName() {
+	public function getElementName() {
 		return 'Line'; //TODO i18n?
 	}
 

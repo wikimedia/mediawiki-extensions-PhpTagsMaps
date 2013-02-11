@@ -10,19 +10,7 @@ namespace MultiMaps;
  * @licence GNU General Public Licence 2.0 or later
  * @property-read array $radiuses Radiuses of circles
  */
-class Circle extends BaseMapElement {
-
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-
-		$this->availableProperties = array_merge(
-				$this->availableProperties,
-				array( 'color', 'weight', 'opacity', 'fillcolor', 'fillopacity', 'fill' )
-				);
-	}
+class Circle extends Polygon {
 
 	/**
 	 * Array radiuses of circles
@@ -34,7 +22,7 @@ class Circle extends BaseMapElement {
 	 * Returns element name
 	 * return string Element name
 	 */
-	protected function getElementName() {
+	public function getElementName() {
 		return 'Circle'; //TODO i18n?
 	}
 

@@ -9,25 +9,13 @@ namespace MultiMaps;
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
  */
-class Rectangle extends BaseMapElement {
-
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-
-		$this->availableProperties = array_merge(
-				$this->availableProperties,
-				array( 'color', 'weight', 'opacity', 'fillcolor', 'fillopacity', 'fill' )
-				);
-	}
+class Rectangle extends Polygon {
 
 	/**
 	 * Returns element name
 	 * return string Element name
 	 */
-	protected function getElementName() {
+	public function getElementName() {
 		return 'Rectangle'; //TODO i18n?
 	}
 

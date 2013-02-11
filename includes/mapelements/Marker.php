@@ -25,7 +25,7 @@ class Marker extends BaseMapElement {
 	 * Returns element name
 	 * return string Element name
 	 */
-	protected function getElementName() {
+	public function getElementName() {
 		return 'Marker'; //TODO i18n?
 	}
 

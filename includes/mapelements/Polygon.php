@@ -8,8 +8,11 @@ namespace MultiMaps;
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
+ * @property boolean $fill
+ * @property string $fillcolor
+ * @property string $fillopacity
  */
-class Polygon extends BaseMapElement {
+class Polygon extends Line {
 
 	/**
 	 * Constructor
@@ -19,7 +22,7 @@ class Polygon extends BaseMapElement {
 
 		$this->availableProperties = array_merge(
 				$this->availableProperties,
-				array( 'color', 'weight', 'opacity', 'fillcolor', 'fillopacity', 'fill' )
+				array( 'fillcolor', 'fillopacity', 'fill' )
 				);
 	}
 
@@ -27,8 +30,22 @@ class Polygon extends BaseMapElement {
 	 * Returns element name
 	 * return string Element name
 	 */
-	protected function getElementName() {
+	public function getElementName() {
 		return 'Polygon'; //TODO i18n?
+	}
+
+	public function setProperty($name, $value) {
+		$name = strtolower($name);
+		$value = trim($value);
+
+		switch ($name) {
+			case 'fillcolor':
+			case 'fillopacity':
+				$this->fill = true;
+			default:
+				return parent::setProperty($name, $value);
+				break;
+		}
 	}
 
 }

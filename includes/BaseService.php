@@ -14,6 +14,8 @@ namespace MultiMaps;
  * @property float $maxzoom Maximum scale map
  * @property string $center Center of the map
  * @property string $bounds The visible bounds of the map
+ * @property string $width
+ * @property string $height
  */
 abstract class BaseService {
 
@@ -152,11 +154,7 @@ abstract class BaseService {
 	public function render() {
 		static $mapid = 0;
 
-		foreach ($this->errormessages as $message) {
-			\MWDebug::log($message);
-		}
-
-		return \Html::rawElement(
+		$output = \Html::rawElement(
 				'div',
 				array(
 					'id' => 'multimaps_map' . $mapid++,
@@ -164,12 +162,27 @@ abstract class BaseService {
 					'class' => 'multimaps-map' . ($this->classname != '' ? " multimaps-map-$this->classname" : ''),
 					),
 				\wfMessage( 'multimaps-loading-map' )->escaped() .
-				\Html::element(
+				\Html::rawElement(
 						'div',
 						array( 'class' => 'multimaps-mapdata' ),
 						\FormatJson::encode( $this->getMapData() )
 						)
 				);
+
+		$errors = $this->getErrorMessages();
+		if( count($errors) > 0 ) {
+			$output .= "\n" .
+					\Html::rawElement(
+						'div',
+						array( 'class' => 'multimaps-errors' ),
+						\wfMessage( 'multimaps-had-following-errors' )->escaped() .
+						'<br />' .
+						\implode( '<br />', $this->getErrorMessages() )
+						);
+		}
+
+		return $output;
+		//return array( $output, 'noparse' => true, 'isHTML' => true );
 	}
 
 	/**
@@ -234,22 +247,26 @@ abstract class BaseService {
 	public function parse(array $param) {
 		$this->reset();
 
+		$this->addElementMarker( array_shift($param) );
+
 		$matches = array();
 		foreach ($param as $value) {
 			if( preg_match('/^\s*(\w+)\s*=(.+)$/s', $value, &$matches) ) {
-				if( array_search(strtolower($matches[1]), $this->availableMapElements) !== false ) {
-					$this->addMapElement($matches[1], $matches[2]);
-				} else if ( array_search(strtolower($matches[1]), $this->availableMapProperties) !== false ) {
-					$property = $matches[1];
-					$this->$property = $matches[2];
+				$name = strtolower($matches[1]);
+				if( array_search($name, $this->availableMapElements) !== false ) {
+					$this->addMapElement($name, $matches[2]);
+				} else if ( array_search($name, $this->availableMapProperties) !== false ) {
+					$this->setProperty($name, $matches[2]);
+					//TODO exception
 				} else {
-					if( array_search(strtolower($matches[1]), $this->ignoreProperties ) === false ) {
+					if( array_search($name, $this->ignoreProperties ) === false ) {
 						$this->errormessages[] = \wfMessage( 'multimaps-unknown-parameter', $matches[1] )->escaped();
 					}
 				}
 				continue;
 			} else {
-				$this->addElementMarker( $value );
+				list($paramname) = explode('=', $value, 2);
+				$this->errormessages[] = \wfMessage( 'multimaps-unknown-parameter', "$paramname" )->escaped();
 			}
 		}
 	}
@@ -304,7 +321,7 @@ abstract class BaseService {
 				continue;
 			}
 			$marker = new Marker();
-			if( $marker->parse($markervalue) ) {
+			if( !$marker->parse($markervalue) ) {
 				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $marker->getErrorMessages() );
 			}
@@ -444,21 +461,39 @@ abstract class BaseService {
 				} else {
 					$this->errormessages[] = \wfMessage( 'multimaps-unable-parse-parameter', $name, $value )->escaped();
 				}
+				return true;
 				break;
 			case 'icon':
 				$marker = new Marker();
 				if( $marker->setProperty('icon', $value) ) {
 					$this->properties['icon'] = $marker->icon;
+				} else {
+					$this->errormessages = array_merge( $this->errormessages, $marker->getErrorMessages() );
 				}
+				return true;
+				break;
+			case 'height':
+				$this->height = $value;
+				return true;
+				break;
+			case 'width':
+				$this->width = $value;
+				return true;
 				break;
 			case 'bounds':
 				//TODO
 				break;
 
 			default:
-				$this->properties[$name] = $value;
+				if( is_string($value) ) {
+					$this->properties[$name] = htmlspecialchars($value, ENT_NOQUOTES);
+				}else{
+					$this->properties[$name] = $value;
+				}
+				return true;
+				break;
 		}
-
+		return false;
 	}
 
 	public function __get($name) {

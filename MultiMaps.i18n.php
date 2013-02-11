@@ -15,6 +15,9 @@ $messages = array();
 $messages['en'] = array(
 	'multimaps-desc' => 'Allows users to display maps and coordinate data using multiple mapping services',
 	'multimaps-loading-map' => 'Loading map...',
+	'multimaps-had-following-errors' => 'When parsing the passed parameters had the following errors:',
+	'multimaps-element-more-parameters' => 'For this map element "$1" transferred more parameters than expected:',
+	'multimaps-element-parameters-not-processed' => 'the following parameters were not processed: $1',
 	'multimaps-circle-radius-not-defined' => 'for the circle must be defined radius',
 	'multimaps-circle-wrong-number-parameters' => 'for the circle should be defined only two parameters, the coordinates of the center and the radius. But specified {{PLURAL:$1|one parameter|$1 parameters}}',
 	'multimaps-marker-incorrect-icon' => 'For the icon marker provided an incorrect file name "$1"',
@@ -38,6 +41,11 @@ $messages['en'] = array(
 $messages['qqq'] = array(
 	'multimaps-desc' => '{{desc|name=MultiMaps|url=http://www.mediawiki.org/wiki/Extension:MultiMaps}}',
 	'multimaps-loading-map' => 'The text is displayed instead of the map, and informs that the data needed to display the maps are not loaded yet',
+	'multimaps-had-following-errors' => 'This message goes before list of error messages',
+	'multimaps-element-more-parameters' => 'Error message, Parameters:
+* $1 - name of map element',
+	'multimaps-element-parameters-not-processed' => 'This message goes after "multimaps-element-more-parameters", Parameters:
+* $1 - comma separated list of user-specified values',
 	'multimaps-circle-radius-not-defined' => 'Error message, when for circle (map element) not defined radius',
 	'multimaps-circle-wrong-number-parameters' => 'Error message, when for circle defined too many parameters. Parameters:
 * $1 - number of passed parameters (always more than two)',

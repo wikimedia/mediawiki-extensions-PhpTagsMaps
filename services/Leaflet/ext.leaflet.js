@@ -207,7 +207,7 @@
 
 		$( '.multimaps-map-leaflet' ).each( function() {
 			var $this = $( this );
-			$this.multimapsleaflet( $.parseJSON( $this.find( 'div').text() ) );
+			$this.multimapsleaflet( $.parseJSON( $this.find('div').text() ) );
 		} );
 	} );
 
