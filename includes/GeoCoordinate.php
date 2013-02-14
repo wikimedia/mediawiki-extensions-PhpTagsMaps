@@ -11,9 +11,6 @@ namespace MultiMaps;
  */
 class GeoCoordinate {
 
-	const LATITUDE = 'N';
-	const LONGITUDE = 'E';
-
 	/**
 	 * WGS 84
 	 * The length of the Earth's equator, meters
