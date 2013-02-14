@@ -19,38 +19,38 @@
 		this.convertPropertiesToOptions = function (properties) {
 			var options = {};
 
-			if( properties.icon ) {
+			if( properties.icon !== undefined ) {
 				options.icon = new L.Icon({
 					iconUrl: properties.icon
 				});
 			}
-			if( properties.color ) {
+			if( properties.color !== undefined ) {
 				options.color = properties.color;
 			}
-			if( properties.weight ) {
+			if( properties.weight !== undefined ) {
 				options.weight = properties.weight;
 			}
-			if( properties.opacity ) {
+			if( properties.opacity !== undefined ) {
 				options.opacity = properties.opacity;
 			}
-			if( properties.fill ) {
+			if( properties.fill !== undefined ) {
 				options.fill = properties.fill;
 			}
-			if( properties.fillcolor ) {
+			if( properties.fillcolor !== undefined ) {
 				options.fillColor = properties.fillcolor;
 			}
-			if( properties.fillopacity ) {
+			if( properties.fillopacity !== undefined ) {
 				options.fillOpacity = properties.fillopacity;
 			}
 
 			var text = false;
-			if( properties.title && properties.text) {
+			if( properties.title !== undefined && properties.text !== undefined ) {
 				options.title = properties.title;
 				text = '<strong>' + properties.title + '</strong><hr />' + properties.text;
-			} else if( properties.title ) {
+			} else if( properties.title !== undefined ) {
 				options.title = properties.title;
 				text = '<strong>' + properties.title + '</strong>';
-			} else if( properties.text ) {
+			} else if( properties.text  !== undefined ) {
 				text = properties.text;
 			}
 
