@@ -67,6 +67,11 @@ abstract class BaseMapElement {
 		return $this->getProperty($name);
 	}
 
+	/**
+	 * Get element property by name
+	 * @param string $name
+	 * @return mixed
+	 */
 	public function getProperty($name) {
 		$name = strtolower($name);
 
@@ -87,6 +92,12 @@ abstract class BaseMapElement {
 		$this->setProperty($name, $value);
 	}
 
+	/**
+	 * Set element property by name
+	 * @param string $name
+	 * @param mixed $value
+	 * @return boolean
+	 */
 	public function setProperty($name, $value) {
 		$name = strtolower($name);
 		$value = trim($value);
@@ -101,6 +112,18 @@ abstract class BaseMapElement {
 			$this->properties[$name] = $value;
 		}
 		return true;
+	}
+
+	/**
+	 * Unset element property by name
+	 * @param string $name
+	 */
+	public function unsetProperty($name) {
+		$name = strtolower($name);
+
+		if( isset($this->properties[$name]) ) {
+			unset( $this->properties[$name] );
+		}
 	}
 
 	/**

@@ -15,11 +15,13 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'This file is an extension to MediaWiki and thus not a valid entry point.' );
 }
 
+define( 'MultiMaps_VERSION' , '0.1.1' );
+
 // Register this extension on Special:Version
 $wgExtensionCredits['parserhook'][] = array(
 	'path'		   => __FILE__,
 	'name'		   => 'MultiMaps',
-	'version'		=> '0.0.1',
+	'version'		=> MultiMaps_VERSION,
 	'url'			=> 'https://www.mediawiki.org/wiki/Extension:MultiMaps',
 	'author'		 => array( '[[mw:User:Pastakhov|Pavel Astakhov]]' ),
 	'descriptionmsg' => 'multimaps-desc'
