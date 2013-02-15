@@ -162,6 +162,7 @@ $messages['ja'] = array(
 	'multimaps-desc' => '利用者が複数の地図サービスを使用して地図や緯度経度を表示できるようにする',
 	'multimaps-loading-map' => '地図を読み込み中...',
 	'multimaps-had-following-errors' => '指定したパラメーターを処理する際に以下のエラーが発生しました:',
+	'multimaps-element-illegal-value' => 'パラメーター「$1」に無効な値「$2」を指定しました。有効な値: $3',
 	'multimaps-element-more-parameters' => 'この地図要素「$1」に指定したパラメーターが多すぎます:', # Fuzzy
 	'multimaps-element-parameters-not-processed' => '以下のパラメーターを処理できませんでした: $1',
 	'multimaps-circle-radius-not-defined' => '円の半径を指定する必要があります',
@@ -186,7 +187,8 @@ $messages['mk'] = array(
 	'multimaps-desc' => 'Овозможува корисниците да прикажуваат карти и координатни податоци користејќи повеќе картографски служби',
 	'multimaps-loading-map' => 'Ја вчитувам картата...',
 	'multimaps-had-following-errors' => 'При парсирањето, дадените параметри ги имаа следниве грешки:',
-	'multimaps-element-more-parameters' => 'За овој картографски елемент „$1“ пренесе повеќе параметри од очекуваното:', # Fuzzy
+	'multimaps-element-illegal-value' => 'на параметарот „$1“ му е зададена недопуштената вредност „$2“. Допуштени се: $3',
+	'multimaps-element-more-parameters' => 'За овој картографски елемент „$1“ даде повеќе параметри од очекуваното:',
 	'multimaps-element-parameters-not-processed' => 'не беа обработени следниве параметри: $1',
 	'multimaps-circle-radius-not-defined' => 'на кружницата мора да ѝ зададе радиус',
 	'multimaps-circle-wrong-number-parameters' => 'на кружницата мора да ѝ зададат барем два параметра - координатите на центарот и радиусот. Меѓутоа, зададени се {{PLURAL:$1|зададен е $1 параметар|зададени се $1 параметри}}',
@@ -250,6 +252,32 @@ $messages['ru'] = array(
 	'multimaps-error-incorrect-class-for-service' => 'Класс « $1 », который определен для службы, не может быть использован.',
 	'multimaps-method-error-unknown-action' => '$1: Неизвестное действие',
 	'multimaps-method-error-unexpected-result' => '$1: Неожиданный результат функции',
+);
+
+/** Ukrainian (українська)
+ * @author Base
+ */
+$messages['uk'] = array(
+	'multimaps-desc' => 'Дозволяє користувачам відображати карти і дані координат, використовуючи декілька картографічних сервісів',
+	'multimaps-loading-map' => 'Завантаження карти…',
+	'multimaps-had-following-errors' => 'При обробці переданих параметрів виникли наступні помилки:',
+	'multimaps-element-illegal-value' => 'для параметру «$1» було передано недопустиме значення «$2». Допустимими значеннями є: $3',
+	'multimaps-element-more-parameters' => 'Для цього елементу карти «$1» передано більше параметрів, ніж очікувалось:',
+	'multimaps-element-parameters-not-processed' => 'наступні параметри не було оброблено: $1',
+	'multimaps-circle-radius-not-defined' => 'для кола повинен бути визначений радіус',
+	'multimaps-circle-wrong-number-parameters' => 'для кола повинно бути визначено лише два параметри, координати центру та радіус. Але вказано {{PLURAL:$1|один параметр|вказано $1 параметри|вказано $1 параметрів}}',
+	'multimaps-marker-incorrect-icon' => 'Для значка маркера вказано неправильну назву файлу «$1»',
+	'multimaps-square-wrong-number-points' => 'коорлинати квадрату повинні складатись лише із двох точок, але {{PLURAL:$1|вказана одна точка|вказано $1 точки|вказано $1 точок}}',
+	'multimaps-unable-create-element' => 'Елементи карти «$1» не може бути створено',
+	'multimaps-unable-parse-coordinates' => 'не вдається обробити географічні координати «$1»',
+	'multimaps-unable-parse-parameter' => 'не вдається обробити параметр «$1» значення «$2»',
+	'multimaps-unable-parse-radius' => 'радіус кола повинен бути числовим значенням, але вказано «$1»',
+	'multimaps-unknown-showmap-service' => 'Не вдалось знайти доступний сервіс для відображення карти',
+	'multimaps-unknown-class-for-service' => 'Клас «$1» який визначено для сервісу не може бути знайдено.',
+	'multimaps-unknown-parameter' => 'Невідомий параметр: «$1»',
+	'multimaps-error-incorrect-class-for-service' => 'Клас «$1», що визначено для сервісу не може бути використано.',
+	'multimaps-method-error-unknown-action' => '$1: Невідома дія',
+	'multimaps-method-error-unexpected-result' => '$1: Невідомий результат функції',
 );
 
 /** Simplified Chinese (中文（简体）‎)
