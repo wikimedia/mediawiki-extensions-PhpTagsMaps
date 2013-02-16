@@ -29,6 +29,7 @@ $wgExtensionCredits['parserhook'][] = array(
 
 // Tell the whereabouts of files
 $dir = __DIR__;
+$egMultiMapsScriptPath = ( $wgExtensionAssetsPath === false ? $wgScriptPath . '/extensions' : $wgExtensionAssetsPath ) . '/MultiMaps';
 
 // Allow translations for this extension
 $wgExtensionMessagesFiles['MultiMaps'] = $dir . '/MultiMaps.i18n.php';
