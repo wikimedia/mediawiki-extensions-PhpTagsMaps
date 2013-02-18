@@ -27,7 +27,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $egMultiMapsServices_showmap = array(
 	'Leaflet' => 'leaflet',
 	'Google' => 'google',
-	//'yandexmaps',
+	'Yandex' => 'yandex',
 );
 
 

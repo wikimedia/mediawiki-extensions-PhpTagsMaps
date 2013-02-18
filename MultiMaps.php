@@ -15,7 +15,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'This file is an extension to MediaWiki and thus not a valid entry point.' );
 }
 
-define( 'MultiMaps_VERSION' , '0.1.1' );
+define( 'MultiMaps_VERSION' , '0.2' );
 
 // Register this extension on Special:Version
 $wgExtensionCredits['parserhook'][] = array(
@@ -87,6 +87,15 @@ $wgResourceModules['ext.MultiMaps.Google'] = array(
 	'scripts' => array( 'ext.google.js' ),
 	'localBasePath' => $dir . '/services/Google',
 	'remoteExtPath' => 'MultiMaps/services/Google',
+	'group' => 'ext.MultiMaps',
+	);
+
+// Yandex service
+$wgAutoloadClasses["MultiMaps\Yandex"] =  $dir . '/services/Yandex/Yandex.php';
+$wgResourceModules['ext.MultiMaps.Yandex'] = array(
+	'scripts' => array( 'ext.yandex.js' ),
+	'localBasePath' => $dir . '/services/Yandex',
+	'remoteExtPath' => 'MultiMaps/services/Yandex',
 	'group' => 'ext.MultiMaps',
 	);
 
