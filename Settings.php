@@ -25,8 +25,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 //	key - string, class name based on class \MultiMaps\BaseService
 //	value - string or array, service name for using in parameters
 $egMultiMapsServices_showmap = array(
-	"Leaflet" => "leaflet",
-	//'googlemaps',
+	'Leaflet' => 'leaflet',
+	'Google' => 'google',
 	//'yandexmaps',
 );
 
