@@ -281,13 +281,23 @@ $messages['uk'] = array(
 );
 
 /** Simplified Chinese (中文（简体）‎)
+ * @author Yfdyh000
  * @author 乌拉跨氪
  */
 $messages['zh-hans'] = array(
+	'multimaps-desc' => '允许用户使用多个地图服务显示地图和坐标数据',
 	'multimaps-loading-map' => '加载地图中……',
+	'multimaps-had-following-errors' => '解析时所传递的参数有以下错误：',
+	'multimaps-element-illegal-value' => '参数“$1”指定了无效的值“$2”。有效值为：$3',
+	'multimaps-element-more-parameters' => '此地图元素“$1”传递了比预期更多的参数：',
+	'multimaps-element-parameters-not-processed' => '未处理以下参数：$1',
+	'multimaps-circle-radius-not-defined' => '圆必须定义半径。',
+	'multimaps-marker-incorrect-icon' => '图标标记提供了不正确的文件名称“$1 ”',
 	'multimaps-unable-create-element' => '无法创建地图元素“$1”',
 	'multimaps-unable-parse-coordinates' => '无法解析地理坐标“$1”',
 	'multimaps-unable-parse-parameter' => '无法解析值为$2的参数$1',
 	'multimaps-unknown-showmap-service' => '无法找到可用的服务来显示地图',
 	'multimaps-unknown-parameter' => '未知参数：“$1”',
+	'multimaps-method-error-unknown-action' => '$1：未知的操作',
+	'multimaps-method-error-unexpected-result' => '$1：函数出现意外的结果',
 );
