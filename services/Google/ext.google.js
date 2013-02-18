@@ -20,9 +20,7 @@
 			var options = {};
 
 			if( properties.icon !== undefined ) {
-				options.icon = new L.Icon({
-					iconUrl: properties.icon
-				});
+				options.icon = properties.icon;
 			}
 			if( properties.color !== undefined ) {
 				options.strokeColor = properties.color;
