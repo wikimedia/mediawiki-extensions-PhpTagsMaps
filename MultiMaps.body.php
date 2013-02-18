@@ -20,10 +20,15 @@ class MultiMaps {
 		$params = func_get_args();
 		array_shift( $params );
 
-		$service = MultiMapsServices::getServiceInstance(
-				'showmap',
-				isset($params['service']) ? $params['service'] : null
-			);
+		$nameService = null;
+		$matches = array();
+		foreach ($params as $value) {
+			if( preg_match('/^\s*service\s*=(.+)$/si', $value, &$matches) ) {
+				$nameService = strtolower($matches[1]);
+				break;
+			}
+		}
+		$service = MultiMapsServices::getServiceInstance( 'showmap', $nameService );
 
 		if( !($service instanceof \MultiMaps\BaseService) ) {
 			if( is_string($service) ) {

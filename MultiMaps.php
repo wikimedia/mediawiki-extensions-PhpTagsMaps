@@ -81,6 +81,15 @@ $wgResourceModules['ext.MultiMaps.Leaflet'] = array(
 	'group' => 'ext.MultiMaps',
 	);
 
+// Google service
+$wgAutoloadClasses["MultiMaps\Google"] =  $dir . '/services/Google/Google.php';
+$wgResourceModules['ext.MultiMaps.Google'] = array(
+	'scripts' => array( 'ext.google.js' ),
+	'localBasePath' => $dir . '/services/Google',
+	'remoteExtPath' => 'MultiMaps/services/Google',
+	'group' => 'ext.MultiMaps',
+	);
+
 /**
  * Add files to phpunit test
  * @codeCoverageIgnore
