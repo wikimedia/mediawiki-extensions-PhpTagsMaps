@@ -22,12 +22,12 @@ $messages['en'] = array(
 	'multimaps-circle-radius-not-defined' => 'for the circle must be defined radius',
 	'multimaps-circle-wrong-number-parameters' => 'for the circle should be defined only two parameters, the coordinates of the center and the radius. But specified {{PLURAL:$1|one parameter|$1 parameters}}',
 	'multimaps-marker-incorrect-icon' => 'For the icon marker provided an incorrect file name "$1"',
+	'multimaps-passed-unavailable-service' => 'Service name "$1" not found in the list of available services ($2). Used default service "$3"',
 	'multimaps-square-wrong-number-points' => 'coordinates of the square should contain only two points, but specified {{PLURAL:$1|one point|$1 points}}',
 	'multimaps-unable-create-element' => 'Map element "$1" can not be created',
 	'multimaps-unable-parse-coordinates' => 'unable to parse the geographic coordinates "$1"',
 	'multimaps-unable-parse-parameter' => 'unable to parse parameter "$1" value is "$2"',
 	'multimaps-unable-parse-radius' => 'radius of the circle must be a numeric value, but specified "$1"',
-	'multimaps-unknown-showmap-service' => 'Could not find available service to display the map',
 	'multimaps-unknown-class-for-service' => 'The class "$1" that is defined for the service cannot be found.',
 	'multimaps-unknown-parameter' => 'Unknown parameter: "$1"',
 	'multimaps-error-incorrect-class-for-service' => 'The class "$1" that is defined for the service cannot be used.',
@@ -56,6 +56,10 @@ $messages['qqq'] = array(
 * $1 - number of passed parameters (always more than two)',
 	'multimaps-marker-incorrect-icon' => 'Error message, Parameters:
 * $1 - user-specified value',
+	'multimaps-passed-unavailable-service' => 'Informational message warns that the specified service is not available and service is used by default. Parameters:
+* $1 - user-specified service
+* $2 - comma separated list of available services
+* $3 - name of default service, which is currently in use',
 	'multimaps-square-wrong-number-points' => 'Error message, when for square (map element) specified more or less than two parameters. Parameters:
 * $1 - the number of user-specified coordinates for the square',
 	'multimaps-unable-create-element' => 'An error occurred while creating the map element. $1 - the name of the element, such as a "marker", "line", "polygon", etc.',
@@ -65,7 +69,6 @@ $messages['qqq'] = array(
 * $2 - its value',
 	'multimaps-unable-parse-radius' => 'Error message, Parameters:
 * $1 - user-specified value',
-	'multimaps-unknown-showmap-service' => 'Error message when lack of available services for the map display (For example there are no values in the $egMultiMapsDefaultService_showmap)',
 	'multimaps-unknown-class-for-service' => 'An error that occurs when the key in array $egMultiMapsServices_showmap is name of unknown class. Parameters:
 * $1 - class name',
 	'multimaps-error-incorrect-class-for-service' => 'An error that occurs when the key in array $egMultiMapsServices_showmap is name of class, which can not be used to display the map. Parameters:

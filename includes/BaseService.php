@@ -243,9 +243,12 @@ abstract class BaseService {
 	/**
 	 * Parse params and fill map data
 	 * @param array $param
+	 * @param boolean $reset Reset service before parse data
 	 */
-	public function parse(array $param) {
-		$this->reset();
+	public function parse(array $param, $reset = true) {
+		if( $reset ) {
+			$this->reset();
+		}
 
 		$this->addElementMarker( array_shift($param) );
 
@@ -544,6 +547,14 @@ abstract class BaseService {
 	 */
 	public function getErrorMessages() {
 		return $this->errormessages;
+	}
+
+	/**
+	 * Push error message into error messages
+	 * @param string $string
+	 */
+	public function pushErrorMessage( $string ) {
+		$this->errormessages[] = $string;
 	}
 
 }

@@ -23,8 +23,8 @@ class MultiMaps {
 		$nameService = null;
 		$matches = array();
 		foreach ($params as $value) {
-			if( preg_match('/^\s*service\s*=(.+)$/si', $value, &$matches) ) {
-				$nameService = strtolower($matches[1]);
+			if( preg_match('/^\s*service\s*=\s*(.+)\s*$/si', $value, &$matches) ) {
+				$nameService = $matches[1];
 				break;
 			}
 		}
@@ -37,7 +37,7 @@ class MultiMaps {
 				throw new MWException( 'MultiMapsServices::getServiceInstance() must return an object "\MultiMaps\BaseService" or a string describing the error.' );
 			}
 		}
-		$service->parse($params);
+		$service->parse($params, false);
 		$service->addDependencies($parser);
 		return $service->render();
 	}

@@ -20,16 +20,13 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 // Default settings
 
 // Array of String. Array containing all the mapping services that will be made available to the user.
-// Firs key - default service, which will be used if the service is not in the parameters
-// format:
-//	key - string, class name based on class \MultiMaps\BaseService
-//	value - string or array, service name for using in parameters
+// Firs value - default service, which will be used if the service is not in the parameters
+// Values may be a valid name of class based on class BaseService
 $egMultiMapsServices_showmap = array(
-	'Leaflet' => 'leaflet',
-	'Google' => 'google',
-	'Yandex' => 'yandex',
+	'Leaflet',
+	'Google',
+	'Yandex',
 );
-
 
 // Integer. The default zoom of a map. This value will only be used when the
 // user does not provide one.

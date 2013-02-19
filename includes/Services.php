@@ -27,26 +27,33 @@ class MultiMapsServices {
 
 		switch ($action) {
 			case 'showmap':
-				$classname = MultiMaps::recursive_array_search( $servicename, $egMultiMapsServices_showmap );
-				if( $classname === false ) { // a user-specified service can not be found
-					if( !reset($egMultiMapsServices_showmap) ) {
-						throw new MWException('$egMultiMapsServices_showmap must not be an empty array');
-					}
-					$showmap = each($egMultiMapsServices_showmap);
-					$classname = $showmap['key'];
+				if( is_array($egMultiMapsServices_showmap) === false || count($egMultiMapsServices_showmap) == 0 ) {
+					throw new MWException('$egMultiMapsServices_showmap must not be an empty array');
 				}
-				if( $classname === false ) { // default service is not found
-					return wfMessage( 'multimaps-unknown-showmap-service' )->escaped();
+				$errormessage = '';
+				$classkey = array_search(strtolower($servicename),array_map('strtolower',$egMultiMapsServices_showmap));
+				if( $classkey === false ) { // a user-specified service can not be found
+					$classname = $egMultiMapsServices_showmap[0];
+					$errormessage = \wfMessage( 'multimaps-passed-unavailable-service', $servicename, implode(', ', $egMultiMapsServices_showmap), $classname )->escaped();
+				} else {
+					$classname = $egMultiMapsServices_showmap[$classkey];
 				}
 
 				$newclassname="MultiMaps\\$classname";
 				if( !class_exists($newclassname) ) {
-					return wfMessage( 'multimaps-unknown-class-for-service', $newclassname )->escaped();
+					if ( $errormessage != '' ) {
+						$errormessage .= '<br />';
+					}
+					return $errormessage . wfMessage( 'multimaps-unknown-class-for-service', $newclassname )->escaped();
 				}
 
 				$returnservice = new $newclassname();
 				if( !($returnservice instanceof \MultiMaps\BaseService) ) {
 					return wfMessage( 'multimaps-error-incorrect-class-for-service', $newclassname )->escaped();
+				}
+
+				if ( $errormessage != '' ) {
+					$returnservice->pushErrorMessage( $errormessage );
 				}
 				break;
 
