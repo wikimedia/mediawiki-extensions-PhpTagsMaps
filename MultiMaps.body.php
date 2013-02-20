@@ -28,7 +28,7 @@ class MultiMaps {
 				break;
 			}
 		}
-		$service = MultiMapsServices::getServiceInstance( 'showmap', $nameService );
+		$service = \MultiMaps\MapServices::getServiceInstance( 'showmap', $nameService );
 
 		if( !($service instanceof \MultiMaps\BaseMapService) ) {
 			if( is_string($service) ) {

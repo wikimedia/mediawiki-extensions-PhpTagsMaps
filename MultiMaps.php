@@ -50,7 +50,7 @@ $wgHooks['ParserFirstCallInit'][] = function( Parser &$parser ) {
 //Preparing classes for autoloading
 // TODO: $wgAutoloadClasses = array_merge( $wgAutoloadClasses, include 'MultiMaps.classes.php' );
 $wgAutoloadClasses['MultiMaps'] =				   $dir . '/MultiMaps.body.php';
-$wgAutoloadClasses['MultiMapsServices'] =		   $dir . '/includes/Services.php';
+$wgAutoloadClasses['MultiMaps\\MapServices'] =		   $dir . '/includes/MapServices.php';
 
 $wgAutoloadClasses['MultiMaps\\BaseMapService'] =	  $dir . '/includes/BaseMapService.php';
 $wgAutoloadClasses['MultiMaps\\Bounds'] =		   $dir . '/includes/Bounds.php';
