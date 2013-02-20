@@ -52,7 +52,7 @@ $wgHooks['ParserFirstCallInit'][] = function( Parser &$parser ) {
 $wgAutoloadClasses['MultiMaps'] =				   $dir . '/MultiMaps.body.php';
 $wgAutoloadClasses['MultiMapsServices'] =		   $dir . '/includes/Services.php';
 
-$wgAutoloadClasses['MultiMaps\\BaseService'] =	  $dir . '/includes/BaseService.php';
+$wgAutoloadClasses['MultiMaps\\BaseMapService'] =	  $dir . '/includes/BaseMapService.php';
 $wgAutoloadClasses['MultiMaps\\Bounds'] =		   $dir . '/includes/Bounds.php';
 $wgAutoloadClasses['MultiMaps\\GeoCoordinate'] =	$dir . '/includes/GeoCoordinate.php';
 $wgAutoloadClasses['MultiMaps\\Point'] =			$dir . '/includes/Point.php';
