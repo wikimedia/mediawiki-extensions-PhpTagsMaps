@@ -20,7 +20,7 @@ class MapServices {
 	 * @param string $servicename
 	 * @return MultiMaps\BaseMapService return class extends \MultiMaps\BaseService or string of error message
 	 */
-	public static function getServiceInstance( $action, $servicename ) {
+	public static function getServiceInstance( $action, $servicename = null ) {
 		global $egMultiMaps_MapServices;
 
 		//default error message
@@ -32,12 +32,16 @@ class MapServices {
 					throw new \MWException('$egMultiMaps_MapServices must not be an empty array');
 				}
 				$errormessage = '';
-				$classkey = array_search(strtolower($servicename),array_map('strtolower',$egMultiMaps_MapServices));
-				if( $classkey === false ) { // a user-specified service can not be found
-					$classname = $egMultiMaps_MapServices[0];
-					$errormessage = \wfMessage( 'multimaps-passed-unavailable-service', $servicename, implode(', ', $egMultiMaps_MapServices), $classname )->escaped();
+				if( is_string($servicename) ) {
+					$classkey = array_search(strtolower($servicename),array_map('strtolower',$egMultiMaps_MapServices));
+					if( $classkey === false ) { // a user-specified service can not be found
+						$classname = $egMultiMaps_MapServices[0];
+						$errormessage = \wfMessage( 'multimaps-passed-unavailable-service', $servicename, implode(', ', $egMultiMaps_MapServices), $classname )->escaped();
+					} else {
+						$classname = $egMultiMaps_MapServices[$classkey];
+					}
 				} else {
-					$classname = $egMultiMaps_MapServices[$classkey];
+					$classname = $egMultiMaps_MapServices[0];
 				}
 
 				$newclassname="MultiMaps\\$classname";
