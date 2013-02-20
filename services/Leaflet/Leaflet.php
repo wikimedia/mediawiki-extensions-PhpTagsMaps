@@ -16,7 +16,7 @@ namespace MultiMaps;
  * @licence GNU GPL v2+
  * @author Pavel Astakhov < pastakhov@yandex.ru >
  */
-class Leaflet extends BaseService {
+class Leaflet extends BaseMapService {
 
 	function __construct() {
 		parent::__construct();

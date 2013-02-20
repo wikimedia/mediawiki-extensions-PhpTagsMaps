@@ -17,7 +17,7 @@ class MultiMapsServices {
 	 * @global array $egMultiMapsServices_showmap
 	 * @param string $action
 	 * @param string $servicename
-	 * @return MultiMaps\BaseService return class extends \MultiMaps\BaseService or string of error message
+	 * @return MultiMaps\BaseMapService return class extends \MultiMaps\BaseService or string of error message
 	 */
 	public static function getServiceInstance( $action, $servicename ) {
 		global $egMultiMapsServices_showmap;
@@ -48,7 +48,7 @@ class MultiMapsServices {
 				}
 
 				$returnservice = new $newclassname();
-				if( !($returnservice instanceof \MultiMaps\BaseService) ) {
+				if( !($returnservice instanceof \MultiMaps\BaseMapService) ) {
 					return wfMessage( 'multimaps-error-incorrect-class-for-service', $newclassname )->escaped();
 				}
 

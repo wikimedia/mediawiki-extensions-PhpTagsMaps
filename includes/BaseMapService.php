@@ -4,7 +4,7 @@ namespace MultiMaps;
 /**
  * Base class for collection of services
  *
- * @file BaseService.php
+ * @file BaseMapService.php
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
@@ -17,7 +17,7 @@ namespace MultiMaps;
  * @property string $width
  * @property string $height
  */
-abstract class BaseService {
+abstract class BaseMapService {
 
 	/**
 	 * class name for tag "<div>" of map

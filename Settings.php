@@ -21,7 +21,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 // Array of String. Array containing all the mapping services that will be made available to the user.
 // Firs value - default service, which will be used if the service is not in the parameters
-// Values may be a valid name of class based on class BaseService
+// Values may be a valid name of class based on class BaseMapService
 $egMultiMapsServices_showmap = array(
 	'Leaflet',
 	'Google',

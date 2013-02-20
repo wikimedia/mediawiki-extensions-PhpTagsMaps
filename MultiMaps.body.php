@@ -30,7 +30,7 @@ class MultiMaps {
 		}
 		$service = MultiMapsServices::getServiceInstance( 'showmap', $nameService );
 
-		if( !($service instanceof \MultiMaps\BaseService) ) {
+		if( !($service instanceof \MultiMaps\BaseMapService) ) {
 			if( is_string($service) ) {
 				return "<span class=\"error\">" . $service . "</span>";
 			} else {

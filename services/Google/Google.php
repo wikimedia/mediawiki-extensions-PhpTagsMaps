@@ -16,7 +16,7 @@ namespace MultiMaps;
  * @licence GNU GPL v2+
  * @author Pavel Astakhov < pastakhov@yandex.ru >
  */
-class Google extends BaseService {
+class Google extends BaseMapService {
 
 	function __construct() {
 		parent::__construct();

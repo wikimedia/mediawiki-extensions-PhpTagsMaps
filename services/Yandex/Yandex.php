@@ -16,7 +16,7 @@ namespace MultiMaps;
  * @licence GNU GPL v2+
  * @author Pavel Astakhov < pastakhov@yandex.ru >
  */
-class Yandex extends BaseService {
+class Yandex extends BaseMapService {
 
 	function __construct() {
 		parent::__construct();
