@@ -15,6 +15,7 @@ $messages = array();
 $messages['en'] = array(
 	'multimaps-desc' => 'Allows users to display maps and coordinate data using multiple mapping services',
 	'multimaps-loading-map' => 'Loading map...',
+	'multimaps-mapservices-must-not-empty-array' => 'Variable "$1" must not be an empty array',
 	'multimaps-had-following-errors' => 'When parsing the passed parameters had the following errors:',
 	'multimaps-element-illegal-value' => 'for the parameter "$1" was specified illegal value "$2". Valid values are: $3',
 	'multimaps-element-more-parameters' => 'For this map element "$1" passed more parameters than expected:',
@@ -42,6 +43,8 @@ $messages['en'] = array(
 $messages['qqq'] = array(
 	'multimaps-desc' => '{{desc|name=MultiMaps|url=http://www.mediawiki.org/wiki/Extension:MultiMaps}}',
 	'multimaps-loading-map' => 'The text is displayed instead of the map, and informs that the data needed to display the maps are not loaded yet',
+	'multimaps-mapservices-must-not-empty-array' => 'Error message, Parameters:
+* $1 - variable name',
 	'multimaps-had-following-errors' => 'This message goes before list of error messages',
 	'multimaps-element-illegal-value' => 'Error message, Parameters:
 * $1 - name of the parameter

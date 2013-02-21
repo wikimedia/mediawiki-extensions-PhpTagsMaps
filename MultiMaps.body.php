@@ -28,15 +28,12 @@ class MultiMaps {
 				break;
 			}
 		}
-		$service = \MultiMaps\MapServices::getServiceInstance( 'showmap', $nameService );
+		$service = \MultiMaps\MapServices::getServiceInstance( $nameService );
 
 		if( !($service instanceof \MultiMaps\BaseMapService) ) {
-			if( is_string($service) ) {
 				return "<span class=\"error\">" . $service . "</span>";
-			} else {
-				throw new MWException( 'MultiMapsServices::getServiceInstance() must return an object "\MultiMaps\BaseService" or a string describing the error.' );
-			}
 		}
+
 		$service->parse($params, false);
 		$service->addDependencies($parser);
 		return $service->render();
