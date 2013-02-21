@@ -16,6 +16,7 @@ namespace MultiMaps;
  * @property string $bounds The visible bounds of the map
  * @property string $width
  * @property string $height
+ * @property-read string $classname Class name for tag "<div>" of map
  */
 abstract class BaseMapService {
 
@@ -505,7 +506,14 @@ abstract class BaseMapService {
 
 	public function getProperty($name) {
 		$name = strtolower($name);
-		return isset($this->properties[$name]) ? $this->properties[$name] : null;
+
+		switch ($name) {
+			case 'classname':
+				return $this->classname;
+				break;
+			default:
+				return isset($this->properties[$name]) ? $this->properties[$name] : null;
+		}
 	}
 
 	/**

@@ -12,58 +12,48 @@ namespace MultiMaps;
 class MapServices {
 
 	/**
-	 * Returns the instance of a service class.
-	 * If the service is not specified or is not available, the service returns the specified default
-	 * On error returns error message
+	 * Returns the instance of a map service class.
+	 * If the map service is not specified or is not available, returns the default service
+	 * On error returns string with error message
 	 * @global array $egMultiMaps_MapServices
-	 * @param string $action
 	 * @param string $servicename
-	 * @return MultiMaps\BaseMapService return class extends \MultiMaps\BaseService or string of error message
+	 * @return MultiMaps\BaseMapService return class extends \MultiMaps\BaseService or string with error message
 	 */
-	public static function getServiceInstance( $action, $servicename = null ) {
+	public static function getServiceInstance( $servicename = null ) {
 		global $egMultiMaps_MapServices;
 
-		//default error message
-		$returnservice =  \wfMessage( 'multimaps-method-error-unexpected-result', __METHOD__ . " ( $action, $servicename ) " )->escaped();
+		if( is_array($egMultiMaps_MapServices) === false || count($egMultiMaps_MapServices) == 0 ) {
+			return \wfMessage( 'multimaps-mapservices-must-not-empty-array', '$egMultiMaps_MapServices' )->escaped();
+		}
 
-		switch ($action) {
-			case 'showmap':
-				if( is_array($egMultiMaps_MapServices) === false || count($egMultiMaps_MapServices) == 0 ) {
-					throw new \MWException('$egMultiMaps_MapServices must not be an empty array');
-				}
-				$errormessage = '';
-				if( is_string($servicename) ) {
-					$classkey = array_search(strtolower($servicename),array_map('strtolower',$egMultiMaps_MapServices));
-					if( $classkey === false ) { // a user-specified service can not be found
-						$classname = $egMultiMaps_MapServices[0];
-						$errormessage = \wfMessage( 'multimaps-passed-unavailable-service', $servicename, implode(', ', $egMultiMaps_MapServices), $classname )->escaped();
-					} else {
-						$classname = $egMultiMaps_MapServices[$classkey];
-					}
-				} else {
-					$classname = $egMultiMaps_MapServices[0];
-				}
+		$errormessage = '';
+		if( is_string($servicename) ) {
+			$classkey = array_search(strtolower($servicename),array_map('strtolower',$egMultiMaps_MapServices));
+			if( $classkey === false ) { // a user-specified service can not be found
+				$classname = $egMultiMaps_MapServices[0];
+				$errormessage = \wfMessage( 'multimaps-passed-unavailable-service', $servicename, implode(', ', $egMultiMaps_MapServices), $classname )->escaped();
+			} else {
+				$classname = $egMultiMaps_MapServices[$classkey];
+			}
+		} else {
+			$classname = $egMultiMaps_MapServices[0];
+		}
 
-				$newclassname="MultiMaps\\$classname";
-				if( !class_exists($newclassname) ) {
-					if ( $errormessage != '' ) {
-						$errormessage .= '<br />';
-					}
-					return $errormessage . \wfMessage( 'multimaps-unknown-class-for-service', $newclassname )->escaped();
-				}
+		$newclassname="MultiMaps\\$classname";
+		if( !class_exists($newclassname) ) {
+			if ( $errormessage != '' ) {
+				$errormessage .= '<br />';
+			}
+			return $errormessage . \wfMessage( 'multimaps-unknown-class-for-service', $newclassname )->escaped();
+		}
 
-				$returnservice = new $newclassname();
-				if( !($returnservice instanceof BaseMapService) ) {
-					return \wfMessage( 'multimaps-error-incorrect-class-for-service', $newclassname )->escaped();
-				}
+		$returnservice = new $newclassname();
+		if( !($returnservice instanceof BaseMapService) ) {
+			return \wfMessage( 'multimaps-error-incorrect-class-for-service', $newclassname )->escaped();
+		}
 
-				if ( $errormessage != '' ) {
-					$returnservice->pushErrorMessage( $errormessage );
-				}
-				break;
-
-			default:
-				return \wfMessage( 'multimaps-method-error-unknown-action', __METHOD__ . " ( $action )" )->escaped();
+		if ( $errormessage != '' ) {
+			$returnservice->pushErrorMessage( $errormessage );
 		}
 
 		return $returnservice;
