@@ -167,4 +167,12 @@ class GeoCoordinate {
 		$lon += ($east / (self::EQUATOR_LENGTH * cos(M_PI / 180 * $lat))) * 360;
 	}
 
+	public static function getDistanceInMeters($lat1, $lon1, $lat2, $lon2) {
+		$lat = abs($lat1 - $lat2);
+		$lon = abs($lon1 - $lon2);
+		$distance_lat = ($lat / 180) * self::MEREDIAN_LENGTH;
+		$distance_lon = ($lon / 360) * self::EQUATOR_LENGTH * cos(M_PI / 180 * abs(($lat1 + $lat2) / 2));
+		return sqrt( pow($distance_lat, 2) + pow($distance_lon, 2));
+	}
+
 }

@@ -32,8 +32,8 @@ $dir = __DIR__;
 $egMultiMapsScriptPath = ( $wgExtensionAssetsPath === false ? $wgScriptPath . '/extensions' : $wgExtensionAssetsPath ) . '/MultiMaps';
 
 // Allow translations for this extension
-$wgExtensionMessagesFiles['MultiMaps'] = $dir . '/MultiMaps.i18n.php';
-$wgExtensionMessagesFiles['MultiMapsMagic'] = $dir . '/MultiMaps.i18n.magic.php';
+$wgExtensionMessagesFiles['MultiMaps'] =		$dir . '/MultiMaps.i18n.php';
+$wgExtensionMessagesFiles['MultiMapsMagic'] =	$dir . '/MultiMaps.i18n.magic.php';
 
 // Include the settings file.
 require_once $dir . '/Settings.php';
@@ -49,20 +49,22 @@ $wgHooks['ParserFirstCallInit'][] = function( Parser &$parser ) {
 
 //Preparing classes for autoloading
 // TODO: $wgAutoloadClasses = array_merge( $wgAutoloadClasses, include 'MultiMaps.classes.php' );
-$wgAutoloadClasses['MultiMaps'] =				   $dir . '/MultiMaps.body.php';
-$wgAutoloadClasses['MultiMaps\\MapServices'] =		   $dir . '/includes/MapServices.php';
+$wgAutoloadClasses['MultiMaps'] =					$dir . '/MultiMaps.body.php';
 
-$wgAutoloadClasses['MultiMaps\\BaseMapService'] =	  $dir . '/includes/BaseMapService.php';
-$wgAutoloadClasses['MultiMaps\\Bounds'] =		   $dir . '/includes/Bounds.php';
+
+$wgAutoloadClasses['MultiMaps\\BaseMapService'] =	$dir . '/includes/BaseMapService.php';
+$wgAutoloadClasses['MultiMaps\\Bounds'] =			$dir . '/includes/Bounds.php';
+$wgAutoloadClasses['MultiMaps\\Geocoders'] =		$dir . '/includes/Geocoders.php';
 $wgAutoloadClasses['MultiMaps\\GeoCoordinate'] =	$dir . '/includes/GeoCoordinate.php';
+$wgAutoloadClasses['MultiMaps\\MapServices'] =		$dir . '/includes/MapServices.php';
 $wgAutoloadClasses['MultiMaps\\Point'] =			$dir . '/includes/Point.php';
 
-$wgAutoloadClasses['MultiMaps\\BaseMapElement'] =   $dir . '/includes/mapelements/BaseMapElement.php';
-$wgAutoloadClasses['MultiMaps\\Marker'] =		   $dir . '/includes/mapelements/Marker.php';
-$wgAutoloadClasses['MultiMaps\\Line'] =			 $dir . '/includes/mapelements/Line.php';
-$wgAutoloadClasses['MultiMaps\\Polygon'] =		  $dir . '/includes/mapelements/Polygon.php';
+$wgAutoloadClasses['MultiMaps\\BaseMapElement'] =	$dir . '/includes/mapelements/BaseMapElement.php';
+$wgAutoloadClasses['MultiMaps\\Marker'] =			$dir . '/includes/mapelements/Marker.php';
+$wgAutoloadClasses['MultiMaps\\Line'] =				$dir . '/includes/mapelements/Line.php';
+$wgAutoloadClasses['MultiMaps\\Polygon'] =			$dir . '/includes/mapelements/Polygon.php';
 $wgAutoloadClasses['MultiMaps\\Rectangle'] =		$dir . '/includes/mapelements/Rectangle.php';
-$wgAutoloadClasses['MultiMaps\\Circle'] =		   $dir . '/includes/mapelements/Circle.php';
+$wgAutoloadClasses['MultiMaps\\Circle'] =			$dir . '/includes/mapelements/Circle.php';
 
 //define modules that can later be loaded during the output
 $wgResourceModules['ext.MultiMaps'] = array(

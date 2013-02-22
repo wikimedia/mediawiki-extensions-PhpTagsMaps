@@ -43,5 +43,4 @@ class Marker extends BaseMapElement {
 		return parent::setProperty($name, $value);
 	}
 
-
 }
