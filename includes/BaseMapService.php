@@ -259,8 +259,6 @@ abstract class BaseMapService {
 			$this->reset();
 		}
 
-		$this->addElementMarker( array_shift($param) );
-
 		$matches = array();
 		foreach ($param as $value) {
 			if( preg_match('/^\s*(\w+)\s*=\s*(.+)\s*$/s', $value, &$matches) ) {
@@ -277,8 +275,8 @@ abstract class BaseMapService {
 				}
 				continue;
 			} else {
-				list($paramname) = explode('=', $value, 2);
-				$this->errormessages[] = \wfMessage( 'multimaps-unknown-parameter', "$paramname" )->escaped();
+				// Default map element = 'marker'
+				$this->addMapElement('marker', $value);
 			}
 		}
 	}
