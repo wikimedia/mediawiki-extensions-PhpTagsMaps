@@ -174,6 +174,7 @@
 						elementoptions.fill = options.fill;
 					}
 					// break is not necessary here
+					/*falls through*/
 				case 'line':
 					if( options.color && !elementoptions.color ) {
 						elementoptions.color = options.color;
