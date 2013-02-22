@@ -147,6 +147,49 @@
 			}
 		};
 
+		this.setDefaultOptions = function (elementname, elementoptions) {
+			if( options.title && !elementoptions.title ) {
+				elementoptions.title = options.title;
+			}
+			if( options.text && !elementoptions.text ) {
+				elementoptions.text = options.text;
+			}
+
+			switch( elementname ) {
+				case 'marker':
+					if( options.icon && !elementoptions.icon ) {
+						elementoptions.icon = options.icon;
+					}
+					break;
+				case 'polygon':
+				case 'circle':
+				case 'rectangle':
+					if( options.fillcolor && !elementoptions.fillcolor ) {
+						elementoptions.fillcolor = options.fillcolor;
+					}
+					if( options.fillopacity && !elementoptions.fillopacity ) {
+						elementoptions.fillopacity = options.fillopacity;
+					}
+					if( options.fill && !elementoptions.fill ) {
+						elementoptions.fill = options.fill;
+					}
+					// break is not necessary here
+					/*falls through*/
+				case 'line':
+					if( options.color && !elementoptions.color ) {
+						elementoptions.color = options.color;
+					}
+					if( options.weight && !elementoptions.weight ) {
+						elementoptions.weight = options.weight;
+					}
+					if( options.opacity && !elementoptions.opacity ) {
+						elementoptions.opacity = options.opacity;
+					}
+					break;
+			}
+			return elementoptions;
+		};
+
 		this.setup = function () {
 
 			var mapOptions = {
@@ -169,27 +212,27 @@
 
 			// Add the markers.
 			for (var im in options.markers) {
-				this.addMarker( multimapsFillByGlobalOptions(options, 'marker', options.markers[im]) );
+				this.addMarker( this.setDefaultOptions('marker', options.markers[im]) );
 			}
 
 			// Add lines
 			for (var il in options.lines) {
-				this.addLine( multimapsFillByGlobalOptions(options, 'line', options.lines[il]) );
+				this.addLine( this.setDefaultOptions('line', options.lines[il]) );
 			}
 
 			// Add polygons
 			for (var ip in options.polygons) {
-				this.addPolygon( multimapsFillByGlobalOptions(options, 'polygon', options.polygons[ip]) );
+				this.addPolygon( this.setDefaultOptions('polygon', options.polygons[ip]) );
 			}
 
 			// Add circles
 			for (var ic in options.circles) {
-				this.addCircle( multimapsFillByGlobalOptions(options, 'circle', options.circles[ic]) );
+				this.addCircle( this.setDefaultOptions('circle', options.circles[ic]) );
 			}
 
 			// Add rectangles
 			for (var ir in options.rectangles) {
-				this.addRectangle( multimapsFillByGlobalOptions(options, 'rectangle', options.rectangles[ir]) );
+				this.addRectangle( this.setDefaultOptions('rectangle', options.rectangles[ir]) );
 			}
 
 			// Set map position (centre and zoom)

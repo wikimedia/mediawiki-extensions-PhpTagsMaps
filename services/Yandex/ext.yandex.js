@@ -60,7 +60,12 @@
 		 * @param {Object} properties Contains the fields lat, lon, title, text and icon
 		 * @param {String} icon Global value for all icons
 		 */
-		this.addMarker = function (properties) {
+		this.addMarker = function (properties, icon) {
+			if( icon ) {
+				if( !properties.icon ) {
+					properties.icon = icon;
+				}
+			}
 			var value = this.convertPropertiesToOptions(properties);
 
 			var marker = new ymaps.Placemark( [properties.pos[0].lat, properties.pos[0].lon], value.properties, value.options );
@@ -150,27 +155,27 @@
 
 			// Add the markers.
 			for (var im in options.markers) {
-				this.addMarker( multimapsFillByGlobalOptions(options, 'marker', options.markers[im]) );
+				this.addMarker( options.markers[im], options.icon );
 			}
 
 			// Add lines
 			for (var il in options.lines) {
-				this.addLine( multimapsFillByGlobalOptions(options, 'line', options.lines[il]) );
+				this.addLine(options.lines[il]);
 			}
 
 			// Add polygons
 			for (var ip in options.polygons) {
-				this.addPolygon( multimapsFillByGlobalOptions(options, 'polygon', options.polygons[ip]) );
+				this.addPolygon(options.polygons[ip]);
 			}
 
 			// Add circles
 			for (var ic in options.circles) {
-				this.addCircle( multimapsFillByGlobalOptions(options, 'circle', options.circles[ic]) );
+				this.addCircle(options.circles[ic]);
 			}
 
 			// Add rectangles
 			for (var ir in options.rectangles) {
-				this.addRectangle( multimapsFillByGlobalOptions(options, 'rectangle', options.rectangles[ir]) );
+				this.addRectangle(options.rectangles[ir]);
 			}
 
 			// Set map position (centre and zoom)
