@@ -69,6 +69,7 @@ $wgAutoloadClasses['MultiMaps\\Circle'] =			$dir . '/includes/mapelements/Circle
 //define modules that can later be loaded during the output
 $wgResourceModules['ext.MultiMaps'] = array(
 	'styles' => array('resources/multimaps.css'),
+	'scripts' => array('resources/multimaps.js'),
 	'localBasePath' => $dir,
 	'remoteExtPath' => 'MultiMaps',
 	'group' => 'ext.MultiMaps',
