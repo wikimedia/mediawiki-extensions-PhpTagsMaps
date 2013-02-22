@@ -127,7 +127,15 @@ abstract class BaseMapService {
 		'maxzoom',
 		'center',
 		'bounds',
+		'title',
+		'text',
 		'icon',
+		'color',
+		'weight',
+		'opacity',
+		'fillcolor',
+		'fillopacity',
+		'fill',
 	);
 
 	/**
@@ -255,7 +263,7 @@ abstract class BaseMapService {
 
 		$matches = array();
 		foreach ($param as $value) {
-			if( preg_match('/^\s*(\w+)\s*=(.+)$/s', $value, &$matches) ) {
+			if( preg_match('/^\s*(\w+)\s*=\s*(.+)\s*$/s', $value, &$matches) ) {
 				$name = strtolower($matches[1]);
 				if( array_search($name, $this->availableMapElements) !== false ) {
 					$this->addMapElement($name, $matches[2]);
