@@ -8,7 +8,7 @@ namespace MultiMaps;
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
  * @licence GNU General Public Licence 2.0 or later
- * @property-read float $pos Geographic coordinates
+ * @property-read array $pos Array of geographic coordinates
  * @property string $title Title of element
  * @property string $text Popup text of element
  */
@@ -16,7 +16,7 @@ abstract class BaseMapElement {
 
 	/**
 	 * Geographic coordinates
-	 * @var array
+	 * @var array Array of Point
 	 */
 	protected $coordinates;
 
@@ -130,9 +130,10 @@ abstract class BaseMapElement {
 	 * Filling properties of the object according to the obtained data
 	 * @global string $egMultiMaps_DelimiterParam
 	 * @param string $param
+	 * @param string $service Name of map service
 	 * @return boolean returns false if there were errors during parsing, it does not mean that the item was not added. Check with isValid()
 	 */
-	public function parse( $param ) {
+	public function parse( $param, $service = null ) {
 		global $egMultiMaps_DelimiterParam;
 		$this->reset();
 
@@ -140,7 +141,7 @@ abstract class BaseMapElement {
 
 		//The first parameter should always be coordinates
 		$coordinates = array_shift($arrayparam);
-		if( $this->parseCoordinates($coordinates) === false ) {
+		if( $this->parseCoordinates($coordinates, $service ) === false ) {
 			$this->errormessages[] = \wfMessage( 'multimaps-unable-create-element', $this->getElementName() )->escaped();
 			return false;
 		}
@@ -154,15 +155,16 @@ abstract class BaseMapElement {
 	 * Filling property 'coordinates'
 	 * @global string $egMultiMaps_CoordinatesSeparator
 	 * @param string $coordinates
+	 * @param string $service Name of map service
 	 * @return boolean
 	 */
-	protected function parseCoordinates( $coordinates ) {
+	protected function parseCoordinates( $coordinates, $service = null ) {
 		global $egMultiMaps_CoordinatesSeparator;
 
 		$array = explode( $egMultiMaps_CoordinatesSeparator, $coordinates);
 		foreach ($array as $value) {
 			$point = new Point();
-			if( $point->parse($value) ) {
+			if( $point->parse($value, $service) ) {
 				$this->coordinates[] = $point;
 			} else {
 				$this->errormessages[] = \wfMessage( 'multimaps-unable-parse-coordinates', $value)->escaped();

@@ -10,6 +10,7 @@ namespace MultiMaps;
  * @licence GNU General Public Licence 2.0 or later
  * @property-read float $lat Latitude coordinate
  * @property-read float $lon Longitude coordinate
+ * @property-read Bounds $bounds Bounds associated with the point, used in the geocoding
  */
 class Point {
 	/**
@@ -23,6 +24,12 @@ class Point {
 	 * @var float
 	 */
 	protected $longitude = false;
+
+	/**
+	 * Bounds associated with the point, used in the geocoding
+	 * @var Bounds
+	 */
+	protected $bounds = false;
 
 	/**
 	 * Constructor
@@ -43,6 +50,9 @@ class Point {
 				break;
 			case 'lon':
 				return $this->longitude;
+				break;
+			case 'bounds':
+				return $this->bounds;
 				break;
 		}
 		return null;
@@ -67,17 +77,24 @@ class Point {
 		}
 	}
 
-			/**
+	/**
 	 * Parse geographic coordinates
 	 * @param string $string geographic coordinates
+	 * @param string $service Name of map service
 	 * @return boolean
 	 */
-	public function parse($string) {
+	public function parse($string, $service = null) {
 		$coord = GeoCoordinate::getLatLonFromString($string);
 		if( is_array($coord) === false) {
-			$this->latitude = false;
-			$this->longitude = false;
-			return false;
+			$coord = Geocoders::getCoordinates( $string, $service );
+			if( is_array($coord) === false) {
+				$this->latitude = false;
+				$this->longitude = false;
+				return false;
+			}
+			if( isset($coord['bounds']) ) {
+				$this->bounds = $coord['bounds'];
+			}
 		}
 		$this->latitude = $coord['lat'];
 		$this->longitude = $coord['lon'];

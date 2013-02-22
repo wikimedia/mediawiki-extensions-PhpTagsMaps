@@ -325,7 +325,7 @@ abstract class BaseMapService {
 				continue;
 			}
 			$marker = new Marker();
-			if( !$marker->parse($markervalue) ) {
+			if( !$marker->parse($markervalue, $this->classname) ) {
 				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $marker->getErrorMessages() );
 			}
@@ -351,7 +351,7 @@ abstract class BaseMapService {
 				continue;
 			}
 			$line = new Line();
-			if( !$line->parse($linevalue) ) {
+			if( !$line->parse($linevalue, $this->classname) ) {
 				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $line->getErrorMessages() );
 			}
@@ -377,7 +377,7 @@ abstract class BaseMapService {
 				continue;
 			}
 			$polygon = new Polygon();
-			if( !$polygon->parse($polygonvalue) ) {
+			if( !$polygon->parse($polygonvalue, $this->classname) ) {
 				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $polygon->getErrorMessages() );
 			}
@@ -403,7 +403,7 @@ abstract class BaseMapService {
 				continue;
 			}
 			$rectangle = new Rectangle();
-			if( !$rectangle->parse($rectanglevalue) ) {
+			if( !$rectangle->parse($rectanglevalue, $this->classname) ) {
 				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $rectangle->getErrorMessages() );
 			}
@@ -429,7 +429,7 @@ abstract class BaseMapService {
 				continue;
 			}
 			$circle = new Circle();
-			if( !$circle->parse($circlevalue) ) {
+			if( !$circle->parse($circlevalue, $this->classname) ) {
 				$return = false;
 				$this->errormessages = array_merge( $this->errormessages, $circle->getErrorMessages() );
 			}
