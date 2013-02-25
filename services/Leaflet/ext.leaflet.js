@@ -61,14 +61,8 @@
 		* Creates a new marker with the provided data,
 		* adds it to the map, and returns it.
 		* @param {Object} properties Contains the fields lat, lon, title, text and icon
-		* @param {String} icon Global value for all icons
 		*/
-		this.addMarker = function (properties, icon) {
-			if( icon ) {
-				if( !properties.icon ) {
-					properties.icon = icon;
-				}
-			}
+		this.addMarker = function (properties) {
 			var value = this.convertPropertiesToOptions(properties);
 
 			var marker = L.marker( [properties.pos[0].lat, properties.pos[0].lon], value.options ).addTo( this.map );
@@ -156,27 +150,27 @@
 
 			// Add the markers.
 			for (var im in options.markers) {
-				this.addMarker( options.markers[im], options.icon );
+				this.addMarker( multimapsFillByGlobalOptions(options, 'marker', options.markers[im]) );
 			}
 
 			// Add lines
 			for (var il in options.lines) {
-				this.addLine(options.lines[il]);
+				this.addLine( multimapsFillByGlobalOptions(options, 'line', options.lines[il]) );
 			}
 
 			// Add polygons
 			for (var ip in options.polygons) {
-				this.addPolygon(options.polygons[ip]);
+				this.addPolygon( multimapsFillByGlobalOptions(options, 'polygon', options.polygons[ip]) );
 			}
 
 			// Add circles
 			for (var ic in options.circles) {
-				this.addCircle(options.circles[ic]);
+				this.addCircle( multimapsFillByGlobalOptions(options, 'circle', options.circles[ic]) );
 			}
 
 			// Add rectangles
 			for (var ir in options.rectangles) {
-				this.addRectangle(options.rectangles[ir]);
+				this.addRectangle( multimapsFillByGlobalOptions(options, 'rectangle', options.rectangles[ir]) );
 			}
 
 			// Set map position (centre and zoom)
