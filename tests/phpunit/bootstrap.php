@@ -9,6 +9,7 @@
 
 define("MEDIAWIKI", "test");
 include_once __DIR__ . '/../../Settings.php';
+include_once __DIR__ . '/../../includes/BaseMapService.php';
 include_once __DIR__ . '/../../includes/GeoCoordinate.php';
 include_once __DIR__ . '/../../includes/mapelements/BaseMapElement.php';
 include_once __DIR__ . '/../../includes/mapelements/Line.php';
