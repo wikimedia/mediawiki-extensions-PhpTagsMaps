@@ -113,5 +113,6 @@ $wgHooks['UnitTestsList'][] = function ( &$files ) {
 		$files = array_merge( $files, glob( "$testDir/services/*Test.php" ) );
 		$files = array_merge( $files, glob( "$testDir/services/Google/*Test.php" ) );
 		$files = array_merge( $files, glob( "$testDir/services/Leaflet/*Test.php" ) );
+		$files = array_merge( $files, glob( "$testDir/services/Yandex/*Test.php" ) );
 		return true;
 };

@@ -11,6 +11,7 @@ namespace MultiMaps;
  * @property-read float $lat Latitude coordinate
  * @property-read float $lon Longitude coordinate
  * @property Bounds $bounds Bounds associated with the point, used in the geocoding
+ * @property-read array $pos Position as array( 'lat' => lat, 'lon' => lon)
  */
 class Point {
 	/**
@@ -38,8 +39,8 @@ class Point {
 	 */
 	public function __construct($lat = false, $lon = false) {
 		if( is_numeric($lat) && is_numeric($lon)) {
-			$this->latitude = $lat;
-			$this->longitude = $lon;
+			$this->latitude = (float)$lat;
+			$this->longitude = (float)$lon;
 		}
 	}
 
@@ -53,6 +54,11 @@ class Point {
 				break;
 			case 'bounds':
 				return $this->bounds;
+				break;
+			case 'pos':
+				if( $this->isValid() ) {
+					return array( 'lat' => $this->latitude, 'lon' => $this->longitude );
+				}
 				break;
 		}
 		return null;
