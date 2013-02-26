@@ -44,8 +44,7 @@ class Geocoders {
 							$bounds_ne = new Point( $bounds->northeast->lat, $bounds->northeast->lng );
 							$bounds_sw = new Point( $bounds->southwest->lat, $bounds->southwest->lng );
 							if( $bounds_ne->isValid() && $bounds_sw->isValid() ) {
-								$b = new Bounds();
-								$b->extend( array($bounds_ne, $bounds_sw) );
+								$b = new Bounds( array($bounds_ne, $bounds_sw) );
 								$return['bounds'] = $b;
 							}
 						}

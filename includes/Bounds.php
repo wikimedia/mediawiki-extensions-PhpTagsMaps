@@ -27,6 +27,12 @@ class Bounds {
 	 */
 	protected $southWest = false;
 
+	function __construct( $coordinates = null) {
+		if( !is_null($coordinates) ) {
+			$this->extend($coordinates);
+		}
+	}
+
 
 	/**
 	 * Extend bounds
@@ -36,18 +42,18 @@ class Bounds {
 		if( $coordinates instanceof Point ) {
 			$coordinates = array($coordinates);
 		}
-		foreach ($coordinates as $value) {
-			$bounds = $value->bounds;
+		foreach ($coordinates as $point) {
+			$bounds = $point->bounds;
 			if( !$this->isValid() ) {
 				if( $bounds ) {
 					$this->northEast = $bounds->ne;
 					$this->southWest = $bounds->sw;
 				} else {
-					$this->northEast = new Point($value->lat, $value->lon);
-					$this->southWest = new Point($value->lat, $value->lon);
+					$this->northEast = new Point($point->lat, $point->lon);
+					$this->southWest = new Point($point->lat, $point->lon);
 				}
 			} else {
-				if( $bounds ) {
+				if( $bounds != false) {
 					if( $bounds->sw->lat < $this->southWest->lat ) {
 						$this->southWest->lat = $bounds->sw->lat;
 					} elseif ( $bounds->ne->lat > $this->northEast->lat ) {
@@ -60,16 +66,16 @@ class Bounds {
 						$this->northEast->lon = $bounds->ne->lon;
 					}
 				} else {
-					if( $value->lat < $this->southWest->lat ) {
-						$this->southWest->lat = $value->lat;
-					} elseif ( $value->lat > $this->northEast->lat ) {
-						$this->northEast->lat = $value->lat;
+					if( $point->lat < $this->southWest->lat ) {
+						$this->southWest->lat = $point->lat;
+					} elseif ( $point->lat > $this->northEast->lat ) {
+						$this->northEast->lat = $point->lat;
 					}
 
-					if( $value->lon < $this->southWest->lon ) {
-						$this->southWest->lon = $value->lon;
-					} elseif ( $value->lon > $this->northEast->lon ) {
-						$this->northEast->lon = $value->lon;
+					if( $point->lon < $this->southWest->lon ) {
+						$this->southWest->lon = $point->lon;
+					} elseif ( $point->lon > $this->northEast->lon ) {
+						$this->northEast->lon = $point->lon;
 					}
 				}
 			}

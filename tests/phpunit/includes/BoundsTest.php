@@ -38,7 +38,7 @@ class BoundsTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNull( $this->object->getData() );
 
 		$point = new Point(10, 2);
-		$this->object->extend( array($point) );
+		$this->object->extend( $point );
 		$this->assertEquals( $this->object->getCenter(), $point );
 
 		$this->object->extend( array(new Point(20, 1)) );
@@ -52,6 +52,33 @@ class BoundsTest extends \PHPUnit_Framework_TestCase {
 					)
 				);
 
+		$this->assertEquals(
+				"{$this->object->diagonal}",
+				"1116519.1690062"
+				);
+
+		$pointWithBounds = new Point();
+		$bounds1 = new Bounds( array(new Point(40, 40), new Point(30, 30)) );
+		$pointWithBounds->bounds = $bounds1;
+		$this->object->extend( $pointWithBounds );
+		$this->assertEquals(
+				$this->object->getData(),
+				array(
+					'ne' => array('lat' => 40, 'lon' => 40),
+					'sw' => array('lat' => 10, 'lon' => 1),
+					)
+				);
+
+		$bounds2 = new Bounds( array(new Point(-40, 0), new Point(0, -30)) );
+		$pointWithBounds->bounds = $bounds2;
+		$this->object->extend( $pointWithBounds );
+		$this->assertEquals(
+				$this->object->getData(),
+				array(
+					'ne' => array('lat' => 40, 'lon' => 40),
+					'sw' => array('lat' => -40, 'lon' =>-30),
+					)
+				);
 	}
 
 	/**

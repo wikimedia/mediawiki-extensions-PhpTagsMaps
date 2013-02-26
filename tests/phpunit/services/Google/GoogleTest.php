@@ -35,4 +35,25 @@ class GoogleTest extends \PHPUnit_Framework_TestCase {
 				);
 	}
 
+	public function testParseGeocoderRectangle() {
+		$this->assertRegExp(
+				'{"rectangles":\[{"pos":\[{"lat":[0-9\.]+,"lon":[0-9\.]+},{"lat":[0-9\.]+,"lon":[0-9\.]+}\]}\],"bounds":{"ne":{"lat":[0-9\.]+,"lon":[0-9\.]+},"sw":{"lat":[0-9\.]+,"lon":[0-9\.]+}}}',
+				\FormatJson::encode( $this->object->getMapData( array('rectangle=Moscow', 'service=google') ) )
+				);
+	}
+
+	public function testParseGeocoderRectangles() {
+		$this->assertRegExp(
+				'{"rectangles":\[{"pos":\[{"lat":[0-9\.]+,"lon":[0-9\.]+},{"lat":[0-9\.]+,"lon":[0-9\.]+}\]},{"pos":\[{"lat":[0-9\.]+,"lon":[0-9\.]+},{"lat":[-0-9\.]+,"lon":[-0-9\.]+}]}],"bounds":{"ne":{"lat":[0-9\.]+,"lon":[0-9\.]+},"sw":{"lat":[0-9\.]+,"lon":[-0-9\.]+}}}',
+				\FormatJson::encode( $this->object->getMapData( array('rectangle=Moscow;London', 'service=google') ) )
+				);
+	}
+
+	public function testParseGeocoderCircle() {
+		$this->assertRegExp(
+				'{"circles":\[{"radius":\[[0-9\.]+\],"pos":\[{"lat":[0-9\.]+,"lon":[0-9\.]+}\]}\],"bounds":{"ne":{"lat":[0-9\.]+,"lon":[0-9\.]+},"sw":{"lat":[0-9\.]+,"lon":[0-9\.]+}}}',
+				\FormatJson::encode( $this->object->getMapData( array('circle=Moscow', 'service=google') ) )
+				);
+	}
+
 }

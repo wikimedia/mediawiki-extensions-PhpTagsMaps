@@ -10,7 +10,7 @@ namespace MultiMaps;
  * @licence GNU General Public Licence 2.0 or later
  * @property-read float $lat Latitude coordinate
  * @property-read float $lon Longitude coordinate
- * @property-read Bounds $bounds Bounds associated with the point, used in the geocoding
+ * @property Bounds $bounds Bounds associated with the point, used in the geocoding
  */
 class Point {
 	/**
@@ -72,6 +72,11 @@ class Point {
 					$this->longitude = (float) $value;
 				} else {
 					$this->longitude = false;
+				}
+				break;
+			case 'bounds':
+				if( ($value instanceof Bounds && $value->isValid()) || $value === false) {
+					$this->bounds = $value;
 				}
 				break;
 		}
