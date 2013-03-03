@@ -190,6 +190,15 @@ $messages['ja'] = array(
 	'multimaps-method-error-unexpected-result' => '$1: 関数が予期しない結果を返しました',
 );
 
+/** Luxembourgish (Lëtzebuergesch)
+ * @author Robby
+ */
+$messages['lb'] = array(
+	'multimaps-loading-map' => "D'Kaart gëtt gelueden…",
+	'multimaps-unknown-parameter' => 'Onbekannte Parameter: "$1"',
+	'multimaps-method-error-unknown-action' => '$1: Onbekannt Aktioun',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
