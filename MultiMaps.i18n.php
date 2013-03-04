@@ -182,6 +182,7 @@ $messages['ja'] = array(
 	'multimaps-square-wrong-number-points' => '四角形の緯度経度として 2 地点を指定すべきですが、{{PLURAL:$1|$1 地点}}を指定しました',
 	'multimaps-unable-create-element' => '地図要素「$1」を作成できません',
 	'multimaps-unable-parse-coordinates' => '緯度経度「$1」を構文解析できません',
+	'multimaps-unable-parse-parameter' => 'パラメーター「$1」(値「$2」) を構文解析できません',
 	'multimaps-unable-parse-radius' => '円の半径には数値を指定する必要がありますが、「$1」を指定しました',
 	'multimaps-unknown-class-for-service' => 'サービスとして定義されたクラス「$1」が見つかりません。',
 	'multimaps-unknown-parameter' => '不明なパラメーター:「$1」',
