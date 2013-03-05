@@ -167,6 +167,14 @@ class GeoCoordinate {
 		$lon += ($east / (self::EQUATOR_LENGTH * cos(M_PI / 180 * $lat))) * 360;
 	}
 
+	/**
+	 * Returns the distance between two geographical points
+	 * @param float $lat1 Latitude geographical point 1
+	 * @param float $lon1 Longitude geographical point 1
+	 * @param float $lat2 Latitude geographical point 2
+	 * @param float $lon2 Longitude geographical point 2
+	 * @return float Distance, in meters
+	 */
 	public static function getDistanceInMeters($lat1, $lon1, $lat2, $lon2) {
 		$lat = abs($lat1 - $lat2);
 		$lon = abs($lon1 - $lon2);

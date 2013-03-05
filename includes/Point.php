@@ -107,8 +107,8 @@ class Point {
 				$this->bounds = $coord['bounds'];
 			}
 		}
-		$this->latitude = $coord['lat'];
-		$this->longitude = $coord['lon'];
+		$this->lat = $coord['lat'];
+		$this->lon = $coord['lon'];
 		return true;
 	}
 
