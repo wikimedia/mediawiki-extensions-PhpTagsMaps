@@ -34,4 +34,40 @@ class Line extends BaseMapElement {
 		return 'Line'; //TODO i18n?
 	}
 
+	/**
+	 * Filling property 'coordinates'
+	 * @global string $egMultiMaps_CoordinatesSeparator
+	 * @param string $coordinates
+	 * @param string $service Name of map service
+	 * @return boolean
+	 */
+	protected function parseCoordinates( $coordinates, $service = null ) {
+		global $egMultiMaps_CoordinatesSeparator;
+
+		$array = explode( $egMultiMaps_CoordinatesSeparator, $coordinates);
+
+		if( $service == 'leaflet' && count($array) == 1 ) {
+			$value = $array[0];
+			$coord = Geocoders::getCoordinates( $value, $service, array('polygon'=>true) );
+			\MWDebug::log( var_export($coord, true));
+			if( $coord !== false && is_array($coord['polygon']) ) {
+				$this->coordinates = $coord['polygon'];
+			} else {
+				$this->errormessages[] = \wfMessage( 'multimaps-unable-parse-coordinates', $value)->escaped();
+				return false;
+			}
+		} else {
+			foreach ($array as $value) {
+				$point = new Point();
+				if( $point->parse($value, $service) ) {
+					$this->coordinates[] = $point;
+				} else {
+					$this->errormessages[] = \wfMessage( 'multimaps-unable-parse-coordinates', $value)->escaped();
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 }
