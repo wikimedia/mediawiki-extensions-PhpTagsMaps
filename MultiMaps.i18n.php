@@ -110,6 +110,13 @@ $messages['de'] = array(
 	'multimaps-method-error-unexpected-result' => '$1: Ein unerwartetes Ergebnis einer Funktion',
 );
 
+/** British English (British English)
+ * @author Shirayuki
+ */
+$messages['en-gb'] = array(
+	'multimaps-circle-wrong-number-parameters' => 'for the circle should be defined only two parameters, the coordinates of the centre and the radius. But specified {{PLURAL:$1|one parameter|$1 parameters}}',
+);
+
 /** French (français)
  * @author Gomoko
  */
