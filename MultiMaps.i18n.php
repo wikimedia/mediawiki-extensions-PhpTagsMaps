@@ -82,6 +82,13 @@ $messages['qqq'] = array(
 * $1 - function name and values',
 );
 
+/** Breton (brezhoneg)
+ * @author Fohanno
+ */
+$messages['br'] = array(
+	'multimaps-loading-map' => 'O kargañ ar gartenn...',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  * @author Metalhead64
