@@ -114,6 +114,8 @@ $messages['ast'] = array(
  */
 $messages['br'] = array(
 	'multimaps-loading-map' => 'O kargañ ar gartenn...',
+	'multimaps-unknown-parameter' => 'Arventenn dianav : "$1"',
+	'multimaps-method-error-unknown-action' => '$1: Ober dianav',
 );
 
 /** German (Deutsch)
