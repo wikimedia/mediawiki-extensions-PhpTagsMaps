@@ -155,6 +155,13 @@ $messages['en-gb'] = array(
 	'multimaps-circle-wrong-number-parameters' => 'for the circle should be defined only two parameters, the coordinates of the centre and the radius. But specified {{PLURAL:$1|one parameter|$1 parameters}}',
 );
 
+/** Finnish (suomi)
+ * @author Silvonen
+ */
+$messages['fi'] = array(
+	'multimaps-loading-map' => 'Ladataan karttaa...',
+);
+
 /** French (français)
  * @author Gomoko
  */
