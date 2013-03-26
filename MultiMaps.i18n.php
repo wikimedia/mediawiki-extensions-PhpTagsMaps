@@ -84,6 +84,14 @@ $messages['qqq'] = array(
 * $1 - function name and values',
 );
 
+/** Arabic (العربية)
+ * @author ترجمان05
+ */
+$messages['ar'] = array(
+	'multimaps-loading-map' => 'تحميل الخريطة...',
+	'multimaps-method-error-unknown-action' => '$1: فعل غير معروف',
+);
+
 /** Asturian (asturianu)
  * @author Xuacu
  */
