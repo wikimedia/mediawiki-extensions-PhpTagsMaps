@@ -163,6 +163,14 @@ $messages['en-gb'] = array(
 	'multimaps-circle-wrong-number-parameters' => 'for the circle should be defined only two parameters, the coordinates of the centre and the radius. But specified {{PLURAL:$1|one parameter|$1 parameters}}',
 );
 
+/** Spanish (español)
+ * @author Fitoschido
+ */
+$messages['es'] = array(
+	'multimaps-loading-map' => 'Cargando el mapa…',
+	'multimaps-mapservices-must-not-empty-array' => 'La variable «$1» no debe ser una matriz vacía',
+);
+
 /** Finnish (suomi)
  * @author Silvonen
  */
