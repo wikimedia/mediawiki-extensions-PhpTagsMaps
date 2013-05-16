@@ -323,6 +323,15 @@ $messages['nl'] = array(
 	'multimaps-method-error-unexpected-result' => '$1: een functie heeft een onverwacht resultaat teruggegeven',
 );
 
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'multimaps-loading-map' => "Stoche a careche 'a mappe...",
+	'multimaps-method-error-unknown-action' => '$1: Azione scanusciute',
+	'multimaps-method-error-unexpected-result' => "$1: 'Nu resultate inaspettate de 'na funzione",
+);
+
 /** Russian (русский)
  * @author Pastakhov
  */
