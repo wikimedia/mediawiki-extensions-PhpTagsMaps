@@ -264,8 +264,11 @@ $messages['ja'] = array(
  */
 $messages['lb'] = array(
 	'multimaps-loading-map' => "D'Kaart gëtt gelueden…",
+	'multimaps-had-following-errors' => "Wéi d'Parameter déi ugi ware verschafft goufen sinn dës Feeler geschitt:",
+	'multimaps-unable-create-element' => 'D\'Element "$1" vun der Kaart kann net gemaach ginn',
 	'multimaps-unknown-parameter' => 'Onbekannte Parameter: "$1"',
 	'multimaps-method-error-unknown-action' => '$1: Onbekannt Aktioun',
+	'multimaps-method-error-unexpected-result' => '$1: En onerwaart Resultat vun enger Funktioun',
 );
 
 /** Macedonian (македонски)
