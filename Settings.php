@@ -42,3 +42,7 @@ $egMultiMaps_CoordinatesSeparator = ':';
 // only be used when the user does not provide them.
 $egMultiMaps_Width = 'auto';
 $egMultiMaps_Height = '350px';
+
+//TODO
+//$egMultiMaps_GoogleApiKey = false;
+//$egMultiMaps_YandexApiKey = false;

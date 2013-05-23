@@ -58,31 +58,31 @@ abstract class BaseMapService {
 
 	/**
 	 * Array of elements map marker
-	 * @var array
+	 * @var Marker[]
 	 */
 	protected $markers;
 
 	/**
 	 * Array of elements map line
-	 * @var array
+	 * @var Line[]
 	 */
 	protected $lines;
 
 	/**
 	 * Array of elements map polygon
-	 * @var array
+	 * @var Polygon[]
 	 */
 	protected $polygons;
 
 	/**
 	 * Array of elements map rectangle
-	 * @var array
+	 * @var Rectangle[]
 	 */
 	protected $rectangles;
 
 	/**
 	 * Array of elements map circle
-	 * @var array
+	 * @var Circle[]
 	 */
 	protected $circles;
 
@@ -261,7 +261,7 @@ abstract class BaseMapService {
 
 		$matches = array();
 		foreach ($param as $value) {
-			if( preg_match('/^\s*(\w+)\s*=\s*(.+)\s*$/s', $value, &$matches) ) {
+			if( preg_match('/^\s*(\w+)\s*=\s*(.+)\s*$/s', $value, $matches) ) {
 				$name = strtolower($matches[1]);
 				if( array_search($name, $this->availableMapElements) !== false ) {
 					$this->addMapElement($name, $matches[2]);
