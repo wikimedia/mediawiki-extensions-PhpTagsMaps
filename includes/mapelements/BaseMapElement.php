@@ -16,7 +16,7 @@ abstract class BaseMapElement {
 
 	/**
 	 * Geographic coordinates
-	 * @var array Array of Point
+	 * @var Point[]
 	 */
 	protected $coordinates;
 
@@ -185,7 +185,7 @@ abstract class BaseMapElement {
 		$matches = array();
 		$properties = implode( '|', $this->availableProperties );
 		foreach ($param as $key => $paramvalue) {
-			if( preg_match("/^\s*($properties)\s*=(.+)$/si", $paramvalue, &$matches) ) {
+			if( preg_match("/^\s*($properties)\s*=(.+)$/si", $paramvalue, $matches) ) {
 				if ( !$this->setProperty($matches[1], $matches[2]) ) {
 					$return = false;
 				}

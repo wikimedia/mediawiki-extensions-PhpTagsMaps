@@ -28,6 +28,12 @@ class LeafletTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
+	public function testParseMarkerInZerro() {
+		$this->assertEquals(
+				\FormatJson::encode( $this->object->getMapData( array('0,0', 'service=leaflet') ) ),
+				'{"markers":[{"pos":[{"lat":0,"lon":0}]}],"zoom":14,"center":{"lat":0,"lon":0}}'
+				);
+	}
 
 	public function testParseOneMarker() {
 		$this->assertEquals(
@@ -356,6 +362,13 @@ class LeafletTest extends \PHPUnit_Framework_TestCase {
 		$this->assertRegExp(
 				'{"circles":\[{"radius":\[[0-9\.]+\],"pos":\[{"lat":[0-9\.]+,"lon":[0-9\.]+}\]}\],"bounds":{"ne":{"lat":[0-9\.]+,"lon":[0-9\.]+},"sw":{"lat":[0-9\.]+,"lon":[0-9\.]+}}}',
 				\FormatJson::encode( $this->object->getMapData( array('circle=Moscow', 'service=leaflet') ) )
+				);
+	}
+
+	public function testParseGeocoderObjectPolygon() {
+		$this->assertRegExp(
+				'{"polygons":\[\{"pos":\[(\{"lat":[0-9\.]+,"lon":[0-9\.]+\},?)+\]\}\],"bounds":{"ne":{"lat":[0-9\.]+,"lon":[0-9\.]+},"sw":{"lat":[0-9\.]+,"lon":[0-9\.]+}}}',
+				\FormatJson::encode( $this->object->getMapData( array('polygon=Astana', 'service=leaflet') ) )
 				);
 	}
 

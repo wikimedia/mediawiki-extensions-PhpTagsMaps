@@ -1,12 +1,12 @@
 /**
- * JavaScript for Leaflet in the MultiMaps extension.
+ * JavaScript for Yandex in the MultiMaps extension.
  * @see http://www.mediawiki.org/wiki/Extension:MultiMaps
  *
  * @author Pavel Astakhov < pastakhov@yandex.ru >
  */
 
 (function ($, mw) {
-	$.fn.multimapsyandex = function ( options ) {
+	$.fn.multimapsyandex = function (options) {
 		var _this = this;
 		this.map = null;
 		this.options = options;
@@ -20,39 +20,39 @@
 			var prop = {};
 			var options = {};
 
-			if( properties.icon !== undefined ) {
+			if (properties.icon !== undefined) {
 				options.iconImageHref = properties.icon;
 			}
-			if( properties.color !== undefined ) {
+			if (properties.color !== undefined) {
 				options.strokeColor = properties.color;
 			}
-			if( properties.weight !== undefined ) {
+			if (properties.weight !== undefined) {
 				options.strokeWidth = properties.weight;
 			}
-			if( properties.opacity !== undefined ) {
+			if (properties.opacity !== undefined) {
 				options.strokeOpacity = properties.opacity;
 			}
-			if( properties.fill !== undefined ) {
+			if (properties.fill !== undefined) {
 				options.fill = properties.fill;
 			}
-			if( properties.fillcolor !== undefined ) {
+			if (properties.fillcolor !== undefined) {
 				options.fillColor = properties.fillcolor;
 			}
-			if( properties.fillopacity !== undefined ) {
+			if (properties.fillopacity !== undefined) {
 				options.fillOpacity = properties.fillopacity;
 			}
 
-			if( properties.title !== undefined && properties.text !== undefined ) {
+			if (properties.title !== undefined && properties.text !== undefined) {
 				prop.hintContent = properties.title;
 				prop.balloonContent = '<strong>' + properties.title + '</strong><hr />' + properties.text;
-			} else if( properties.title !== undefined ) {
+			} else if (properties.title !== undefined) {
 				prop.hintContent = properties.title;
 				prop.balloonContent = '<strong>' + properties.title + '</strong>';
-			} else if( properties.text  !== undefined ) {
+			} else if (properties.text  !== undefined) {
 				prop.balloonContent = properties.text;
 			}
 
-			return { properties:prop, options:options };
+			return { properties: prop, options: options };
 		};
 
 		/**
@@ -62,7 +62,7 @@
 		this.addMarker = function (properties) {
 			var value = this.convertPropertiesToOptions(properties);
 
-			var marker = new ymaps.Placemark( [properties.pos[0].lat, properties.pos[0].lon], value.properties, value.options );
+			var marker = new ymaps.Placemark([properties.pos[0].lat, properties.pos[0].lon], value.properties, value.options);
 			this.map.geoObjects.add(marker);
 		};
 
@@ -78,7 +78,7 @@
 				latlngs.push([properties.pos[x].lat, properties.pos[x].lon]);
 			}
 
-			var polyline = new ymaps.Polyline( latlngs, value.properties, value.options );
+			var polyline = new ymaps.Polyline(latlngs, value.properties, value.options);
 			this.map.geoObjects.add(polyline);
 		};
 
@@ -95,7 +95,7 @@
 			}
 			latlngs.push([properties.pos[0].lat, properties.pos[0].lon]);
 
-			var polygon = new ymaps.Polygon( [latlngs], value.properties, value.options );
+			var polygon = new ymaps.Polygon([latlngs], value.properties, value.options);
 			this.map.geoObjects.add(polygon);
 		};
 
@@ -106,7 +106,7 @@
 		this.addCircle = function (properties) {
 			var value = this.convertPropertiesToOptions(properties);
 
-			var circle = new ymaps.Circle( [[properties.pos[0].lat, properties.pos[0].lon], properties.radius[0]], value.properties, value.options );
+			var circle = new ymaps.Circle([[properties.pos[0].lat, properties.pos[0].lon], properties.radius[0]], value.properties, value.options);
 			this.map.geoObjects.add(circle);
 		};
 
@@ -119,22 +119,26 @@
 
 			var bounds = [[properties.pos[0].lat, properties.pos[0].lon], [properties.pos[1].lat, properties.pos[1].lon]];
 
-			var rectangle = new ymaps.Rectangle( bounds, value.properties, value.options );
+			var rectangle = new ymaps.Rectangle(bounds, value.properties, value.options);
 			this.map.geoObjects.add(rectangle);
 		};
 
 		this.setup = function () {
 
 			var mapOptions = {};
-			if (options.minzoom !== false ) mapOptions.minZoom = options.minzoom;
-			if (options.maxzoom !== false ) mapOptions.maxZoom = options.maxzoom;
+			if (options.minzoom !== false) {
+				mapOptions.minZoom = options.minzoom;
+			}
+			if (options.maxzoom !== false) {
+				mapOptions.maxZoom = options.maxzoom;
+			}
 			var mapState = {
-				center:[0, 0],
+				center: [0, 0],
 				zoom: 1
 			};
 
 			this.get(0).innerHTML = '';
-			var map = new ymaps.Map( this.get(0), mapState, mapOptions );
+			var map = new ymaps.Map(this.get(0), mapState, mapOptions);
 			map.controls
                 .add('zoomControl')
                 .add('typeSelector')
@@ -149,40 +153,40 @@
 
 			// Add the markers.
 			for (var im in options.markers) {
-				this.addMarker( multimapsFillByGlobalOptions(options, 'marker', options.markers[im]) );
+				this.addMarker(mw.MultiMaps.fillByGlobalOptions(options, 'marker', options.markers[im]));
 			}
 
 			// Add lines
 			for (var il in options.lines) {
-				this.addLine( multimapsFillByGlobalOptions(options, 'line', options.lines[il]) );
+				this.addLine(mw.MultiMaps.fillByGlobalOptions(options, 'line', options.lines[il]));
 			}
 
 			// Add polygons
 			for (var ip in options.polygons) {
-				this.addPolygon( multimapsFillByGlobalOptions(options, 'polygon', options.polygons[ip]) );
+				this.addPolygon(mw.MultiMaps.fillByGlobalOptions(options, 'polygon', options.polygons[ip]));
 			}
 
 			// Add circles
 			for (var ic in options.circles) {
-				this.addCircle( multimapsFillByGlobalOptions(options, 'circle', options.circles[ic]) );
+				this.addCircle(mw.MultiMaps.fillByGlobalOptions(options, 'circle', options.circles[ic]));
 			}
 
 			// Add rectangles
 			for (var ir in options.rectangles) {
-				this.addRectangle( multimapsFillByGlobalOptions(options, 'rectangle', options.rectangles[ir]) );
+				this.addRectangle(mw.MultiMaps.fillByGlobalOptions(options, 'rectangle', options.rectangles[ir]));
 			}
 
 			// Set map position (centre and zoom)
-			if( options.bounds ) {
-				map.setBounds( [
+			if (options.bounds) {
+				map.setBounds([
 					[options.bounds.sw.lat, options.bounds.sw.lon],
 					[options.bounds.ne.lat, options.bounds.ne.lon]
-				] );
+				]);
 			} else {
-				if( options.center ) {
-					map.setCenter( [options.center.lat, options.center.lon], options.zoom );
-				} else if ( options.zoom ) {
-					map.setZoom( options.zoom );
+				if (options.center) {
+					map.setCenter([options.center.lat, options.center.lon], options.zoom);
+				} else if (options.zoom) {
+					map.setZoom(options.zoom);
 				}
 			}
 		};
@@ -192,16 +196,14 @@
 		return this;
 
 	};
-})(jQuery, window.mediaWiki);
 
-(function( $, mw ) {
+	ymaps.ready(function() {
+		mw.loader.using('ext.MultiMaps', function () {
+			$('.multimaps-map-yandex').each( function () {
+				var $this = $(this);
+				$this.multimapsyandex($.parseJSON( $this.find('div').text()));
+			});
+		});
+	});
 
-	ymaps.ready( function() {
-
-		$( '.multimaps-map-yandex' ).each( function() {
-			var $this = $( this );
-			$this.multimapsyandex( $.parseJSON( $this.find('div').text() ) );
-		} );
-	} );
-
-})( window.jQuery, mediaWiki );
+})(jQuery, mediaWiki);
