@@ -5,16 +5,17 @@
  * @author Pavel Astakhov < pastakhov@yandex.ru >
  */
 
-mw.MultiMaps = {
-fillByGlobalOptions: function (globalOptions, elementname, elementoptions) {
-	if (globalOptions.title && !elementoptions.title) {
-		elementoptions.title = globalOptions.title;
-	}
-	if (globalOptions.text && !elementoptions.text) {
-		elementoptions.text = globalOptions.text;
-	}
+/*global mediaWiki */
+mediaWiki.MultiMaps = {
+	fillByGlobalOptions: function (globalOptions, elementname, elementoptions) {
+		if (globalOptions.title && !elementoptions.title) {
+			elementoptions.title = globalOptions.title;
+		}
+		if (globalOptions.text && !elementoptions.text) {
+			elementoptions.text = globalOptions.text;
+		}
 
-	switch (elementname) {
+		switch (elementname) {
 		case 'marker':
 			if (globalOptions.icon && !elementoptions.icon) {
 				elementoptions.icon = globalOptions.icon;
@@ -32,8 +33,8 @@ fillByGlobalOptions: function (globalOptions, elementname, elementoptions) {
 			if (globalOptions.fill && !elementoptions.fill) {
 				elementoptions.fill = globalOptions.fill;
 			}
-			// break is not necessary here
-			/*falls through*/
+		// break is not necessary here
+		/*falls through*/
 		case 'line':
 			if (globalOptions.color && !elementoptions.color) {
 				elementoptions.color = globalOptions.color;
@@ -45,7 +46,7 @@ fillByGlobalOptions: function (globalOptions, elementname, elementoptions) {
 				elementoptions.opacity = globalOptions.opacity;
 			}
 			break;
+		}
+		return elementoptions;
 	}
-	return elementoptions;
-}
 };

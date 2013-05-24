@@ -170,7 +170,7 @@ abstract class BaseMapService {
 					'style' => 'width:'.htmlspecialchars($this->width).'; height:'.htmlspecialchars($this->height).';',
 					'class' => 'multimaps-map' . ($this->classname != '' ? " multimaps-map-$this->classname" : ''),
 					),
-				\wfMessage( 'multimaps-loading-map' )->escaped() .
+				\Html::element( 'p', array(), \wfMessage('multimaps-loading-map')->escaped() ) .
 				\Html::rawElement(
 						'div',
 						array( 'class' => 'multimaps-mapdata' ),
