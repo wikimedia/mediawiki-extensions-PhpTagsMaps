@@ -264,6 +264,7 @@ $messages['ja'] = array(
  */
 $messages['lb'] = array(
 	'multimaps-loading-map' => "D'Kaart gëtt gelueden…",
+	'multimaps-mapservices-must-not-empty-array' => 'D\'Variabel "$1" däerf keen eidelen Array sinn',
 	'multimaps-had-following-errors' => "Wéi d'Parameter déi ugi ware verschafft goufen sinn dës Feeler geschitt:",
 	'multimaps-element-illegal-value' => 'fir de Parameter "$1" gouf en illegale Wäert uginn "$2". Valabel Wäerter sinn: $3',
 	'multimaps-element-more-parameters' => 'Fir dëst Element vun der Kaart "$1" goufe méi Parameter ugi wéi erwaart:',
@@ -272,6 +273,7 @@ $messages['lb'] = array(
 	'multimaps-circle-wrong-number-parameters' => "fir de Krees sollen zwee Parameter definéiert sinn, d'Koordinate vum Zentrum an de Radius. Et {{PLURAL:$1|war awer just ee Parameter|waren awer $1 Parameter}} definéiert",
 	'multimaps-unable-create-element' => 'D\'Element "$1" vun der Kaart kann net gemaach ginn',
 	'multimaps-unable-parse-radius' => 'de Radius vum Krees muss en numeresche Wäert sinn, awer "$1" gouf uginn',
+	'multimaps-unknown-class-for-service' => 'D\'Klass "$1" déi fir de Service definéiert ass kann net fonnt ginn.',
 	'multimaps-unknown-parameter' => 'Onbekannte Parameter: "$1"',
 	'multimaps-method-error-unknown-action' => '$1: Onbekannt Aktioun',
 	'multimaps-method-error-unexpected-result' => '$1: En onerwaart Resultat vun enger Funktioun',
