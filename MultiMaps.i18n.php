@@ -75,7 +75,8 @@ $messages['qqq'] = array(
 	'multimaps-unknown-class-for-service' => 'An error that occurs when the key in array $egMultiMapsServices_showmap is name of unknown class. Parameters:
 * $1 - class name',
 	'multimaps-unknown-parameter' => 'Used as error message. Parameters:
-* $1 - parameter name',
+* $1 - parameter name
+{{Identical|Unknown parameter}}',
 	'multimaps-error-incorrect-class-for-service' => 'An error that occurs when the key in array $egMultiMapsServices_showmap is name of class, which can not be used to display the map. Parameters:
 * $1 - class name',
 	'multimaps-method-error-unknown-action' => 'Error message when passed to function value that it does not expect. Parameters:
