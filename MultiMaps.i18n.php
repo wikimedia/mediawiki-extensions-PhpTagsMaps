@@ -368,6 +368,14 @@ $messages['ru'] = array(
 	'multimaps-method-error-unexpected-result' => '$1: Неожиданный результат функции',
 );
 
+/** Swedish (svenska)
+ * @author Jopparn
+ */
+$messages['sv'] = array(
+	'multimaps-desc' => 'Tillåter användare att visa kartor och samordna data med flera karttjänster',
+	'multimaps-loading-map' => 'Laddar karta ...',
+);
+
 /** Ukrainian (українська)
  * @author Base
  */
