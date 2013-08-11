@@ -377,11 +377,13 @@ $messages['sv'] = array(
 );
 
 /** Ukrainian (українська)
+ * @author Andriykopanytsia
  * @author Base
  */
 $messages['uk'] = array(
 	'multimaps-desc' => 'Дозволяє користувачам відображати карти і дані координат, використовуючи декілька картографічних сервісів',
 	'multimaps-loading-map' => 'Завантаження карти…',
+	'multimaps-mapservices-must-not-empty-array' => 'Змінна "$1" не може бути порожнім масивом',
 	'multimaps-had-following-errors' => 'При обробці переданих параметрів виникли наступні помилки:',
 	'multimaps-element-illegal-value' => 'для параметру «$1» було передано недопустиме значення «$2». Допустимими значеннями є: $3',
 	'multimaps-element-more-parameters' => 'Для цього елементу карти «$1» передано більше параметрів, ніж очікувалось:',
@@ -389,6 +391,7 @@ $messages['uk'] = array(
 	'multimaps-circle-radius-not-defined' => 'для кола повинен бути визначений радіус',
 	'multimaps-circle-wrong-number-parameters' => 'для кола повинно бути визначено лише два параметри, координати центру та радіус. Але вказано {{PLURAL:$1|один параметр|вказано $1 параметри|вказано $1 параметрів}}',
 	'multimaps-marker-incorrect-icon' => 'Для значка маркера вказано неправильну назву файлу «$1»',
+	'multimaps-passed-unavailable-service' => 'Ім\'я служби " $1 " не знайдено у списку доступних служб ($2). Використовується типова служба "$3"',
 	'multimaps-square-wrong-number-points' => 'коорлинати квадрату повинні складатись лише із двох точок, але {{PLURAL:$1|вказана одна точка|вказано $1 точки|вказано $1 точок}}',
 	'multimaps-unable-create-element' => 'Елементи карти «$1» не може бути створено',
 	'multimaps-unable-parse-coordinates' => 'не вдається обробити географічні координати «$1»',
