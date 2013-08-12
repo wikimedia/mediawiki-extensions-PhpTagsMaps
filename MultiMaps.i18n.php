@@ -41,7 +41,7 @@ $messages['en'] = array(
  * @author pastakhov
  */
 $messages['qqq'] = array(
-	'multimaps-desc' => '{{desc|name=MultiMaps|url=http://www.mediawiki.org/wiki/Extension:MultiMaps}}',
+	'multimaps-desc' => '{{desc|name=Multi Maps|url=http://www.mediawiki.org/wiki/Extension:MultiMaps}}',
 	'multimaps-loading-map' => 'The text is displayed instead of the map, and informs that the data needed to display the maps are not loaded yet',
 	'multimaps-mapservices-must-not-empty-array' => 'Error message, Parameters:
 * $1 - variable name',
