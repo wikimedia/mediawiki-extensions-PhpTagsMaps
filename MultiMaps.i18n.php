@@ -340,6 +340,11 @@ $messages['nl'] = array(
  */
 $messages['roa-tara'] = array(
 	'multimaps-loading-map' => "Stoche a careche 'a mappe...",
+	'multimaps-mapservices-must-not-empty-array' => '\'A variabbile "$1" non g\'adda essere \'na matrice vacande',
+	'multimaps-had-following-errors' => 'Quanne agghie analizzate le parametre passate agghie avute ste errore:',
+	'multimaps-element-illegal-value' => 'pu parametre "$1" ha state specificate \'nu valore illegale "$2". Le valore valide sonde: $3',
+	'multimaps-unable-create-element' => 'Elemende d\'a mappe "$1" non ge pò essere ccrejate',
+	'multimaps-unknown-parameter' => 'Parametre scanusciute: "$1"',
 	'multimaps-method-error-unknown-action' => '$1: Azione scanusciute',
 	'multimaps-method-error-unexpected-result' => "$1: 'Nu resultate inaspettate de 'na funzione",
 );
