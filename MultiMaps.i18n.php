@@ -347,6 +347,7 @@ $messages['roa-tara'] = array(
 	'multimaps-element-more-parameters' => 'Pe stu elemende d\'a mappe "$1" passate cchiù parametre de chidde ca s\'aspettave:',
 	'multimaps-element-parameters-not-processed' => 'le parametre seguende non ge onne state processate: $1',
 	'multimaps-circle-radius-not-defined' => "pu cerchie addà essere definite 'u ragge",
+	'multimaps-circle-wrong-number-parameters' => "pu cerchie avessera essere definite sulamende doje parametre, le coordinate d'u cendre e 'u ragge. Ma è specificate {{PLURAL:$1|'nu parametre|$1 parametre}}",
 	'multimaps-unable-create-element' => 'Elemende d\'a mappe "$1" non ge pò essere ccrejate',
 	'multimaps-unknown-parameter' => 'Parametre scanusciute: "$1"',
 	'multimaps-method-error-unknown-action' => '$1: Azione scanusciute',
