@@ -350,6 +350,7 @@ $messages['roa-tara'] = array(
 	'multimaps-circle-wrong-number-parameters' => "pu cerchie avessera essere definite sulamende doje parametre, le coordinate d'u cendre e 'u ragge. Ma è specificate {{PLURAL:$1|'nu parametre|$1 parametre}}",
 	'multimaps-marker-incorrect-icon' => 'Pu marcatore de l\'icone ha state date \'nu nome de file sbagghiate "$1"',
 	'multimaps-unable-create-element' => 'Elemende d\'a mappe "$1" non ge pò essere ccrejate',
+	'multimaps-unable-parse-coordinates' => 'non ge riesche a analizzà le coordinate sciugrafeche "$1"',
 	'multimaps-unknown-parameter' => 'Parametre scanusciute: "$1"',
 	'multimaps-method-error-unknown-action' => '$1: Azione scanusciute',
 	'multimaps-method-error-unexpected-result' => "$1: 'Nu resultate inaspettate de 'na funzione",
