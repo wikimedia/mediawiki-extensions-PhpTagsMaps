@@ -59,7 +59,9 @@ $messages['qqq'] = array(
 * $1 - number of passed parameters (always more than two)',
 	'multimaps-marker-incorrect-icon' => 'Error message, Parameters:
 * $1 - user-specified value',
-	'multimaps-passed-unavailable-service' => 'Informational message warns that the specified service is not available and service is used by default. Parameters:
+	'multimaps-passed-unavailable-service' => 'Informational message warns that the specified service is not available and service is used by default.
+
+Parameters:
 * $1 - user-specified service
 * $2 - comma separated list of available services
 * $3 - name of default service, which is currently in use',
@@ -77,7 +79,9 @@ $messages['qqq'] = array(
 	'multimaps-unknown-parameter' => 'Used as error message. Parameters:
 * $1 - parameter name
 {{Identical|Unknown parameter}}',
-	'multimaps-error-incorrect-class-for-service' => 'An error that occurs when the key in array $egMultiMapsServices_showmap is name of class, which can not be used to display the map. Parameters:
+	'multimaps-error-incorrect-class-for-service' => 'An error that occurs when the key in array $egMultiMapsServices_showmap is name of class, which can not be used to display the map.
+
+Parameters:
 * $1 - class name',
 	'multimaps-method-error-unknown-action' => 'Error message when passed to function value that it does not expect. Parameters:
 * $1 - function name and value',
