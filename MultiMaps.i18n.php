@@ -237,6 +237,15 @@ $messages['gl'] = array(
 	'multimaps-method-error-unexpected-result' => '$1: Resultado inesperado dunha función',
 );
 
+/** Italian (italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'multimaps-unknown-parameter' => 'Parametro sconosciuto: "$1"',
+	'multimaps-error-incorrect-class-for-service' => 'La classe "$1" che è definita per il servizio non può essere usata.',
+	'multimaps-method-error-unknown-action' => '$1: azione sconosciuta',
+);
+
 /** Japanese (日本語)
  * @author Shirayuki
  */
