@@ -25,7 +25,7 @@ class Google extends BaseMapService {
 
 		$urlArgs = array();
 		$urlArgs['sensor'] = 'false';
-		$this->headerItem .= \Html::linkedScript( 'http://maps.googleapis.com/maps/api/js?'.wfArrayToCgi($urlArgs) ) . "\n";
+		$this->headerItem .= \Html::linkedScript( 'https://maps.googleapis.com/maps/api/js?'.wfArrayToCgi($urlArgs) ) . "\n";
 	}
 
 }
