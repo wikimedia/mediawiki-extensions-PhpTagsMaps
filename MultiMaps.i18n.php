@@ -23,6 +23,13 @@ $messages['en'] = array(
 	'multimaps-circle-radius-not-defined' => 'for the circle must be defined radius',
 	'multimaps-circle-wrong-number-parameters' => 'for the circle should be defined only two parameters, the coordinates of the center and the radius. But specified {{PLURAL:$1|one parameter|$1 parameters}}',
 	'multimaps-marker-incorrect-icon' => 'For the icon marker provided an incorrect file name "$1"',
+	'multimaps-marker-incorrect-icon-url' => 'For the icon of marker provided an incorrect url "$1"',
+	'multimaps-marker-incorrect-icon-size' => 'Provided an incorrect size "$1" for the icon of marker "$2"',
+	'multimaps-marker-incorrect-icon-anchor' => 'Provided an incorrect anchor "$1" for the icon of marker "$2"',
+	'multimaps-marker-incorrect-shadow-file' => 'For the shadow of icon provided an incorrect file name "$1"',
+	'multimaps-marker-incorrect-shadow-url' => 'For the shadow of icon provided an incorrect url "$1"',
+	'multimaps-marker-incorrect-shadow-size' => 'Provided an incorrect size "$1" for the shadow of marker "$2"',
+	'multimaps-marker-incorrect-shadow-anchor' => 'Provided an incorrect anchor "$1" for the shadow of marker "$2"',
 	'multimaps-passed-unavailable-service' => 'Service name "$1" not found in the list of available services ($2). Used default service "$3"',
 	'multimaps-square-wrong-number-points' => 'coordinates of the square should contain only two points, but specified {{PLURAL:$1|one point|$1 points}}',
 	'multimaps-unable-create-element' => 'Map element "$1" can not be created',
@@ -59,6 +66,24 @@ $messages['qqq'] = array(
 * $1 - number of passed parameters (always more than two)',
 	'multimaps-marker-incorrect-icon' => 'Error message, Parameters:
 * $1 - user-specified value',
+	'multimaps-marker-incorrect-icon-url' => 'Error message, Parameters:
+* $1 - user-specified value',
+	'multimaps-marker-incorrect-icon-size' => 'Error message, Parameters:
+* $1 - user-specified size of the icon
+* $2 - user-specified value',
+	'multimaps-marker-incorrect-icon-anchor' => 'Error message, Parameters:
+* $1 - user-specified anchor point for the icon
+* $2 - user-specified value',
+	'multimaps-marker-incorrect-shadow-file' => 'Error message, Parameters:
+* $1 - user-specified value',
+	'multimaps-marker-incorrect-shadow-url' => 'Error message, Parameters:
+* $1 - user-specified value',
+	'multimaps-marker-incorrect-shadow-size' => 'Error message, Parameters:
+* $1 - user-specified size of the shadow
+* $2 - user-specified value',
+	'multimaps-marker-incorrect-shadow-anchor' => 'Error message, Parameters:
+* $1 - user-specified anchor point for the shadow
+* $2 - user-specified value',
 	'multimaps-passed-unavailable-service' => 'Informational message warns that the specified service is not available and service is used by default.
 
 Parameters:

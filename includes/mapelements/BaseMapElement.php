@@ -99,16 +99,16 @@ abstract class BaseMapElement {
 	 * @return boolean
 	 */
 	public function setProperty($name, $value) {
-		$name = strtolower($name);
-		$value = trim($value);
+		$name = strtolower( $name );
 
-		if( array_search($name, $this->availableProperties) === false ) {
+		if ( array_search($name, $this->availableProperties) === false ) {
 			return false;
 		}
 
-		if( is_string($value) ) {
-			$this->properties[$name] = htmlspecialchars($value, ENT_NOQUOTES);
-		}else{
+		if ( is_string($value) ) {
+			$value = trim( $value );
+			$this->properties[$name] = htmlspecialchars( $value, ENT_NOQUOTES );
+		} else {
 			$this->properties[$name] = $value;
 		}
 		return true;
