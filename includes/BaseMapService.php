@@ -475,8 +475,25 @@ abstract class BaseMapService {
 				break;
 			case 'icon':
 				$marker = new Marker();
-				if( $marker->setProperty('icon', $value) ) {
-					$this->properties['icon'] = $marker->icon;
+				if ( $marker->setProperty('icon', $value) ) {
+					if ( $marker->icon !== null ) {
+						$this->properties['icon'] = $marker->icon;
+					}
+					if ( $marker->size !== null ) {
+						$this->properties['icon_size'] = $marker->size;
+					}
+					if ( $marker->anchor !== null ) {
+						$this->properties['icon_anchor'] = $marker->anchor;
+					}
+					if ( $marker->shadow !== null ) {
+						$this->properties['icon_shadow'] = $marker->shadow;
+					}
+					if ( $marker->sh_size !== null ) {
+						$this->properties['icon_sh_size'] = $marker->sh_size;
+					}
+					if ( $marker->sh_anchor !== null ) {
+						$this->properties['icon_sh_anchor'] = $marker->sh_anchor;
+					}
 				} else {
 					$this->errormessages = array_merge( $this->errormessages, $marker->getErrorMessages() );
 				}
