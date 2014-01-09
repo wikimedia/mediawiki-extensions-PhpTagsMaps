@@ -173,6 +173,13 @@ $messages['de'] = array(
 	'multimaps-circle-radius-not-defined' => 'Für den Kreis muss ein Radius angegeben werden.',
 	'multimaps-circle-wrong-number-parameters' => 'Für den Kreis sollten nur zwei Parameter angegeben werden: Die Koordinaten des Mittelpunkts und der Radius. Du hast jedoch {{PLURAL:$1|nur einen|$1}} Parameter angegeben.',
 	'multimaps-marker-incorrect-icon' => 'Für die Markierung wurde ein falscher Dateiname „$1“ angegeben',
+	'multimaps-marker-incorrect-icon-url' => 'Es wurde eine falsche URL „$1“ für die Markierung angegeben.',
+	'multimaps-marker-incorrect-icon-size' => 'Es wurde eine falsche Größe „$1“ für die Markierung „$2“ angegeben.',
+	'multimaps-marker-incorrect-icon-anchor' => 'Es wurde ein falscher Anker „$1“ für die Markierung „$2“ angegeben.',
+	'multimaps-marker-incorrect-shadow-file' => 'Es wurde ein falscher Dateiname „$1“ für den Symbolschatten angegeben.',
+	'multimaps-marker-incorrect-shadow-url' => 'Es wurde eine falsche URL „$1“ für den Symbolschatten angegeben.',
+	'multimaps-marker-incorrect-shadow-size' => 'Es wurde eine falsche Größe „$1“ für den Symbolschatten „$2“ angegeben.',
+	'multimaps-marker-incorrect-shadow-anchor' => 'Es wurde ein falscher Anker „$1“ für den Symbolschatten „$2“ angegeben.',
 	'multimaps-passed-unavailable-service' => 'Der Dienstname „$1“ wurde nicht in der Liste der verfügbaren Dienste gefunden ($2). Es wird der Standarddienst „$3“ verwendet.',
 	'multimaps-square-wrong-number-points' => 'Die Koordinaten des Platzes sollten nur zwei Punkte enthalten. Du hast jedoch {{PLURAL:$1|einen Punkt|$1 Punkte}} angegeben.',
 	'multimaps-unable-create-element' => 'Das Kartenelement „$1“ kann nicht erstellt werden',
@@ -210,6 +217,7 @@ $messages['fi'] = array(
 
 /** French (français)
  * @author Gomoko
+ * @author Manohisoa
  */
 $messages['fr'] = array(
 	'multimaps-desc' => 'Permet aux utilisateurs d’afficher des cartes et des données localisées en utilisant divers services cartographiques',
@@ -222,6 +230,11 @@ $messages['fr'] = array(
 	'multimaps-circle-radius-not-defined' => 'pour le cercle, le rayon doit être défini',
 	'multimaps-circle-wrong-number-parameters' => 'pour le cercle, seuls deux paramètres devraient être définis, les coordonnées du centre et le rayon. Mais {{PLURAL:$1|un seul paramètre a été spécifié|$1 paramètres ont été spécifiés}}',
 	'multimaps-marker-incorrect-icon' => 'Un nom de fichier "$1" incorrect a été fourni pour l’icône du marqueur',
+	'multimaps-marker-incorrect-icon-url' => 'Une adresse URL incorrecte " $1 " a été attribuée à l\'icône de marqueur.',
+	'multimaps-marker-incorrect-icon-size' => 'Une taille incorrecte "$1" a été attribuée à l\'icône de marqueur "$2".',
+	'multimaps-marker-incorrect-icon-anchor' => 'Une ancre incorrecte "$1" a été attribuée à l\'icône de marqueur "$2"',
+	'multimaps-marker-incorrect-shadow-file' => 'Un nom de fichier incorrect "$1" a été attribué à l\'ombre des icônes.',
+	'multimaps-marker-incorrect-shadow-size' => 'Une taille incorrecte "$1" a été attribuée à l\'ombre de l\'icône "$2".',
 	'multimaps-passed-unavailable-service' => 'Nom de service "$1" non trouvé dans la liste des services disponibles ($2). Service par défaut "$3" utilisé',
 	'multimaps-square-wrong-number-points' => 'les coordonnées de la zone ne devraient contenir que deux points, mais {{PLURAL:$1|un point a été spécifié|$1 points ont été spécifiés}}',
 	'multimaps-unable-create-element' => 'L’élément de carte "$1" ne peut pas être créé.',
