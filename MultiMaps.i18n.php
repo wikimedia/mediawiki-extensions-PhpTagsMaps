@@ -64,26 +64,34 @@ $messages['qqq'] = array(
 	'multimaps-circle-radius-not-defined' => 'Error message, when for circle (map element) not defined radius',
 	'multimaps-circle-wrong-number-parameters' => 'Error message, when for circle defined too many parameters. Parameters:
 * $1 - number of passed parameters (always more than two)',
-	'multimaps-marker-incorrect-icon' => 'Error message, Parameters:
-* $1 - user-specified value',
-	'multimaps-marker-incorrect-icon-url' => 'Error message, Parameters:
-* $1 - user-specified value',
-	'multimaps-marker-incorrect-icon-size' => 'Error message, Parameters:
+	'multimaps-marker-incorrect-icon' => 'Error message. Parameters:
+* $1 - user-specified value
+{{Related|Multimaps-marker-incorrect}}',
+	'multimaps-marker-incorrect-icon-url' => 'Error message. Parameters:
+* $1 - user-specified value
+{{Related|Multimaps-marker-incorrect}}',
+	'multimaps-marker-incorrect-icon-size' => 'Error message. Parameters:
 * $1 - user-specified size of the icon
-* $2 - user-specified value',
-	'multimaps-marker-incorrect-icon-anchor' => 'Error message, Parameters:
+* $2 - user-specified value
+{{Related|Multimaps-marker-incorrect}}',
+	'multimaps-marker-incorrect-icon-anchor' => 'Error message. Parameters:
 * $1 - user-specified anchor point for the icon
-* $2 - user-specified value',
-	'multimaps-marker-incorrect-shadow-file' => 'Error message, Parameters:
-* $1 - user-specified value',
-	'multimaps-marker-incorrect-shadow-url' => 'Error message, Parameters:
-* $1 - user-specified value',
-	'multimaps-marker-incorrect-shadow-size' => 'Error message, Parameters:
+* $2 - user-specified value
+{{Related|Multimaps-marker-incorrect}}',
+	'multimaps-marker-incorrect-shadow-file' => 'Error message. Parameters:
+* $1 - user-specified value
+{{Related|Multimaps-marker-incorrect}}',
+	'multimaps-marker-incorrect-shadow-url' => 'Error message. Parameters:
+* $1 - user-specified value
+{{Related|Multimaps-marker-incorrect}}',
+	'multimaps-marker-incorrect-shadow-size' => 'Error message. Parameters:
 * $1 - user-specified size of the shadow
-* $2 - user-specified value',
-	'multimaps-marker-incorrect-shadow-anchor' => 'Error message, Parameters:
+* $2 - user-specified value
+{{Related|Multimaps-marker-incorrect}}',
+	'multimaps-marker-incorrect-shadow-anchor' => 'Error message. Parameters:
 * $1 - user-specified anchor point for the shadow
-* $2 - user-specified value',
+* $2 - user-specified value
+{{Related|Multimaps-marker-incorrect}}',
 	'multimaps-passed-unavailable-service' => 'Informational message warns that the specified service is not available and service is used by default.
 
 Parameters:
@@ -136,6 +144,13 @@ $messages['ast'] = array(
 	'multimaps-circle-radius-not-defined' => 'hai que definir un radiu pal círculu',
 	'multimaps-circle-wrong-number-parameters' => "pal círculu hai que definir namái dos parámetros, les coordenaes del centru ya'l radiu. Pero {{PLURAL:$1|especificose un parámetru|especificáronse $1 parámetros}}",
 	'multimaps-marker-incorrect-icon' => 'Diose un nome de ficheru incorreutu "$1" pal iconu de marcador',
+	'multimaps-marker-incorrect-icon-url' => 'Dióse una URL incorreuta "$1" pal iconu del marcador.',
+	'multimaps-marker-incorrect-icon-size' => 'Dióse un tamañu incorreutu "$1" pal iconu del marcador "$2".',
+	'multimaps-marker-incorrect-icon-anchor' => 'Dióse un ancla incorreuta "$1" pal iconu del marcador "$2".',
+	'multimaps-marker-incorrect-shadow-file' => 'Dióse un nome de ficheru incorreutu "$1" pa la solombra del iconu.',
+	'multimaps-marker-incorrect-shadow-url' => 'Dióse una URL incorreuta "$1" pa la solombra del iconu.',
+	'multimaps-marker-incorrect-shadow-size' => 'Dióse un tamañu incorreutu "$1" pa la solombra del iconu "$2".',
+	'multimaps-marker-incorrect-shadow-anchor' => 'Dióse un ancla incorreuta "$1" pa la solombra del iconu "$2".',
 	'multimaps-passed-unavailable-service' => 'Nun s\'alcontró\'l nome del serviciu "$1" na llista de servicios disponibles ($2). Úsose\'l serviciu predetermináu "$3"',
 	'multimaps-square-wrong-number-points' => 'les coordenaes del cuadráu tienen de contener namái dos puntos, pero {{PLURAL:$1|diose un puntu|dieronse $1 puntos}}',
 	'multimaps-unable-create-element' => 'Nun pue crease l\'elementu del mapa "$1"',
@@ -202,10 +217,13 @@ $messages['en-gb'] = array(
 
 /** Spanish (español)
  * @author Fitoschido
+ * @author Salvador alc
  */
 $messages['es'] = array(
 	'multimaps-loading-map' => 'Cargando el mapa…',
 	'multimaps-mapservices-must-not-empty-array' => 'La variable «$1» no debe ser una matriz vacía',
+	'multimaps-marker-incorrect-icon-url' => 'Una dirección URL incorrecta "$1" fue proporcionada por el icono de marcador.',
+	'multimaps-marker-incorrect-icon-anchor' => 'Un ancla incorrecto " $1 "fue proporcionado por el icono marcador" $2 ".',
 );
 
 /** Finnish (suomi)
@@ -234,7 +252,9 @@ $messages['fr'] = array(
 	'multimaps-marker-incorrect-icon-size' => 'Une taille incorrecte "$1" a été attribuée à l\'icône de marqueur "$2".',
 	'multimaps-marker-incorrect-icon-anchor' => 'Une ancre incorrecte "$1" a été attribuée à l\'icône de marqueur "$2"',
 	'multimaps-marker-incorrect-shadow-file' => 'Un nom de fichier incorrect "$1" a été attribué à l\'ombre des icônes.',
+	'multimaps-marker-incorrect-shadow-url' => 'Une URL incorrecte, « $1 », a été fournie pour l’ombre de l’icône.',
 	'multimaps-marker-incorrect-shadow-size' => 'Une taille incorrecte "$1" a été attribuée à l\'ombre de l\'icône "$2".',
+	'multimaps-marker-incorrect-shadow-anchor' => 'Une ancre incorrecte, « $1 », a été fournie pour l’ombre de l’icône « $2 ».',
 	'multimaps-passed-unavailable-service' => 'Nom de service "$1" non trouvé dans la liste des services disponibles ($2). Service par défaut "$3" utilisé',
 	'multimaps-square-wrong-number-points' => 'les coordonnées de la zone ne devraient contenir que deux points, mais {{PLURAL:$1|un point a été spécifié|$1 points ont été spécifiés}}',
 	'multimaps-unable-create-element' => 'L’élément de carte "$1" ne peut pas être créé.',
@@ -308,7 +328,14 @@ $messages['ja'] = array(
 	'multimaps-element-parameters-not-processed' => '以下のパラメーターを処理できませんでした: $1',
 	'multimaps-circle-radius-not-defined' => '円の半径を指定する必要があります',
 	'multimaps-circle-wrong-number-parameters' => '円には、中心の緯度経度と半径の 2 個のパラメーターのみを指定できますが、{{PLURAL:$1|$1 個のパラメーター}}を指定しました。',
-	'multimaps-marker-incorrect-icon' => 'アイコンマーカーとして無効なファイル名「$1」を指定しました',
+	'multimaps-marker-incorrect-icon' => 'マーカー アイコンとして指定したファイル名「$1」が正しくありません。',
+	'multimaps-marker-incorrect-icon-url' => 'マーカー アイコンとして指定した URL「$1」が正しくありません。',
+	'multimaps-marker-incorrect-icon-size' => 'マーカー アイコン「$2」に指定したサイズ「$1」が正しくありません。',
+	'multimaps-marker-incorrect-icon-anchor' => 'マーカー アイコン「$2」に指定したアンカー「$1」が正しくありません。',
+	'multimaps-marker-incorrect-shadow-file' => 'アイコンの影として指定したファイル名「$1」が正しくありません。',
+	'multimaps-marker-incorrect-shadow-url' => 'アイコンの影として指定した URL「$1」が正しくありません。',
+	'multimaps-marker-incorrect-shadow-size' => 'アイコンの影「$2」に指定したサイズ「$1」が正しくありません。',
+	'multimaps-marker-incorrect-shadow-anchor' => 'アイコンの影「$2」に指定したアンカー「$1」が正しくありません。',
 	'multimaps-passed-unavailable-service' => 'サービス名「$1」は、利用できるサービス ($2) 内にありません。既定のサービス「$3」を使用します',
 	'multimaps-square-wrong-number-points' => '四角形の緯度経度として 2 地点を指定すべきですが、{{PLURAL:$1|$1 地点}}を指定しました',
 	'multimaps-unable-create-element' => '地図要素「$1」を作成できません',
@@ -356,6 +383,13 @@ $messages['mk'] = array(
 	'multimaps-circle-radius-not-defined' => 'на кружницата мора да ѝ зададе радиус',
 	'multimaps-circle-wrong-number-parameters' => 'на кружницата мора да ѝ зададат барем два параметра - координатите на центарот и радиусот. Меѓутоа, зададени се {{PLURAL:$1|зададен е $1 параметар|зададени се $1 параметри}}',
 	'multimaps-marker-incorrect-icon' => 'Зададено е погрешно податотечно име „$1“ на иконата за обележување',
+	'multimaps-marker-incorrect-icon-url' => 'Укажана е неисправната URL „$1“ за иконата на бележникот.',
+	'multimaps-marker-incorrect-icon-size' => 'Укажана е неисправната големина „$1“ за иконата на бележникот „$2“.',
+	'multimaps-marker-incorrect-icon-anchor' => 'Укажана е неисправната котва „$1“ за иконата на бележникот „$2“.',
+	'multimaps-marker-incorrect-shadow-file' => 'Укажано е неисправното податотечно име „$1“ за сенката на иконата.',
+	'multimaps-marker-incorrect-shadow-url' => 'Укажана е неисправната URL „$1“ за сенката на иконата.',
+	'multimaps-marker-incorrect-shadow-size' => 'Укажана е неисправната големина „$1“ за сенката на иконата „$2“.',
+	'multimaps-marker-incorrect-shadow-anchor' => 'Укажана е неисправната котва „$1“ за сенката на иконата „$2“.',
 	'multimaps-passed-unavailable-service' => 'Во списокот на расположиви служби ($2) не најдов таква со име „$1“. Ја употребив основно-зададената служба „$3“',
 	'multimaps-square-wrong-number-points' => 'координатите на полето треба да содржат само две точки, но {{PLURAL:$1|укажана е само една|укажани се $1}}',
 	'multimaps-unable-create-element' => 'Не можам да го создадам елементот „$1“',
@@ -476,6 +510,13 @@ $messages['uk'] = array(
 	'multimaps-circle-radius-not-defined' => 'для кола повинен бути визначений радіус',
 	'multimaps-circle-wrong-number-parameters' => 'для кола повинно бути визначено лише два параметри, координати центру та радіус. Але вказано {{PLURAL:$1|один параметр|вказано $1 параметри|вказано $1 параметрів}}',
 	'multimaps-marker-incorrect-icon' => 'Для значка маркера вказано неправильну назву файлу «$1»',
+	'multimaps-marker-incorrect-icon-url' => 'Неправильна адреса "$1" надано для піктограми маркера.',
+	'multimaps-marker-incorrect-icon-size' => 'Неправильний розмір "$1" наданий для піктограми маркера "$2".',
+	'multimaps-marker-incorrect-icon-anchor' => 'Неправильний якір "$1" наданий для піктограми маркера "$2".',
+	'multimaps-marker-incorrect-shadow-file' => 'Неправильне ім\'я файлу "$1" надане для тіні піктограми.',
+	'multimaps-marker-incorrect-shadow-url' => 'Неправильна адреса "$1" надано для тіні піктограми.',
+	'multimaps-marker-incorrect-shadow-size' => 'Неправильний розмір "$1" наданий для тіні піктограми"$2".',
+	'multimaps-marker-incorrect-shadow-anchor' => 'Неправильний якір "$1" наданий для тіні піктограми "$2".',
 	'multimaps-passed-unavailable-service' => 'Ім\'я служби " $1 " не знайдено у списку доступних служб ($2). Використовується типова служба "$3"',
 	'multimaps-square-wrong-number-points' => 'коорлинати квадрату повинні складатись лише із двох точок, але {{PLURAL:$1|вказана одна точка|вказано $1 точки|вказано $1 точок}}',
 	'multimaps-unable-create-element' => 'Елементи карти «$1» не може бути створено',
