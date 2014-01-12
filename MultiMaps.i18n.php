@@ -226,6 +226,14 @@ $messages['es'] = array(
 	'multimaps-marker-incorrect-icon-anchor' => 'Un ancla incorrecto " $1 "fue proporcionado por el icono marcador" $2 ".',
 );
 
+/** Persian (فارسی)
+ * @author Armin1392
+ */
+$messages['fa'] = array(
+	'multimaps-unknown-parameter' => 'پارامتر ناشناخته: "$1"',
+	'multimaps-method-error-unknown-action' => '$1: عمل ناشناخته',
+);
+
 /** Finnish (suomi)
  * @author Silvonen
  */
