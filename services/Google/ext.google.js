@@ -218,9 +218,9 @@ mediaWiki.MultiMapsGoogle = {
 		} else {
 			if (options.center) {
 				map.setCenter(new google.maps.LatLng(options.center.lat, options.center.lon));
-				map.setZoom(options.zoom);
+				map.setZoom(parseInt(options.zoom,10));
 			} else if (options.zoom) {
-				map.setZoom(options.zoom);
+				map.setZoom(parseInt(options.zoom,10));
 			}
 		}
 	}
