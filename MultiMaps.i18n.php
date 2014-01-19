@@ -370,6 +370,15 @@ $messages['ja'] = array(
 	'multimaps-method-error-unexpected-result' => '$1: 関数が予期しない結果を返しました',
 );
 
+/** Korean (한국어)
+ * @author Priviet
+ */
+$messages['ko'] = array(
+	'multimaps-loading-map' => '지도를 불러오는 중...',
+	'multimaps-mapservices-must-not-empty-array' => '"$1" 변수가 빈 배열이 아니여야 합니다.',
+	'multimaps-unknown-parameter' => '알 수 없는 매개변수: "$1"',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
