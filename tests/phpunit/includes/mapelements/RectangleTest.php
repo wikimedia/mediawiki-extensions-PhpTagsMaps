@@ -25,7 +25,6 @@ class RectangleTest extends \PHPUnit\Framework\TestCase {
 	 * This method is called after a test is executed.
 	 */
 	protected function tearDown() {
-
 	}
 
 	/**
@@ -33,9 +32,9 @@ class RectangleTest extends \PHPUnit\Framework\TestCase {
 	 */
 	public function testGetElementName() {
 		$this->assertEquals(
-				$this->object->getElementName(),
-				'Rectangle'
-				);
+			$this->object->getElementName(),
+			'Rectangle'
+		);
 	}
 
 	/**
@@ -43,8 +42,8 @@ class RectangleTest extends \PHPUnit\Framework\TestCase {
 	 */
 	public function testParseCoordinates() {
 		$this->assertEquals(
-				$this->object->getElementName(),
-				'Rectangle'
-				);
+			$this->object->getElementName(),
+			'Rectangle'
+		);
 	}
 }

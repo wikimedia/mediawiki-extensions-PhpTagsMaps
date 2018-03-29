@@ -7,7 +7,7 @@ namespace MultiMaps;
  * @file Marker.php
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
- * @licence GNU General Public Licence 2.0 or later
+ * @license GNU General Public Licence 2.0 or later
  * @property string $icon Icon URL of marker
  * @property array $size Size of icon
  * @property array $anchor Anchor of icon
@@ -21,9 +21,9 @@ class Marker extends BaseMapElement {
 		parent::__construct();
 
 		$this->availableProperties = array_merge(
-				$this->availableProperties,
-				array( 'icon' )
-				);
+			$this->availableProperties,
+			[ 'icon' ]
+		);
 	}
 
 	/**
@@ -31,27 +31,27 @@ class Marker extends BaseMapElement {
 	 * return string Element name
 	 */
 	public function getElementName() {
-		return 'Marker'; //TODO i18n?
+		return 'Marker'; // TODO i18n?
 	}
 
-	public function setProperty($name, $value) {
+	public function setProperty( $name, $value ) {
 		global $egMultiMaps_CoordinatesSeparator, $egMultiMaps_OptionsSeparator;
 
-		if ( strtolower($name) != 'icon' ) {
+		if ( strtolower( $name ) != 'icon' ) {
 			return parent::setProperty( $name, $value );
 		}
 
 		// Explode icon, it containt 'icon', 'size', 'anchor', 'shadow', 'sh_size', 'sh_anchor'
 		$properties = array_map(
-				'trim',
-				explode( $egMultiMaps_CoordinatesSeparator, $value )
-			);
+			'trim',
+			explode( $egMultiMaps_CoordinatesSeparator, $value )
+		);
 
 		// Icon URL
-		if ( !empty($properties[0]) ) {
+		if ( !empty( $properties[0] ) ) {
 			$v = $properties[0];
 			if ( $v[0] == '/' && $GLOBALS['egMultiMaps_IconAllowFromDirectory'] === true ) {
-				if ( preg_match('#[^0-9a-zA-Zа-яА-Я./_=\+\-]#', $v) || preg_match('#/../#', $v) ) {
+				if ( preg_match( '#[^0-9a-zA-Zа-яА-Я./_=\+\-]#', $v ) || preg_match( '#/../#', $v ) ) {
 					$this->errormessages[] = \wfMessage( 'multimaps-marker-incorrect-icon-url', $v )->escaped();
 					return false;
 				}
@@ -70,12 +70,12 @@ class Marker extends BaseMapElement {
 		}
 
 		// Icon size
-		if ( !empty($properties[1]) ) {
+		if ( !empty( $properties[1] ) ) {
 			$v = array_map(
-					'intval',
-					explode($egMultiMaps_OptionsSeparator, $properties[1])
-				);
-			if ( count($v) != 2) {
+				'intval',
+				explode( $egMultiMaps_OptionsSeparator, $properties[1] )
+			);
+			if ( count( $v ) != 2 ) {
 				$this->errormessages[] = \wfMessage( 'multimaps-marker-incorrect-icon-size', $v, $value )->escaped();
 				return false;
 			}
@@ -83,12 +83,12 @@ class Marker extends BaseMapElement {
 		}
 
 		// Icon anchor
-		if ( !empty($properties[2]) ) {
+		if ( !empty( $properties[2] ) ) {
 			$v = array_map(
-					'intval',
-					explode($egMultiMaps_OptionsSeparator, $properties[2])
-				);
-			if ( count($v) != 2) {
+				'intval',
+				explode( $egMultiMaps_OptionsSeparator, $properties[2] )
+			);
+			if ( count( $v ) != 2 ) {
 				$this->errormessages[] = \wfMessage( 'multimaps-marker-incorrect-icon-anchor', $v, $value )->escaped();
 				return false;
 			}
@@ -96,10 +96,10 @@ class Marker extends BaseMapElement {
 		}
 
 		// Shadow URL
-		if ( !empty($properties[3]) ) {
+		if ( !empty( $properties[3] ) ) {
 			$v = $properties[3];
 			if ( $v[0] == '/' && $GLOBALS['egMultiMaps_IconAllowFromDirectory'] === true ) {
-				if ( preg_match('#[^0-9a-zA-Zа-яА-Я./_=\+\-]#', $v) || preg_match('#/../#', $v) ) {
+				if ( preg_match( '#[^0-9a-zA-Zа-яА-Я./_=\+\-]#', $v ) || preg_match( '#/../#', $v ) ) {
 					$this->errormessages[] = \wfMessage( 'multimaps-marker-incorrect-shadow-url', $v )->escaped();
 					return false;
 				}
@@ -118,12 +118,12 @@ class Marker extends BaseMapElement {
 		}
 
 		// Shadow size
-		if ( !empty($properties[4]) ) {
+		if ( !empty( $properties[4] ) ) {
 			$v = array_map(
-					'intval',
-					explode($egMultiMaps_OptionsSeparator, $properties[4])
-				);
-			if ( count($v) != 2) {
+				'intval',
+				explode( $egMultiMaps_OptionsSeparator, $properties[4] )
+			);
+			if ( count( $v ) != 2 ) {
 				$this->errormessages[] = \wfMessage( 'multimaps-marker-incorrect-shadow-size', $v, $value )->escaped();
 				return false;
 			}
@@ -131,12 +131,12 @@ class Marker extends BaseMapElement {
 		}
 
 		// Shadow anchor
-		if ( !empty($properties[5]) ) {
+		if ( !empty( $properties[5] ) ) {
 			$v = array_map(
-					'intval',
-					explode($egMultiMaps_OptionsSeparator, $properties[5])
-				);
-			if ( count($v) != 2) {
+				'intval',
+				explode( $egMultiMaps_OptionsSeparator, $properties[5] )
+			);
+			if ( count( $v ) != 2 ) {
 				$this->errormessages[] = \wfMessage( 'multimaps-marker-incorrect-shadow-anchor', $v, $value )->escaped();
 				return false;
 			}

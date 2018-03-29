@@ -1,5 +1,6 @@
 <?php
 namespace MultiMaps;
+
 /**
  * This groupe contains all Google related files of the MultiMaps extension.
  *
@@ -13,20 +14,20 @@ namespace MultiMaps;
  * @file Google.php
  * @ingroup Google
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @author Pavel Astakhov < pastakhov@yandex.ru >
  */
 class Google extends BaseMapService {
 
 	function __construct() {
 		parent::__construct();
-		$this->classname="google";
+		$this->classname = "google";
 		$this->resourceModules[] = 'ext.MultiMaps.Google';
 
-		$urlArgs = array();
+		$urlArgs = [];
 		$urlArgs['sensor'] = 'false';
 		$urlArgs['v'] = '3.10';
-		$this->headerItem .= \Html::linkedScript( 'https://maps.googleapis.com/maps/api/js?'.wfArrayToCgi($urlArgs) ) . "\n";
+		$this->headerItem .= \Html::linkedScript( 'https://maps.googleapis.com/maps/api/js?'.wfArrayToCgi( $urlArgs ) ) . "\n";
 	}
 
 }

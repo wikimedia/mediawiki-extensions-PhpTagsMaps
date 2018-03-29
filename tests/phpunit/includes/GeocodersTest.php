@@ -25,16 +25,15 @@ class GeocodersTest extends \PHPUnit\Framework\TestCase {
 	 * This method is called after a test is executed.
 	 */
 	protected function tearDown() {
-
 	}
 
 	public function testReturnFalseOnUnknownService() {
 		$this->assertFalse(
-				$this->object->getCoordinates('', '')
-				);
+			$this->object->getCoordinates( '', '' )
+		);
 		$this->assertFalse(
-				$this->object->getCoordinates('', 'blablabla')
-				);
+			$this->object->getCoordinates( '', 'blablabla' )
+		);
 	}
 
 }
