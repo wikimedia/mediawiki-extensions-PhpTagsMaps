@@ -7,7 +7,7 @@ namespace MultiMaps;
  * @file Marker.php
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
- * @license GNU General Public Licence 2.0 or later
+ * @license GPL-2.0-or-later
  * @property string $icon Icon URL of marker
  * @property array $size Size of icon
  * @property array $anchor Anchor of icon

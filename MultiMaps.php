@@ -7,7 +7,7 @@
  * @defgroup MultiMaps
  * @ingroup Extensions
  * @author Pavel Astakhov <pastakhov@yandex.ru>
- * @license GNU General Public Licence 2.0 or later
+ * @license GPL-2.0-or-later
  */
 
 // Check to see if we are being called as an extension or directly

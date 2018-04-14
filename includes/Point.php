@@ -7,7 +7,7 @@ namespace MultiMaps;
  * @file Bounds.php
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
- * @license GNU General Public Licence 2.0 or later
+ * @license GPL-2.0-or-later
  * @property-read float $lat Latitude coordinate
  * @property-read float $lon Longitude coordinate
  * @property Bounds $bounds Bounds associated with the point, used in the geocoding

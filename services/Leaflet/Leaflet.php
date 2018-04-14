@@ -14,7 +14,7 @@ namespace MultiMaps;
  * @file Leaflet.php
  * @ingroup Leaflet
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author Pavel Astakhov < pastakhov@yandex.ru >
  */
 class Leaflet extends BaseMapService {

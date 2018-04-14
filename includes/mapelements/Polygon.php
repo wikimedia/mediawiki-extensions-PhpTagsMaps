@@ -7,7 +7,7 @@ namespace MultiMaps;
  * @file Polygon.php
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
- * @license GNU General Public Licence 2.0 or later
+ * @license GPL-2.0-or-later
  * @property boolean $fill
  * @property string $fillcolor
  * @property string $fillopacity

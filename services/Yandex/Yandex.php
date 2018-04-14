@@ -14,7 +14,7 @@ namespace MultiMaps;
  * @file Google.php
  * @ingroup Google
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author Pavel Astakhov < pastakhov@yandex.ru >
  */
 class Yandex extends BaseMapService {

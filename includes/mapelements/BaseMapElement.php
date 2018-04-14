@@ -7,7 +7,7 @@ namespace MultiMaps;
  * @file BaseService.php
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
- * @license GNU General Public Licence 2.0 or later
+ * @license GPL-2.0-or-later
  * @property-read array $pos Array of geographic coordinates
  * @property string $title Title of element
  * @property string $text Popup text of element
@@ -50,10 +50,6 @@ abstract class BaseMapElement {
 	 */
 	abstract public function getElementName();
 
-	/**
-	 * Constructor
-	 * @param string $string Parse this string if sets
-	 */
 	function __construct() {
 		$this->availableProperties = [
 			'title',

@@ -7,7 +7,7 @@ namespace MultiMaps;
  * @file Geocoders.php
  * @ingroup MultiMaps
  * @author Pavel Astakhov <pastakhov@yandex.ru>
- * @license GNU General Public Licence 2.0 or later
+ * @license GPL-2.0-or-later
  */
 
 class Geocoders {
