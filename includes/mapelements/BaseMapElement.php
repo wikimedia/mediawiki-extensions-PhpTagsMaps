@@ -126,7 +126,7 @@ abstract class BaseMapElement {
 	 * Filling properties of the object according to the obtained data
 	 * @global string $egMultiMaps_DelimiterParam
 	 * @param string $param
-	 * @param string $service Name of map service
+	 * @param string|null $service Name of map service
 	 * @return bool returns false if there were errors during parsing, it does not mean that the item was not added. Check with isValid()
 	 */
 	public function parse( $param, $service = null ) {
@@ -151,7 +151,7 @@ abstract class BaseMapElement {
 	 * Filling property 'coordinates'
 	 * @global string $egMultiMaps_CoordinatesSeparator
 	 * @param string $coordinates
-	 * @param string $service Name of map service
+	 * @param string|null $service Name of map service
 	 * @return bool
 	 */
 	protected function parseCoordinates( $coordinates, $service = null ) {
