@@ -214,7 +214,7 @@ abstract class BaseMapElement {
 		while ( $value = next( $param ) ) {
 			$notprocessed[] = $value;
 		}
-		$this->errormessages[] = \wfMessage( 'multimaps-element-parameters-not-processed', '"'.implode( '", "', $notprocessed ).'"' )->escaped();
+		$this->errormessages[] = \wfMessage( 'multimaps-element-parameters-not-processed', '"' . implode( '", "', $notprocessed ) . '"' )->escaped();
 		return false;
 	}
 

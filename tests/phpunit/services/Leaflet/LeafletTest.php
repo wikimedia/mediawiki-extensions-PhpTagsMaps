@@ -319,7 +319,7 @@ class LeafletTest extends \PHPUnit\Framework\TestCase {
 			$this->object->getErrorMessages(),
 			[
 				\wfMessage( 'multimaps-element-more-parameters', $marker->getElementName() )->escaped(),
-				\wfMessage( 'multimaps-element-parameters-not-processed', '"'.implode( '", "', [ ' ', 'Berlin' ] ).'"' )->escaped(),
+				\wfMessage( 'multimaps-element-parameters-not-processed', '"' . implode( '", "', [ ' ', 'Berlin' ] ) . '"' )->escaped(),
 			]
 		);
 	}

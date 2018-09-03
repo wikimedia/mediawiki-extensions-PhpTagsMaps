@@ -167,7 +167,7 @@ abstract class BaseMapService {
 				'div',
 				[
 					'id' => 'multimaps_map' . $mapid++,
-					'style' => 'width:'.htmlspecialchars( $this->width ).'; height:'.htmlspecialchars( $this->height ).';',
+					'style' => 'width:' . htmlspecialchars( $this->width ) . '; height:' . htmlspecialchars( $this->height ) . ';',
 					'class' => 'multimaps-map' . ( $this->classname != '' ? " multimaps-map-$this->classname" : '' ),
 					],
 				\Html::element( 'p', [], \wfMessage( 'multimaps-loading-map' )->escaped() ) .
