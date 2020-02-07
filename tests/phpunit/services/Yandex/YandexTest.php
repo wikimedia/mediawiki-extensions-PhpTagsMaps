@@ -14,6 +14,8 @@ class YandexTest extends \PHPUnit\Framework\TestCase {
 	 * This method is called before a test is executed.
 	 */
 	protected function setUp() : void {
+		$this->markTestSkipped( 'It looks like this API does not even exist any more' );
+
 		$this->object = new Yandex;
 	}
 
