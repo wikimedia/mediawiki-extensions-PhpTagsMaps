@@ -13,7 +13,7 @@ class MultiMaps {
 	/**
 	 * Render map on wikipage using appropriate service class
 	 *
-	 * @param Parser $parser
+	 * @param Parser &$parser
 	 * @return string
 	 */
 	public static function renderParserFunction_showmap( Parser &$parser ) {
