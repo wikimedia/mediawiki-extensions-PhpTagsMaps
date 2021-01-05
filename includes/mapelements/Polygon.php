@@ -68,15 +68,12 @@ class Polygon extends Line {
 					$this->errormessages[] = \wfMessage( 'multimaps-element-illegal-value', $name, $value, '"' . implode( '", "', self::getPropertyValidValues( $name ) ) . '"' )->escaped();
 					return false;
 				}
-				break;
 			case 'fillcolor':
 			case 'fillopacity':
 				$this->fill = true;
 				return parent::setProperty( $name, $value );
-				break;
 			default:
 				return parent::setProperty( $name, $value );
-				break;
 		}
 	}
 
@@ -92,7 +89,6 @@ class Polygon extends Line {
 		switch ( $name ) {
 			case 'fill':
 				return array_merge( self::$fill_true, self::$fill_false );
-				break;
 		}
 	}
 

@@ -97,10 +97,8 @@ class Circle extends Polygon {
 		switch ( $name ) {
 			case 'radiuses':
 				return $this->radiuses;
-				break;
 			default:
 				return parent::getProperty( $name );
-				break;
 		}
 	}
 

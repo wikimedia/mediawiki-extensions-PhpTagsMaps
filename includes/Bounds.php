@@ -122,16 +122,12 @@ class Bounds {
 		switch ( $name ) {
 			case 'ne':
 				return $this->northEast;
-				break;
 			case 'sw':
 				return $this->southWest;
-				break;
 			case 'center':
 				return $this->getCenter();
-				break;
 			case 'diagonal':
 				return GeoCoordinate::getDistanceInMeters( $this->northEast->lat, $this->northEast->lon, $this->southWest->lat, $this->southWest->lon );
-				break;
 		}
 		return null;
 	}

@@ -48,13 +48,10 @@ class Point {
 		switch ( $name ) {
 			case 'lat':
 				return $this->latitude;
-				break;
 			case 'lon':
 				return $this->longitude;
-				break;
 			case 'bounds':
 				return $this->bounds;
-				break;
 			case 'pos':
 				if ( $this->isValid() ) {
 					return [ 'lat' => $this->latitude, 'lon' => $this->longitude ];

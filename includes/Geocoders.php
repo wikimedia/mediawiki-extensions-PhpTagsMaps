@@ -16,13 +16,10 @@ class Geocoders {
 		switch ( $service ) {
 			case 'google':
 				return self::getCoordinatesUseGoogle( $address );
-				break;
 			case 'yandex':
 				return self::getCoordinatesUseYandex( $address );
-				break;
 			case 'leaflet':
 				return self::getCoordinatesUseMapquestNominatim( $address, $params );
-				break;
 		}
 		return false;
 	}

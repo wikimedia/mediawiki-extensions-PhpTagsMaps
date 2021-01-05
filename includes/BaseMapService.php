@@ -297,19 +297,15 @@ abstract class BaseMapService {
 			case 'marker':
 			case 'markers':
 				return $this->addElementMarker( $value );
-				break;
 			case 'line':
 			case 'lines':
 				return $this->addElementLine( $value );
-				break;
 			case 'polygon':
 			case 'polygons':
 				return $this->addElementPolygon( $value );
-				break;
 			case 'rectangle':
 			case 'rectangles':
 				return $this->addElementRectangle( $value );
-				break;
 			case 'circle':
 			case 'circles':
 				return $this->addElementCircle( $value );
@@ -472,7 +468,6 @@ abstract class BaseMapService {
 					$this->errormessages[] = \wfMessage( 'multimaps-unable-parse-parameter', $name, $value )->escaped();
 				}
 				return true;
-				break;
 			case 'icon':
 				$marker = new Marker();
 				if ( $marker->setProperty( 'icon', $value ) ) {
@@ -498,15 +493,12 @@ abstract class BaseMapService {
 					$this->errormessages = array_merge( $this->errormessages, $marker->getErrorMessages() );
 				}
 				return true;
-				break;
 			case 'height':
 				$this->height = $value;
 				return true;
-				break;
 			case 'width':
 				$this->width = $value;
 				return true;
-				break;
 			case 'bounds':
 				// TODO
 				break;
@@ -518,7 +510,6 @@ abstract class BaseMapService {
 					$this->properties[$name] = $value;
 				}
 				return true;
-				break;
 		}
 		return false;
 	}
@@ -533,7 +524,6 @@ abstract class BaseMapService {
 		switch ( $name ) {
 			case 'classname':
 				return $this->classname;
-				break;
 			default:
 				return isset( $this->properties[$name] ) ? $this->properties[$name] : null;
 		}
