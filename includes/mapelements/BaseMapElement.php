@@ -46,7 +46,7 @@ abstract class BaseMapElement {
 
 	/**
 	 * Returns element name
-	 * return string Element name
+	 * @return string Element name
 	 */
 	abstract public function getElementName();
 

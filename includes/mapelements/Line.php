@@ -28,7 +28,7 @@ class Line extends BaseMapElement {
 
 	/**
 	 * Returns element name
-	 * return string Element name
+	 * @return string Element name
 	 */
 	public function getElementName() {
 		return 'Line'; // TODO i18n?

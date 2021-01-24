@@ -20,7 +20,7 @@ class Circle extends Polygon {
 
 	/**
 	 * Returns element name
-	 * return string Element name
+	 * @return string Element name
 	 */
 	public function getElementName() {
 		return 'Circle'; // TODO i18n?
@@ -93,6 +93,7 @@ class Circle extends Polygon {
 				);
 	}
 
+	/** @inheritDoc */
 	public function getProperty( $name ) {
 		switch ( $name ) {
 			case 'radiuses':

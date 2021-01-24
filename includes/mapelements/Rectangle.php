@@ -13,7 +13,7 @@ class Rectangle extends Polygon {
 
 	/**
 	 * Returns element name
-	 * return string Element name
+	 * @return string Element name
 	 */
 	public function getElementName() {
 		return 'Rectangle'; // TODO i18n?

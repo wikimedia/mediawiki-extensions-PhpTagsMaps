@@ -12,6 +12,12 @@ namespace MultiMaps;
 
 class Geocoders {
 
+	/**
+	 * @param string $address
+	 * @param string $service
+	 * @param array|null $params
+	 * @return array|false
+	 */
 	public static function getCoordinates( $address, $service, $params = null ) {
 		switch ( $service ) {
 			case 'google':
@@ -24,10 +30,19 @@ class Geocoders {
 		return false;
 	}
 
+	/**
+	 * @param string $url
+	 * @param array $urlArgs
+	 * @return string|false
+	 */
 	private static function performRequest( $url, $urlArgs ) {
 		return \Http::get( $url . wfArrayToCgi( $urlArgs ) );
 	}
 
+	/**
+	 * @param string $address
+	 * @return array|false
+	 */
 	private static function getCoordinatesUseGoogle( $address ) {
 		$return = false;
 
@@ -63,6 +78,10 @@ class Geocoders {
 		return $return;
 	}
 
+	/**
+	 * @param string $address
+	 * @return array|false
+	 */
 	private static function getCoordinatesUseYandex( $address ) {
 		$return = false;
 
@@ -101,6 +120,11 @@ class Geocoders {
 		return $return;
 	}
 
+	/**
+	 * @param string $address
+	 * @param array $params
+	 * @return array|false
+	 */
 	public static function getCoordinatesUseMapquestNominatim( $address, $params ) {
 		$return = false;
 		$param_polygon = ( isset( $params['polygon'] ) && $params['polygon'] === true ) ? true : false;

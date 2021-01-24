@@ -38,7 +38,7 @@ class Polygon extends Line {
 
 	/**
 	 * Returns element name
-	 * return string Element name
+	 * @return string Element name
 	 */
 	public function getElementName() {
 		return 'Polygon'; // TODO i18n?

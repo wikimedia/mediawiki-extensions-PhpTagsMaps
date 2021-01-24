@@ -28,12 +28,13 @@ class Marker extends BaseMapElement {
 
 	/**
 	 * Returns element name
-	 * return string Element name
+	 * @return string Element name
 	 */
 	public function getElementName() {
 		return 'Marker'; // TODO i18n?
 	}
 
+	/** @inheritDoc */
 	public function setProperty( $name, $value ) {
 		global $egMultiMaps_CoordinatesSeparator, $egMultiMaps_OptionsSeparator;
 

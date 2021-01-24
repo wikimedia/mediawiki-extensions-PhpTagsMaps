@@ -455,6 +455,11 @@ abstract class BaseMapService {
 		$this->setProperty( $name, $value );
 	}
 
+	/**
+	 * @param string $name
+	 * @param mixed $value
+	 * @return bool
+	 */
 	public function setProperty( $name, $value ) {
 		// TODO available properties
 		$name = strtolower( $name );
@@ -518,6 +523,10 @@ abstract class BaseMapService {
 		return $this->getProperty( $name );
 	}
 
+	/**
+	 * @param string $name
+	 * @return mixed|null
+	 */
 	public function getProperty( $name ) {
 		$name = strtolower( $name );
 
