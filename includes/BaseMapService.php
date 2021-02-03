@@ -288,8 +288,8 @@ abstract class BaseMapService {
 	 * @return bool
 	 */
 	public function addMapElement( $name, $value ) {
-		if ( trim( $value == '' ) ) {
-			return;
+		if ( trim( $value ) == '' ) {
+			return false;
 		}
 		$name = strtolower( $name );
 
@@ -310,7 +310,7 @@ abstract class BaseMapService {
 			case 'circles':
 				return $this->addElementCircle( $value );
 			default:
-				break;
+				return false;
 		}
 	}
 
